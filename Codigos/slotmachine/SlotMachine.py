@@ -7,7 +7,8 @@ class SlotMachine:
         self.slot1 = None
         self.slot2 = None
         self.slot3 = None
-        self.imgs = ['arcanaine','corphish','electabuz','groundon','pikachu']
+        #self.imgs = ['arcanaine','corphish','electabuz','groundon','pikachu']
+        self.imgs = ['ewert', 'kaio', 'mat', 'gnu']
 
     def spin(self):
         c = self.fisher_yates_shuffle(self.imgs)
@@ -27,6 +28,7 @@ class SlotMachine:
             vetor_ordenado[d], vetor_ordenado[e] = vetor_ordenado[e], vetor_ordenado[d]
         self.embalharada = vetor_ordenado
         return vetor_ordenado
-
+'''
 s = SlotMachine()
 print(s.spin())
+'''
