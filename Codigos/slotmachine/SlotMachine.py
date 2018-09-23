@@ -7,7 +7,8 @@ class SlotMachine:
         self.slot2 = None
         self.slot3 = None
         #self.imgs = ['arcanaine','corphish','electabuz','groundon','pikachu']
-        self.imgs = ['ewert', 'kaio', 'mat', 'gnu']
+        #self.imgs = ['ewert', 'kaio', 'mat', 'gnu']
+        self.imgs=['android','apple','gnuu','tux','ubuntu','wind']
 
 
     def spin(self):
