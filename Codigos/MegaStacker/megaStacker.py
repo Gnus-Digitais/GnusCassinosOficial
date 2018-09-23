@@ -647,14 +647,24 @@ q74['image']=vqImg
 q74.place(x=478,y=445)
 q74['bg']='#000'
 
-
+#btn parar!
 btP=Button(tela)
-btpImg=PhotoImage(file=r"imagens/btnP.png")
+btpImg=PhotoImage(file=r"imagens/pare.png")
 btP['image']=btpImg
 btP['relief']=FLAT
 btP['bg']="#006400"
 btP['command']=clique
-btP.place(x=380,y=515)
+btP.place(x=410,y=515)
+
+#brn Reiniciar!
+btR=Button(tela)
+btrImg=PhotoImage(file=r"imagens/reinicio.png")
+btR['image']=btrImg
+btR['relief']=FLAT
+btR['bg']="#006400"
+#btR['command']=reiniciar
+btR.place(x=290,y=515)
+
 
 #fim criando 40 quadradinhos vermelhos labels##@
 #criando quadrado amarelo
