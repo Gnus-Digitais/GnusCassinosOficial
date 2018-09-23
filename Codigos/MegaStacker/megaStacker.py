@@ -3,7 +3,7 @@ from tkinter import *
 import time
 from functools import partial
 
-
+#GNUS DIGITAIS> BRUNO, RODRIGO, MATHEUS E IGOR
 def linha1():
     u=0
     global cliq
@@ -12,28 +12,28 @@ def linha1():
             q00['image'] = aqImg
             time.sleep(0.1)
         else:
-            q00['image'] = aqImg
+            #q00['image'] = aqImg
             u=1
             break
         if cliq != 1:
             q01['image'] = aqImg
             time.sleep(0.1)
         else:
-            q01['image'] = aqImg
+            #q01['image'] = aqImg
             u=2
             break
         if cliq != 1:
             q02['image'] = aqImg
             time.sleep(0.1)
         else:
-            q02['image'] = aqImg
+            #q02['image'] = aqImg
             u=3
             break
         if cliq != 1:
             q03['image'] = aqImg
             time.sleep(0.1)
         else:
-            q03['image'] = aqImg
+            #q03['image'] = aqImg
             u=4
             break
         if cliq != 1:
@@ -45,36 +45,12 @@ def linha1():
             break
 
         q04['image'] = vqImg
-        time.sleep(0.1)
-
-        if cliq != 1:
-            q03['image'] = vqImg
-            time.sleep(0.1)
-        else:
-            q03['image'] = vqImg
-            u=4
-            break
-        if cliq != 1:
-            q02['image'] = vqImg
-            time.sleep(0.1)
-        else:
-            q02['image'] = vqImg
-            u=3
-            break
-        if cliq != 1:
-            q01['image'] = vqImg
-            time.sleep(0.1)
-        else:
-            q01['image'] = vqImg
-            u=2
-            break
-        if cliq != 1:
-            q00['image'] = vqImg
-            time.sleep(0.1) #por enquanto fica assim
-        else:
-            q00['image'] = vqImg
-            u=1
-            break
+        q03['image'] = vqImg
+        q02['image'] = vqImg
+        q01['image'] = vqImg
+        q00['image'] = vqImg
+        time.sleep(0.0)
+        q00['image'] = aqImg
     cliq = 0
     analisa_resultado(u)
 
@@ -87,28 +63,28 @@ def linha2():
             q10['image'] = aqImg
             time.sleep(0.1)
         else:
-            q10['image'] = aqImg
+            #q10['image'] = aqImg
             u=1
             break
         if cliq != 1:
             q11['image'] = aqImg
             time.sleep(0.1)
         else:
-            q11['image'] = aqImg
+            #q11['image'] = aqImg
             u=2
             break
         if cliq != 1:
             q12['image'] = aqImg
             time.sleep(0.1)
         else:
-            q12['image'] = aqImg
+            #q12['image'] = aqImg
             u=3
             break
         if cliq != 1:
             q13['image'] = aqImg
             time.sleep(0.1)
         else:
-            q13['image'] = aqImg
+            #q13['image'] = aqImg
             u=4
             break
         if cliq != 1:
@@ -120,36 +96,12 @@ def linha2():
             break
 
         q14['image'] = vqImg
-        time.sleep(0.1)
-
-        if cliq != 1:
-            q13['image'] = vqImg
-            time.sleep(0.1)
-        else:
-            q13['image'] = vqImg
-            u=4
-            break
-        if cliq != 1:
-            q12['image'] = vqImg
-            time.sleep(0.1)
-        else:
-            q12['image'] = vqImg
-            u=3
-            break
-        if cliq != 1:
-            q11['image'] = vqImg
-            time.sleep(0.1)
-        else:
-            q11['image'] = vqImg
-            u=2
-            break
-        if cliq != 1:
-            q10['image'] = vqImg
-            time.sleep(0.1) #por enquanto fica assim
-        else:
-            q10['image'] = vqImg
-            u=1
-            break
+        q13['image'] = vqImg
+        q12['image'] = vqImg
+        q11['image'] = vqImg
+        q10['image'] = vqImg
+        time.sleep(0.0)
+        q10['image'] = aqImg
     cliq = 0
     analisa_resultado(u)
 
@@ -162,28 +114,28 @@ def linha3():
             q20['image'] = aqImg
             time.sleep(0.1)
         else:
-            q20['image'] = aqImg
+            #q20['image'] = aqImg
             u=1
             break
         if cliq != 1:
             q21['image'] = aqImg
             time.sleep(0.2)
         else:
-            q21['image'] = aqImg
+            #q21['image'] = aqImg
             u=2
             break
         if cliq != 1:
             q22['image'] = aqImg
             time.sleep(0.2)
         else:
-            q22['image'] = aqImg
+            #q22['image'] = aqImg
             u=3
             break
         if cliq != 1:
             q23['image'] = aqImg
             time.sleep(0.2)
         else:
-            q23['image'] = aqImg
+            #q23['image'] = aqImg
             u=4
             break
         if cliq != 1:
@@ -195,36 +147,12 @@ def linha3():
             break
 
         q24['image'] = vqImg
-        time.sleep(0.1)
-
-        if cliq != 1:
-            q23['image'] = vqImg
-            time.sleep(0.2)
-        else:
-            q23['image'] = vqImg
-            u=4
-            break
-        if cliq != 1:
-            q22['image'] = vqImg
-            time.sleep(0.2)
-        else:
-            q22['image'] = vqImg
-            u=3
-            break
-        if cliq != 1:
-            q21['image'] = vqImg
-            time.sleep(0.2)
-        else:
-            q21['image'] = vqImg
-            u=2
-            break
-        if cliq != 1:
-            q20['image'] = vqImg
-            time.sleep(0.1) #por enquanto fica assim
-        else:
-            q20['image'] = vqImg
-            u=1
-            break
+        q23['image'] = vqImg
+        q22['image'] = vqImg
+        q21['image'] = vqImg
+        q20['image'] = vqImg
+        time.sleep(0.0)
+        q20['image'] = aqImg
     cliq = 0
     analisa_resultado(u)
 
@@ -238,28 +166,28 @@ def linha4():
             q30['image'] = aqImg
             time.sleep(0.1)
         else:
-            q30['image'] = aqImg
+            #q30['image'] = aqImg
             u=1
             break
         if cliq != 1:
             q31['image'] = aqImg
             time.sleep(0.2)
         else:
-            q31['image'] = aqImg
+            #q31['image'] = aqImg
             u=2
             break
         if cliq != 1:
             q32['image'] = aqImg
             time.sleep(0.2)
         else:
-            q32['image'] = aqImg
+            #q32['image'] = aqImg
             u=3
             break
         if cliq != 1:
             q33['image'] = aqImg
             time.sleep(0.2)
         else:
-            q33['image'] = aqImg
+            #q33['image'] = aqImg
             u=4
             break
         if cliq != 1:
@@ -271,36 +199,12 @@ def linha4():
             break
 
         q34['image'] = vqImg
-        time.sleep(0.1)
-
-        if cliq != 1:
-            q33['image'] = vqImg
-            time.sleep(0.2)
-        else:
-            q33['image'] = vqImg
-            u=4
-            break
-        if cliq != 1:
-            q32['image'] = vqImg
-            time.sleep(0.2)
-        else:
-            q32['image'] = vqImg
-            u=3
-            break
-        if cliq != 1:
-            q31['image'] = vqImg
-            time.sleep(0.2)
-        else:
-            q31['image'] = vqImg
-            u=2
-            break
-        if cliq != 1:
-            q30['image'] = vqImg
-            time.sleep(0.1) #por enquanto fica assim
-        else:
-            q30['image'] = vqImg
-            u=1
-            break
+        q33['image'] = vqImg
+        q32['image'] = vqImg
+        q31['image'] = vqImg
+        q30['image'] = vqImg
+        time.sleep(0.0)
+        q30['image'] = aqImg
     cliq = 0
     analisa_resultado(u)
 
@@ -313,28 +217,28 @@ def linha5():
             q40['image'] = aqImg
             time.sleep(0.1)
         else:
-            q40['image'] = aqImg
+            #q40['image'] = aqImg
             u=1
             break
         if cliq != 1:
             q41['image'] = aqImg
             time.sleep(0.3)
         else:
-            q41['image'] = aqImg
+            #q41['image'] = aqImg
             u=2
             break
         if cliq != 1:
             q42['image'] = aqImg
             time.sleep(0.3)
         else:
-            q42['image'] = aqImg
+            #q42['image'] = aqImg
             u=3
             break
         if cliq != 1:
             q43['image'] = aqImg
             time.sleep(0.3)
         else:
-            q43['image'] = aqImg
+            #q43['image'] = aqImg
             u=4
             break
         if cliq != 1:
@@ -346,36 +250,12 @@ def linha5():
             break
 
         q44['image'] = vqImg
-        time.sleep(0.3)
-
-        if cliq != 1:
-            q43['image'] = vqImg
-            time.sleep(0.3)
-        else:
-            q43['image'] = vqImg
-            u=4
-            break
-        if cliq != 1:
-            q42['image'] = vqImg
-            time.sleep(0.3)
-        else:
-            q42['image'] = vqImg
-            u=3
-            break
-        if cliq != 1:
-            q41['image'] = vqImg
-            time.sleep(0.3)
-        else:
-            q41['image'] = vqImg
-            u=2
-            break
-        if cliq != 1:
-            q40['image'] = vqImg
-            time.sleep(0.1) #por enquanto fica assim
-        else:
-            q40['image'] = vqImg
-            u=1
-            break
+        q43['image'] = vqImg
+        q42['image'] = vqImg
+        q41['image'] = vqImg
+        q40['image'] = vqImg
+        time.sleep(0.0)
+        q40['image'] = aqImg
     cliq = 0
     analisa_resultado(u)
 
@@ -388,28 +268,28 @@ def linha6():
             q50['image'] = aqImg
             time.sleep(0.1)
         else:
-            q50['image'] = aqImg
+            #q50['image'] = aqImg
             u=1
             break
         if cliq != 1:
             q51['image'] = aqImg
             time.sleep(0.4)
         else:
-            q51['image'] = aqImg
+            #q51['image'] = aqImg
             u=2
             break
         if cliq != 1:
             q52['image'] = aqImg
             time.sleep(0.4)
         else:
-            q52['image'] = aqImg
+            #q52['image'] = aqImg
             u=3
             break
         if cliq != 1:
             q53['image'] = aqImg
             time.sleep(0.4)
         else:
-            q53['image'] = aqImg
+            #q53['image'] = aqImg
             u=4
             break
         if cliq != 1:
@@ -421,36 +301,12 @@ def linha6():
             break
 
         q54['image'] = vqImg
-        time.sleep(0.4)
-
-        if cliq != 1:
-            q53['image'] = vqImg
-            time.sleep(0.4)
-        else:
-            q53['image'] = vqImg
-            u=4
-            break
-        if cliq != 1:
-            q52['image'] = vqImg
-            time.sleep(0.4)
-        else:
-            q52['image'] = vqImg
-            u=3
-            break
-        if cliq != 1:
-            q51['image'] = vqImg
-            time.sleep(0.4)
-        else:
-            q51['image'] = vqImg
-            u=2
-            break
-        if cliq != 1:
-            q50['image'] = vqImg
-            time.sleep(0.1) #por enquanto fica assim
-        else:
-            q50['image'] = vqImg
-            u=1
-            break
+        q53['image'] = vqImg
+        q52['image'] = vqImg
+        q51['image'] = vqImg
+        q50['image'] = vqImg
+        time.sleep(0.0)
+        q50['image'] = aqImg
     cliq = 0
     analisa_resultado(u)
 
@@ -463,28 +319,28 @@ def linha7():
             q60['image'] = aqImg
             time.sleep(0.1)
         else:
-            q60['image'] = aqImg
+            #q60['image'] = aqImg
             u=1
             break
         if cliq != 1:
             q61['image'] = aqImg
             time.sleep(0.5)
         else:
-            q61['image'] = aqImg
+            #q61['image'] = aqImg
             u=2
             break
         if cliq != 1:
             q62['image'] = aqImg
             time.sleep(0.5)
         else:
-            q62['image'] = aqImg
+            #q62['image'] = aqImg
             u=3
             break
         if cliq != 1:
             q63['image'] = aqImg
             time.sleep(0.5)
         else:
-            q63['image'] = aqImg
+            #q63['image'] = aqImg
             u=4
             break
         if cliq != 1:
@@ -496,36 +352,12 @@ def linha7():
             break
 
         q64['image'] = vqImg
-        time.sleep(0.5)
-
-        if cliq != 1:
-            q63['image'] = vqImg
-            time.sleep(0.5)
-        else:
-            q63['image'] = vqImg
-            u=4
-            break
-        if cliq != 1:
-            q62['image'] = vqImg
-            time.sleep(0.5)
-        else:
-            q62['image'] = vqImg
-            u=3
-            break
-        if cliq != 1:
-            q61['image'] = vqImg
-            time.sleep(0.5)
-        else:
-            q61['image'] = vqImg
-            u=2
-            break
-        if cliq != 1:
-            q60['image'] = vqImg
-            time.sleep(0.1) #por enquanto fica assim
-        else:
-            q60['image'] = vqImg
-            u=1
-            break
+        q63['image'] = vqImg
+        q62['image'] = vqImg
+        q61['image'] = vqImg
+        q60['image'] = vqImg
+        time.sleep(0.0)
+        q60['image'] = aqImg
     cliq = 0
     analisa_resultado(u)
 
@@ -536,31 +368,31 @@ def linha8():
     while True:
         if cliq!=1:
             q70['image']=aqImg
-            time.sleep(0.5)#por enquanto menor time 2!!
+            time.sleep(0.1)#por enquanto menor time 2!!
             #fazer com u?
         else:
-            q70['image'] = aqImg
+           #q70['image'] = aqImg
             ultima=1
             break
         if cliq != 1:
             q71['image']=aqImg
             time.sleep(0.5)
         else:
-            q71['image'] = aqImg
+            #q71['image'] = aqImg
             ultima=2
             break
         if cliq != 1:
             q72['image']=aqImg
             time.sleep(0.5)
         else:
-            q72['image'] = aqImg
+            #q72['image'] = aqImg
             ultima=3
             break
         if cliq != 1:
             q73['image']=aqImg
             time.sleep(0.5)
         else:
-            q73['image'] = aqImg
+            #q73['image'] = aqImg
             ultima=4
             break
         if cliq != 1:
@@ -571,37 +403,15 @@ def linha8():
             ultima=5
             break
 
-        q74['image'] = vqImg
-        time.sleep(0.5)
 
-        if cliq != 1:
-            q73['image'] = vqImg
-            time.sleep(0.5)
-        else:
-            q73['image'] = vqImg
-            ultima=4
-            break
-        if cliq != 1:
-            q72['image'] = vqImg
-            time.sleep(0.5)
-        else:
-            q72['image'] = vqImg
-            ultima=3
-            break
-        if cliq != 1:
-            q71['image'] = vqImg
-            time.sleep(0.6)
-        else:
-            q71['image'] = vqImg
-            ultima=2
-            break
-        if cliq != 1:
-            q70['image'] = vqImg
-            time.sleep(0.01)# por enquanto fica assim, menor time!
-        else:
-            q70['image'] = vqImg
-            ultima=1
-            break
+        q74['image'] = vqImg
+        q73['image'] = vqImg
+        q72['image'] = vqImg
+        q71['image'] = vqImg
+        q70['image'] = vqImg
+        time.sleep(0.0)
+        q70['image'] = aqImg
+
     cliq = 0
     linha7()
 
