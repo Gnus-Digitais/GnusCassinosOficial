@@ -4,38 +4,664 @@ import time
 from functools import partial
 
 
+def linha1():
+    u=0
+    global cliq
+    while True:
+        if cliq !=1:
+            q00['image'] = aqImg
+            time.sleep(0.1)
+        else:
+            q00['image'] = aqImg
+            u=1
+            break
+        if cliq != 1:
+            q01['image'] = aqImg
+            time.sleep(0.1)
+        else:
+            q01['image'] = aqImg
+            u=2
+            break
+        if cliq != 1:
+            q02['image'] = aqImg
+            time.sleep(0.1)
+        else:
+            q02['image'] = aqImg
+            u=3
+            break
+        if cliq != 1:
+            q03['image'] = aqImg
+            time.sleep(0.1)
+        else:
+            q03['image'] = aqImg
+            u=4
+            break
+        if cliq != 1:
+            q04['image'] = aqImg
+            time.sleep(0.1)
+        else:
+            q04['image'] = aqImg
+            u=5
+            break
+
+        q04['image'] = vqImg
+        time.sleep(0.1)
+
+        if cliq != 1:
+            q03['image'] = vqImg
+            time.sleep(0.1)
+        else:
+            q03['image'] = vqImg
+            u=4
+            break
+        if cliq != 1:
+            q02['image'] = vqImg
+            time.sleep(0.1)
+        else:
+            q02['image'] = vqImg
+            u=3
+            break
+        if cliq != 1:
+            q01['image'] = vqImg
+            time.sleep(0.1)
+        else:
+            q01['image'] = vqImg
+            u=2
+            break
+        if cliq != 1:
+            q00['image'] = vqImg
+            time.sleep(0.1) #por enquanto fica assim
+        else:
+            q00['image'] = vqImg
+            u=1
+            break
+    cliq = 0
+    analisa_resultado(u)
+
+
+def linha2():
+    u=0
+    global cliq
+    while True:
+        if cliq !=1:
+            q10['image'] = aqImg
+            time.sleep(0.1)
+        else:
+            q10['image'] = aqImg
+            u=1
+            break
+        if cliq != 1:
+            q11['image'] = aqImg
+            time.sleep(0.1)
+        else:
+            q11['image'] = aqImg
+            u=2
+            break
+        if cliq != 1:
+            q12['image'] = aqImg
+            time.sleep(0.1)
+        else:
+            q12['image'] = aqImg
+            u=3
+            break
+        if cliq != 1:
+            q13['image'] = aqImg
+            time.sleep(0.1)
+        else:
+            q13['image'] = aqImg
+            u=4
+            break
+        if cliq != 1:
+            q14['image'] = aqImg
+            time.sleep(0.1)
+        else:
+            q14['image'] = aqImg
+            u=5
+            break
+
+        q14['image'] = vqImg
+        time.sleep(0.1)
+
+        if cliq != 1:
+            q13['image'] = vqImg
+            time.sleep(0.1)
+        else:
+            q13['image'] = vqImg
+            u=4
+            break
+        if cliq != 1:
+            q12['image'] = vqImg
+            time.sleep(0.1)
+        else:
+            q12['image'] = vqImg
+            u=3
+            break
+        if cliq != 1:
+            q11['image'] = vqImg
+            time.sleep(0.1)
+        else:
+            q11['image'] = vqImg
+            u=2
+            break
+        if cliq != 1:
+            q10['image'] = vqImg
+            time.sleep(0.1) #por enquanto fica assim
+        else:
+            q10['image'] = vqImg
+            u=1
+            break
+    cliq = 0
+    analisa_resultado(u)
+
+
+def linha3():
+    u=0
+    global cliq
+    while True:
+        if cliq !=1:
+            q20['image'] = aqImg
+            time.sleep(0.1)
+        else:
+            q20['image'] = aqImg
+            u=1
+            break
+        if cliq != 1:
+            q21['image'] = aqImg
+            time.sleep(0.2)
+        else:
+            q21['image'] = aqImg
+            u=2
+            break
+        if cliq != 1:
+            q22['image'] = aqImg
+            time.sleep(0.2)
+        else:
+            q22['image'] = aqImg
+            u=3
+            break
+        if cliq != 1:
+            q23['image'] = aqImg
+            time.sleep(0.2)
+        else:
+            q23['image'] = aqImg
+            u=4
+            break
+        if cliq != 1:
+            q24['image'] = aqImg
+            time.sleep(0.2)
+        else:
+            q24['image'] = aqImg
+            u=5
+            break
+
+        q24['image'] = vqImg
+        time.sleep(0.1)
+
+        if cliq != 1:
+            q23['image'] = vqImg
+            time.sleep(0.2)
+        else:
+            q23['image'] = vqImg
+            u=4
+            break
+        if cliq != 1:
+            q22['image'] = vqImg
+            time.sleep(0.2)
+        else:
+            q22['image'] = vqImg
+            u=3
+            break
+        if cliq != 1:
+            q21['image'] = vqImg
+            time.sleep(0.2)
+        else:
+            q21['image'] = vqImg
+            u=2
+            break
+        if cliq != 1:
+            q20['image'] = vqImg
+            time.sleep(0.1) #por enquanto fica assim
+        else:
+            q20['image'] = vqImg
+            u=1
+            break
+    cliq = 0
+    analisa_resultado(u)
+
+
+
+def linha4():
+    u=0
+    global cliq
+    while True:
+        if cliq !=1:
+            q30['image'] = aqImg
+            time.sleep(0.1)
+        else:
+            q30['image'] = aqImg
+            u=1
+            break
+        if cliq != 1:
+            q31['image'] = aqImg
+            time.sleep(0.2)
+        else:
+            q31['image'] = aqImg
+            u=2
+            break
+        if cliq != 1:
+            q32['image'] = aqImg
+            time.sleep(0.2)
+        else:
+            q32['image'] = aqImg
+            u=3
+            break
+        if cliq != 1:
+            q33['image'] = aqImg
+            time.sleep(0.2)
+        else:
+            q33['image'] = aqImg
+            u=4
+            break
+        if cliq != 1:
+            q34['image'] = aqImg
+            time.sleep(0.2)
+        else:
+            q34['image'] = aqImg
+            u=5
+            break
+
+        q34['image'] = vqImg
+        time.sleep(0.1)
+
+        if cliq != 1:
+            q33['image'] = vqImg
+            time.sleep(0.2)
+        else:
+            q33['image'] = vqImg
+            u=4
+            break
+        if cliq != 1:
+            q32['image'] = vqImg
+            time.sleep(0.2)
+        else:
+            q32['image'] = vqImg
+            u=3
+            break
+        if cliq != 1:
+            q31['image'] = vqImg
+            time.sleep(0.2)
+        else:
+            q31['image'] = vqImg
+            u=2
+            break
+        if cliq != 1:
+            q30['image'] = vqImg
+            time.sleep(0.1) #por enquanto fica assim
+        else:
+            q30['image'] = vqImg
+            u=1
+            break
+    cliq = 0
+    analisa_resultado(u)
+
+
+def linha5():
+    u=0
+    global cliq
+    while True:
+        if cliq !=1:
+            q40['image'] = aqImg
+            time.sleep(0.1)
+        else:
+            q40['image'] = aqImg
+            u=1
+            break
+        if cliq != 1:
+            q41['image'] = aqImg
+            time.sleep(0.3)
+        else:
+            q41['image'] = aqImg
+            u=2
+            break
+        if cliq != 1:
+            q42['image'] = aqImg
+            time.sleep(0.3)
+        else:
+            q42['image'] = aqImg
+            u=3
+            break
+        if cliq != 1:
+            q43['image'] = aqImg
+            time.sleep(0.3)
+        else:
+            q43['image'] = aqImg
+            u=4
+            break
+        if cliq != 1:
+            q44['image'] = aqImg
+            time.sleep(0.3)
+        else:
+            q44['image'] = aqImg
+            u=5
+            break
+
+        q44['image'] = vqImg
+        time.sleep(0.3)
+
+        if cliq != 1:
+            q43['image'] = vqImg
+            time.sleep(0.3)
+        else:
+            q43['image'] = vqImg
+            u=4
+            break
+        if cliq != 1:
+            q42['image'] = vqImg
+            time.sleep(0.3)
+        else:
+            q42['image'] = vqImg
+            u=3
+            break
+        if cliq != 1:
+            q41['image'] = vqImg
+            time.sleep(0.3)
+        else:
+            q41['image'] = vqImg
+            u=2
+            break
+        if cliq != 1:
+            q40['image'] = vqImg
+            time.sleep(0.1) #por enquanto fica assim
+        else:
+            q40['image'] = vqImg
+            u=1
+            break
+    cliq = 0
+    analisa_resultado(u)
+
+
+def linha6():
+    u=0
+    global cliq
+    while True:
+        if cliq !=1:
+            q50['image'] = aqImg
+            time.sleep(0.1)
+        else:
+            q50['image'] = aqImg
+            u=1
+            break
+        if cliq != 1:
+            q51['image'] = aqImg
+            time.sleep(0.4)
+        else:
+            q51['image'] = aqImg
+            u=2
+            break
+        if cliq != 1:
+            q52['image'] = aqImg
+            time.sleep(0.4)
+        else:
+            q52['image'] = aqImg
+            u=3
+            break
+        if cliq != 1:
+            q53['image'] = aqImg
+            time.sleep(0.4)
+        else:
+            q53['image'] = aqImg
+            u=4
+            break
+        if cliq != 1:
+            q54['image'] = aqImg
+            time.sleep(0.4)
+        else:
+            q54['image'] = aqImg
+            u=5
+            break
+
+        q54['image'] = vqImg
+        time.sleep(0.4)
+
+        if cliq != 1:
+            q53['image'] = vqImg
+            time.sleep(0.4)
+        else:
+            q53['image'] = vqImg
+            u=4
+            break
+        if cliq != 1:
+            q52['image'] = vqImg
+            time.sleep(0.4)
+        else:
+            q52['image'] = vqImg
+            u=3
+            break
+        if cliq != 1:
+            q51['image'] = vqImg
+            time.sleep(0.4)
+        else:
+            q51['image'] = vqImg
+            u=2
+            break
+        if cliq != 1:
+            q50['image'] = vqImg
+            time.sleep(0.1) #por enquanto fica assim
+        else:
+            q50['image'] = vqImg
+            u=1
+            break
+    cliq = 0
+    analisa_resultado(u)
+
+
+def linha7():
+    u=0
+    global cliq
+    while True:
+        if cliq !=1:
+            q60['image'] = aqImg
+            time.sleep(0.1)
+        else:
+            q60['image'] = aqImg
+            u=1
+            break
+        if cliq != 1:
+            q61['image'] = aqImg
+            time.sleep(0.5)
+        else:
+            q61['image'] = aqImg
+            u=2
+            break
+        if cliq != 1:
+            q62['image'] = aqImg
+            time.sleep(0.5)
+        else:
+            q62['image'] = aqImg
+            u=3
+            break
+        if cliq != 1:
+            q63['image'] = aqImg
+            time.sleep(0.5)
+        else:
+            q63['image'] = aqImg
+            u=4
+            break
+        if cliq != 1:
+            q64['image'] = aqImg
+            time.sleep(0.5)
+        else:
+            q64['image'] = aqImg
+            u=5
+            break
+
+        q64['image'] = vqImg
+        time.sleep(0.5)
+
+        if cliq != 1:
+            q63['image'] = vqImg
+            time.sleep(0.5)
+        else:
+            q63['image'] = vqImg
+            u=4
+            break
+        if cliq != 1:
+            q62['image'] = vqImg
+            time.sleep(0.5)
+        else:
+            q62['image'] = vqImg
+            u=3
+            break
+        if cliq != 1:
+            q61['image'] = vqImg
+            time.sleep(0.5)
+        else:
+            q61['image'] = vqImg
+            u=2
+            break
+        if cliq != 1:
+            q60['image'] = vqImg
+            time.sleep(0.1) #por enquanto fica assim
+        else:
+            q60['image'] = vqImg
+            u=1
+            break
+    cliq = 0
+    analisa_resultado(u)
+
+
 def linha8():
-    q70['image']=aqImg
-    time.sleep(0.2)
-    q71['image']=aqImg
-    time.sleep(0.2)
-    q72['image']=aqImg
-    time.sleep(0.2)
-    q73['image']=aqImg
-    time.sleep(0.2)
-    q74['image']=aqImg
-    time.sleep(0.2)
-    q74['image'] = vqImg
-    time.sleep(0.2)
-    q73['image'] = vqImg
-    time.sleep(0.2)
-    q72['image'] = vqImg
-    time.sleep(0.2)
-    q71['image'] = vqImg
-    time.sleep(0.2)
-    q70['image'] = vqImg
-    time.sleep(0.2)
-    chama()
+    global ultima
+    global cliq
+    while True:
+        if cliq!=1:
+            q70['image']=aqImg
+            time.sleep(0.5)#por enquanto menor time 2!!
+            #fazer com u?
+        else:
+            q70['image'] = aqImg
+            ultima=1
+            break
+        if cliq != 1:
+            q71['image']=aqImg
+            time.sleep(0.5)
+        else:
+            q71['image'] = aqImg
+            ultima=2
+            break
+        if cliq != 1:
+            q72['image']=aqImg
+            time.sleep(0.5)
+        else:
+            q72['image'] = aqImg
+            ultima=3
+            break
+        if cliq != 1:
+            q73['image']=aqImg
+            time.sleep(0.5)
+        else:
+            q73['image'] = aqImg
+            ultima=4
+            break
+        if cliq != 1:
+            q74['image']=aqImg
+            time.sleep(0.5)
+        else:
+            q74['image'] = aqImg
+            ultima=5
+            break
+
+        q74['image'] = vqImg
+        time.sleep(0.5)
+
+        if cliq != 1:
+            q73['image'] = vqImg
+            time.sleep(0.5)
+        else:
+            q73['image'] = vqImg
+            ultima=4
+            break
+        if cliq != 1:
+            q72['image'] = vqImg
+            time.sleep(0.5)
+        else:
+            q72['image'] = vqImg
+            ultima=3
+            break
+        if cliq != 1:
+            q71['image'] = vqImg
+            time.sleep(0.6)
+        else:
+            q71['image'] = vqImg
+            ultima=2
+            break
+        if cliq != 1:
+            q70['image'] = vqImg
+            time.sleep(0.01)# por enquanto fica assim, menor time!
+        else:
+            q70['image'] = vqImg
+            ultima=1
+            break
+    cliq = 0
+    linha7()
+
+
+def analisa_resultado(u):
+    global ultima
+    global linha
+    linha=linha-1
+    if linha==6:
+        if ultima==u:
+            print("aqui analisa o resultado do player\npassou para proxima linha")
+            linha6()
+    elif linha==5:
+        if ultima==u:
+            print("aqui analisa o resultado do player\npassou para proxima linha")
+            linha5()
+        else:
+            print("você perdeu - linha 5.")
+    elif linha==4:
+        if ultima==u:
+            print("aqui analisa o resultado do player\npassou para proxima linha")
+            linha4()
+        else:
+            print("você perdeu - linha 4.")
+    elif linha==3:
+        if ultima==u:
+            print("aqui analisa o resultado do player\npassou para proxima linha")
+            linha3()
+        else:
+            print("você perdeu - linha 3.")
+    elif linha==2:
+        if ultima==u:
+            linha2()
+            print("aqui analisa o resultado do player\npassou para proxima linha")
+        else:
+            print("você perdeu - linha 2.")
+    elif linha==1:
+        if ultima==u:
+            print("aqui analisa o resultado do player\npassou para proxima linha")
+            linha1()
+        else:
+            print("você perdeu - linha 1.")
+    else:
+        print("@@@chegou ao topo ! presumo! @@@")
+
 
 def chama():
     threading.Timer(0.2,linha8).start()
 
 def clique():
     print("clicou")
+    global cliq
+    cliq=1
 
 # inicia tela
 tela = Tk()
-mat=[['q00', 'q01', 'q02', 'q03', 'q04'], ['q10', 'q11', 'q12', 'q13', 'q14'], ['q20', 'q21', 'q22', 'q23', 'q24'], ['q30', 'q31', 'q32', 'q33', 'q34'], ['q40', 'q41', 'q42', 'q43', 'q44'], ['q50', 'q51', 'q52', 'q53', 'q54'], ['q60', 'q61', 'q62', 'q63', 'q64'], ['q70', 'q71', 'q72', 'q73', 'q74']]
+cliq=0
+ultima=0
+linha=7
+#mat=[['q00', 'q01', 'q02', 'q03', 'q04'], ['q10', 'q11', 'q12', 'q13', 'q14'], ['q20', 'q21', 'q22', 'q23', 'q24'], ['q30', 'q31', 'q32', 'q33', 'q34'], ['q40', 'q41', 'q42', 'q43', 'q44'], ['q50', 'q51', 'q52', 'q53', 'q54'], ['q60', 'q61', 'q62', 'q63', 'q64'], ['q70', 'q71', 'q72', 'q73', 'q74']]
 
 
 maquina=Label(tela)
