@@ -10,7 +10,27 @@ def pin():
     mixer.init()
     mixer.music.load(r'sounds/DEAL1.wav')
     mixer.music.play()
-def s1():
+
+def muda_alavanca(status):
+    if status=="cima":
+        #status e cima
+        imgSpin.place(x=480, y=200)
+        imgSP['file'] = r"imagens/bracoCima.png"
+        btnSpin.place(x=503, y=190)
+        btnSpin['image']=imgbtnSpin
+        b['image']=''
+        b.place(x=0,y=0)
+    else:
+        #status e baixo
+        imgSpin.place(x=480, y=291)
+        imgSP['file'] = r"imagens/bracoBaixo.png"
+        btnSpin.place(x=0,y=0)
+        btnSpin['image']=""
+        b['image']=bImg
+        b.place(x=503,y=390)
+
+
+def gira():
     # for magico da porra.25 é uma forma de fazer tempo junto com o time.sleep()0.090 la de baixo.
     for i in range(25):
         nome = str(sm.spin())
@@ -38,9 +58,12 @@ def s1():
         time.sleep(0.090)
 
     print("gotcha parou")
+    muda_alavanca("cima")
 
 def sorteia():
-    threading.Timer(0.1, s1).start()
+    #muda_alavanca("meio")
+    muda_alavanca("baixo")
+    threading.Timer(0.1, gira).start()
 
 
 # inicia tela
@@ -49,7 +72,7 @@ c=1
 
 #caça niquel logo !
 cNiquel=Label(tela)
-imgcNiquel=PhotoImage(file="imagens/cacaniquel.png")
+imgcNiquel=PhotoImage(file="imagens/cacaniquel2.png")
 cNiquel['image']=imgcNiquel
 cNiquel['bg']="#006400"
 cNiquel.place(x=180,y=30)
@@ -60,21 +83,21 @@ imagem = Label(tela)
 img1 = PhotoImage(file="imagens/gnu.png")
 imagem['image'] = img1
 imagem['bg'] = '#fff'
-imagem.place(x=240, y=255)
+imagem.place(x=230, y=280)
 
 # Segundo slot
 imagem2 = Label(tela)
 img2 = PhotoImage(file="imagens/gnu.png")
 imagem2['image'] = img2
 imagem2['bg'] = '#fff'
-imagem2.place(x=321, y=255)
+imagem2.place(x=305, y=280)
 
 # Terceiro slot
 imagem3 = Label(tela)
 img3 = PhotoImage(file="imagens/gnu.png")
 imagem3['image'] = img3
 imagem3['bg'] = '#fff'
-imagem3.place(x=402, y=255)
+imagem3.place(x=380, y=280)
 
 
 #braco do spin button
@@ -82,7 +105,7 @@ imgSpin=Label(tela)
 imgSpin['bg']="#006400"
 imgSP=PhotoImage(file=r"imagens/bracoCima.png")
 imgSpin['image']=imgSP
-imgSpin.place(x=511,y=200)
+imgSpin.place(x=480,y=200)
 #fim braco spin button
 
 # Botão de spin
@@ -92,8 +115,14 @@ btnSpin['relief']=FLAT
 btnSpin['command']= sorteia
 imgbtnSpin=PhotoImage(file=r"imagens\btnSpin.png")
 btnSpin['image']=imgbtnSpin
-btnSpin.place(x=534, y=180)
+btnSpin.place(x=503, y=190)
 #fim botao spin
+#bolinha inicio
+b=Label(tela)
+b['bg']='#006400'
+bImg=PhotoImage(file=r"imagens\Bolinha.png")
+b['image']=bImg
+#bolinha fim
 
 # Conigurações da janela
 tela.title("G'nus Slot Machine") # titulo da janela

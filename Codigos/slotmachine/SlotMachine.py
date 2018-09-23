@@ -1,7 +1,6 @@
 import os
 import random
 
-
 class SlotMachine:
     def __init__(self):
         self.slot1 = None
@@ -9,6 +8,7 @@ class SlotMachine:
         self.slot3 = None
         #self.imgs = ['arcanaine','corphish','electabuz','groundon','pikachu']
         self.imgs = ['ewert', 'kaio', 'mat', 'gnu']
+
 
     def spin(self):
         c = self.fisher_yates_shuffle(self.imgs)
