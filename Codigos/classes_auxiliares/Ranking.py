@@ -49,7 +49,7 @@ class Raking:
             if result != []:
                 return result
             else:
-                return [['0',0,'0']*10]
+                return [['0',0,'0']]*10
         except FileNotFoundError:
             arquivo = open("rankings/" + self.__jogo + '_' + self.__dificuldade + '.txt', 'w+')
             arquivo.close()
@@ -71,7 +71,7 @@ class Raking:
             if self.pontuacao > int(i[1]):
                 lista.insert(n, [self.__nickname, self.__pontuacao, self.__dificuldade])
                 if len(lista) > 10:
-                    lista
+                    lista.pop()
                 self.gravarRanking(lista)
                 return lista
             n += 1
@@ -79,6 +79,6 @@ class Raking:
 
 
 
-r = Raking("matheus",50,"f","slot")
+r = Raking("matheus",150,"f","blackjack")
 print(r.addRecord())
 print(r.ler_ranking())
