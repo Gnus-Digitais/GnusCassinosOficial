@@ -1,0 +1,6 @@
+matheus|5000|f
+matheus|1050|f
+matheus|1000|f
+matheus|40|f
+matheus|30|f
+matheus|20|f
