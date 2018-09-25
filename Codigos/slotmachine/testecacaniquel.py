@@ -31,6 +31,9 @@ def muda_alavanca(status):
 
 
 def gira():
+    threading.Timer(0.1, muda_meio).start()
+    global status
+    status=0
     # for magico da porra.25 é uma forma de fazer tempo junto com o time.sleep()0.090 la de baixo.
     for i in range(25):
         nome = str(sm.spin())
@@ -58,6 +61,7 @@ def gira():
         time.sleep(0.090)
 
     print("gotcha parou")
+    status=1
     muda_alavanca("cima")
 
 def sorteia():
@@ -66,38 +70,55 @@ def sorteia():
     threading.Timer(0.1, gira).start()
 
 
+def muda_meio():
+    global status
+    while status!=1:
+        cNiquel['image']=imgcNiquel
+        time.sleep(0.2)
+        cNiquel['image']=imglpdLigada
+        time.sleep(0.2)
+
+
 # inicia tela
 tela = Tk()
 c=1
+status=0
 
+
+
+imglpdLigada=PhotoImage(file="imagens/cacaniquel4.png")
+
+#fim lampadas
 #caça niquel logo !
 cNiquel=Label(tela)
-imgcNiquel=PhotoImage(file="imagens/cacaniquel2.png")
+imgcNiquel=PhotoImage(file="imagens/cacaniquel3.png")
 cNiquel['image']=imgcNiquel
 cNiquel['bg']="#006400"
 cNiquel.place(x=180,y=30)
 #fim caça niquel logo !
+
+
 
 # Primeiro slot
 imagem = Label(tela)
 img1 = PhotoImage(file="imagens/gnu.png")
 imagem['image'] = img1
 imagem['bg'] = '#fff'
-imagem.place(x=230, y=280)
+imagem.place(x=230, y=286)
 
 # Segundo slot
 imagem2 = Label(tela)
 img2 = PhotoImage(file="imagens/gnu.png")
 imagem2['image'] = img2
 imagem2['bg'] = '#fff'
-imagem2.place(x=305, y=280)
+imagem2.place(x=305, y=286)
 
 # Terceiro slot
 imagem3 = Label(tela)
 img3 = PhotoImage(file="imagens/gnu.png")
 imagem3['image'] = img3
 imagem3['bg'] = '#fff'
-imagem3.place(x=380, y=280)
+imagem3.place(x=380, y=286)
 
 
 #braco do spin button
