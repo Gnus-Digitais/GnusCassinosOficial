@@ -558,6 +558,7 @@ vqImg=PhotoImage(file=r"imagens/vq.png")
 btP=Button(tela)
 btpImg=PhotoImage(file=r"imagens/pare.png")
 btP['image']=btpImg
+btP.focus_force() #resolvido problem megastacker aqui
 btP['relief']=FLAT
 btP['bg']="#006400"
 btP['command']=clique
