@@ -3,6 +3,7 @@ from tkinter import *
 import time
 from functools import partial
 
+#mudança de teste bitbucket
 #GNUS DIGITAIS> BRUNO, RODRIGO, MATHEUS E IGOR
 def linha1():
     u=0
