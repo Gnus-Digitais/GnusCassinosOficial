@@ -38,7 +38,7 @@ def limpaMeio():
     lbMaquina['text'] = ''
     lbJogador['text'] = ''
     logo['image'] = imglogo
-    logo.place(x=340, y=250)
+    logo.place(x=340, y=200)
     medalha.place(x=0, y=0)
     perdeuimg.place(x=0, y=0)
     empateimg.place(x=0,y=0)
@@ -156,7 +156,7 @@ def play():
     perdeuimg['image']=''
     perdeuimg.place(x=0,y=0)
     inicio.place(x=0,y=0)
-    logo.place(x=340, y=250)
+    logo.place(x=340, y=200)
     #AtualizaPlay()
     reinicio.place(x=748, y=500)
 
@@ -435,6 +435,12 @@ inicio['command']=play
 inicio['bg']='#006400'
 inicio.place(x=400,y=180)
 #fim botao comecar partida!
+
+
+
+
+
+
 #inicio botao reinicio
 reinicio=Button(janela)
 reinicioimg=PhotoImage(file=r"image\restart2.png")
@@ -457,10 +463,24 @@ limpar['bg']='#006400'
 
 #LOGOgnus
 logo=Label(janela)
-imglogo=PhotoImage(file=r"image\meio.png")
+imglogo=PhotoImage(file=r"image\blackjackLogo.png")
 logo['image']=imglogo
 logo['bg']='#006400'
-logo.place(x=340,y=250)
+logo.place(x=340,y=200)
+
+
+#botao comecar partida!
+inicio=Button(janela)
+imgInicio=PhotoImage(file=r"image\play2.png")
+inicio['image']=imgInicio
+inicio['relief']=FLAT
+inicio['command']=play
+inicio['bg']='#006400'
+inicio.place(x=740,y=500)
+#fim botao comecar partida!
+
+
+
 
 #MAQUINA SLOT CARTAS
 #perfil label img MAQUINA gnu
