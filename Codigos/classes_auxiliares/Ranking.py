@@ -4,7 +4,10 @@ class Raking:
         self.__pontuacao = ponto
         self.__dificuldade = dificuldade
         self.__jogo = jogo
-        
+
+    #TODO ADICIONAR PARÂMETROS DIRETO NO MÉTODO E TIRAR DO CONSTRUTOR DA CLASSE.
+
+
     
     @property
     def nickname(self):
@@ -41,7 +44,7 @@ class Raking:
     def ler_ranking(self):
         try:
             result = []
-            arq = open("rankings/" + self.__jogo + '_' + self.__dificuldade + '.txt', "r")
+            arq = open("rankings/"+self.__jogo + '_' + self.__dificuldade + '.txt', "r",encoding="utf-8")
             for linha in arq.read().split():
                 colocacao = linha.split('|')
                 result.append(colocacao)
@@ -51,7 +54,7 @@ class Raking:
             else:
                 return [['0',0,'0']]*10
         except FileNotFoundError:
-            arquivo = open("rankings/" + self.__jogo + '_' + self.__dificuldade + '.txt', 'w+')
+            arquivo = open("rankings/"+self.__jogo + '_' + self.__dificuldade + '.txt', 'w+')
             arquivo.close()
             self.ler_ranking()
 

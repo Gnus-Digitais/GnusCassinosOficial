@@ -1,0 +1,10 @@
+Pantera|300|f
+Felipão|225|f
+Matanob|225|f
+matheus|255|f
+João|255|f
+Maria|255|f
+José|255|f
+Felipe|255|f
+Daciolo|255|f
+Pimenta|255|f

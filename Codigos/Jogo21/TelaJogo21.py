@@ -4,6 +4,10 @@ from tkinter import *
 from Codigos.classes_auxiliares.Ranking import Raking
 from functools import partial
 
+#TODO 1 - LEMBRAR DE ADICIONAR FUNÇÃO PARA APLICAÇÃO REINICIAR APÓS CARTEIRA IGUAL A 0.0
+#TODO 2 - LEMBRAR DE ADICIONAR FUNÇÕES PARA ATUALIZAR VALOR DO ARQUIVO DA CLASSE RANKING, CASO A PARTIDA TERMINE.
+
+
 #fodasticamente by:grupomaisfodadoBrasil <"G'NUS DIGITAIS"> não ouse tocar nesta linha!>>risco de morte
 #melhor team: "G'NUS DIGITAIS"> Matheus Dias, Bruno Felipe, Rodrigo Rocca e Igor Ramos(6998121-0671)..
 def aposta_status(stat):
@@ -180,9 +184,15 @@ def resultadoTela(s):
         lbResultadoJogador['image']=''
         lbResultadoMaquina['image']=''
 
+def imprimir_ranking(): #TODO ADICIONAR NA CLASSE RANKING - METODOQ QUE RETORNA STRING.
+    string=''
+    global r
+    rankingg=r.ler_ranking()
+    for i in range(len(rankingg)):
+        string=string+rankingg[i][0]+"\t"+rankingg[i][1]+"\n"
+    return string.strip()
 
 def empatou():
-
     global saldo_carteira
     global valor_aposta
     saldo_carteira=saldo_carteira+valor_aposta
@@ -201,6 +211,8 @@ def empatou():
     empateimg['image']=imgEmpate
     empateimg.place(x=330,y=220)
     logo.place(x=0, y=0)
+    ranking['text'] = imprimir_ranking()
+    ranking.place(x=25, y=43)
 
 def ganhou():
     global saldo_carteira
@@ -222,6 +234,8 @@ def ganhou():
     medalha['image']=imgMedalha
     medalha.place(x=330, y=220)
     logo.place(x=0,y=0)
+    ranking['text'] = imprimir_ranking()
+    ranking.place(x=25, y=43)
 
 def perdeu():
     global saldo_carteira
@@ -241,9 +255,12 @@ def perdeu():
     perdeuimg['image'] = imgPerdeu
     perdeuimg.place(x=330, y=220)
     logo.place(x=0, y=0)
+    ranking['text'] = imprimir_ranking()
+    ranking.place(x=25, y=43)
 
 def play():
-
+    ranking['text']=imprimir_ranking()
+    ranking.place(x=25, y=43)
     rank['image'] = imgrank
     zeraLimpa()
     jogar()
@@ -512,8 +529,8 @@ qtdCartasMaquina=2
 urlDesvira=''
 saldo_carteira=250.00
 valor_aposta=00.00
-
-r = Raking("matheus",150,"f","blackjack")#fix - me classe ranking não está lendo..
+r = Raking("0",0,"f","blackjack")#TODO REMOVER PARÂMETROS NA CLASSE RAKING
+r.addRecord()
 
 '''fim codigo principal aplicacao'''
 
@@ -578,7 +595,7 @@ imagem2.place(x=443,y=30)
 #JOGADOR SLOT CARTAS
 #img personagem jogador perfil
 imagemPer=Label(janela)
-imgPer=PhotoImage(file=r"image\user2.png") #FIX-ME
+imgPer=PhotoImage(file=r"image\user2.png")
 imagemPer['image']=imgPer
 imagemPer['bg']='#006400'
 imagemPer.place(x=160,y=430)
@@ -874,6 +891,11 @@ btnOk.place(x=1000,y=350)
 #fim btn Ok
 
 aposta_status("fechado")# esta linha é super importante para fazer com que as fichas não entrem ao iniciar o sistema.
+texto_ranking=imprimir_ranking()
+
+ranking['text']=texto_ranking
+rank['image'] = imgrank
+ranking.place(x=25, y=43)
 
 #outras configurações da janela..
 janela.iconbitmap(r"image\logoSistema.ico")
