@@ -79,6 +79,6 @@ class Raking:
 
 
 
-r = Raking("matheus",150,"f","blackjack")
-print(r.addRecord())
-print(r.ler_ranking())
+#r = Raking("matheus",150,"f","blackjack")
+#print(r.addRecord())
+#print(r.ler_ranking())

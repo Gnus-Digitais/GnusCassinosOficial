@@ -1,9 +1,85 @@
 from baralho import Baralho
 from pygame  import mixer
 from tkinter import *
+from Codigos.classes_auxiliares.Ranking import Raking
+from functools import partial
 
 #fodasticamente by:grupomaisfodadoBrasil <"G'NUS DIGITAIS"> não ouse tocar nesta linha!>>risco de morte
 #melhor team: "G'NUS DIGITAIS"> Matheus Dias, Bruno Felipe, Rodrigo Rocca e Igor Ramos(6998121-0671)..
+def aposta_status(stat):
+    if stat=="aberto":
+        ficha5.place(x=597, y=520)
+        ficha10.place(x=657, y=520)
+        ficha25.place(x=717, y=520)
+        ficha50.place(x=777, y=520)
+        ficha100.place(x=837, y=520)
+        aposta.place(x=657,y=345)
+        btnOk.place(x=575, y=375)
+        valor_aposta_lb.place(x=740, y=415)
+
+    else:
+        ficha5.place(x=1000, y=500)
+        ficha10.place(x=1070, y=500)
+        ficha25.place(x=1140, y=500)
+        ficha50.place(x=1130, y=500)
+        ficha100.place(x=1100, y=500)
+        #aposta.place(x=1100,y=400)
+        btnOk.place(x=1000,y=240)
+        #valor_aposta_lb.place(x=740,y=415)
+
+def aposta_ficha(ficha):
+    global saldo_carteira
+    global valor_aposta
+    if saldo_carteira-ficha>=0:
+        if ficha==5:
+            valor_aposta=valor_aposta+5
+            saldo_carteira=saldo_carteira-5
+            saldo_carteira_lb['text'] = "%.2f" % saldo_carteira
+            valor_aposta_lb['text'] = "%.2f" % valor_aposta
+        if ficha==10:
+            valor_aposta = valor_aposta + 10
+            saldo_carteira = saldo_carteira - 10
+            saldo_carteira_lb['text'] = "%.2f" % saldo_carteira
+            valor_aposta_lb['text'] = "%.2f" % valor_aposta
+        if ficha==25:
+            valor_aposta = valor_aposta + 25
+            saldo_carteira = saldo_carteira - 25
+            saldo_carteira_lb['text'] = "%.2f" % saldo_carteira
+            valor_aposta_lb['text'] = "%.2f" % valor_aposta
+        if ficha==50:
+            valor_aposta = valor_aposta + 50
+            saldo_carteira = saldo_carteira - 50
+            saldo_carteira_lb['text'] = "%.2f" % saldo_carteira
+            valor_aposta_lb['text'] = "%.2f" % valor_aposta
+        if ficha==100:
+            valor_aposta = valor_aposta + 100
+            saldo_carteira = saldo_carteira - 100
+            saldo_carteira_lb['text'] = "%.2f" % saldo_carteira
+            valor_aposta_lb['text'] = "%.2f" % valor_aposta
+    else:
+        #não pode apostar !
+        print("não deixa apostar essa quantia ! :( ")
+
+def reiniciarCarteira():
+    global saldo_carteira
+    saldo_carteira=250.0
+    valor_aposta_lb.place(x=1000, y=230)
+
+
+def Ok():
+    aposta_status("fechado")
+    play()
+
+def novaPartida():
+    zeraLimpa()
+    global valor_aposta
+    valor_aposta = 00
+    valor_aposta_lb['text'] = "%.2f" % valor_aposta
+    aposta_status("aberto")
+    reinicio['image']=""
+    inicio['image']=""
+    reinicio.place(x=0, y=0)
+    inicio.place(x=0,y=0)
 
 def estadoBtn(est):
     if est=="ativa":
@@ -32,13 +108,14 @@ def desvira():
     imagem2.place(x=443, y=30)
 
 def limpaMeio():
+    imagemPer['image'] = imgPer
     medalha['image']=''
     perdeuimg['image']=''
     empateimg['image']=''
     lbMaquina['text'] = ''
     lbJogador['text'] = ''
     logo['image'] = imglogo
-    logo.place(x=340, y=200)
+    logo.place(x=340, y=240)
     medalha.place(x=0, y=0)
     perdeuimg.place(x=0, y=0)
     empateimg.place(x=0,y=0)
@@ -69,6 +146,7 @@ def zerarPartida():
     global valorMaquina
     global cartasMaquina
     global cartasJogador
+
     valorMaquina = 0
     valorJogador = 0
     #olhar esta linha FIX-ME
@@ -80,6 +158,7 @@ def zerarPartida():
     print("Jogador cards:. " + str(cartasJogador) + " Pts: " + str(valorJogador))
     qtdCartasJogador = 2
     qtdCartasMaquina = 2
+    #valor_aposta_lb['text'] = "%.2f" % valor_aposta
 
 
 def resultadoTela(s):
@@ -103,6 +182,13 @@ def resultadoTela(s):
 
 
 def empatou():
+
+    global saldo_carteira
+    global valor_aposta
+    saldo_carteira=saldo_carteira+valor_aposta
+    saldo_carteira_lb['text'] = "%.2f" % saldo_carteira
+    reinicio['image'] = reinicioimg
+    reinicio.place(x=748, y=500)
     estadoBtn("desativa")
     mixer.init()
     mixer.music.load(r'sounds/uhoh.mp3')
@@ -115,7 +201,14 @@ def empatou():
     empateimg['image']=imgEmpate
     empateimg.place(x=330,y=220)
     logo.place(x=0, y=0)
+
 def ganhou():
+    global saldo_carteira
+    global valor_aposta
+    saldo_carteira = saldo_carteira + (valor_aposta*3)
+    saldo_carteira_lb['text'] = "%.2f" % saldo_carteira
+    reinicio['image'] = reinicioimg
+    reinicio.place(x=748, y=500)
     estadoBtn("desativa")
     #musica ganhou
     mixer.init()
@@ -131,6 +224,10 @@ def ganhou():
     logo.place(x=0,y=0)
 
 def perdeu():
+    global saldo_carteira
+    saldo_carteira_lb['text'] = "%.2f" % saldo_carteira
+    reinicio['image'] = reinicioimg
+    reinicio.place(x=748, y=500)
     #musica perdeu
     estadoBtn("desativa")
     mixer.init()
@@ -146,6 +243,8 @@ def perdeu():
     logo.place(x=0, y=0)
 
 def play():
+
+    rank['image'] = imgrank
     zeraLimpa()
     jogar()
     estadoBtn("ativa")
@@ -156,7 +255,7 @@ def play():
     perdeuimg['image']=''
     perdeuimg.place(x=0,y=0)
     inicio.place(x=0,y=0)
-    logo.place(x=340, y=200)
+    logo.place(x=340, y=240)
     #AtualizaPlay()
     reinicio.place(x=748, y=500)
 
@@ -220,6 +319,7 @@ def adicionaCartaSlot(jogador,url):
 
 
 def puxarcarta():
+    imagemPer['image']=img_olho_virado
     mixer.init()
     mixer.music.load(r'sounds/DEAL1.wav')
     mixer.music.play()
@@ -265,6 +365,7 @@ def puxarcarta():
         zerarPartida()
 
 def pararcarta():
+    imagemPer['image'] = img_olho_cima
     global cartasJogador
     global cartasMaquina
     global valorJogador
@@ -331,21 +432,7 @@ def placarJogador(v):
         t=t+str(v[i])+", "
     print(tex+t+" PTs: "+str(soma))
     return soma
-'''
-def Trata(cartas):
-    vet=[]
-    #vetP=[]
-    for i in range(len(cartas)):
-        carM=0
-        if cartas[i][0] == 'A':
-            carM = 11
-        elif cartas[i][0] == 'J' or cartas[i][0] == 'Q' or cartas[i][0] == 'K':
-            carM = 10
-        else:
-            carM = int(cartas[i][0])
-        vet.append(carM)
-    return vet
-'''
+
 def Trata(cartas): #teste FIX-ME, por enquanto favor não remover código de cima entre comentario!!!@@@
     vet=[]
     for i in range(len(cartas)):
@@ -423,69 +510,43 @@ valorMaquina=0
 qtdCartasJogador=2
 qtdCartasMaquina=2
 urlDesvira=''
+saldo_carteira=250.00
+valor_aposta=00.00
+
+r = Raking("matheus",150,"f","blackjack")#fix - me classe ranking não está lendo..
 
 '''fim codigo principal aplicacao'''
-
-#botao comecar partida!
-inicio=Button(janela)
-imgInicio=PhotoImage(file=r"image\play2.png")
-inicio['image']=imgInicio
-inicio['relief']=FLAT
-inicio['command']=play
-inicio['bg']='#006400'
-inicio.place(x=400,y=180)
-#fim botao comecar partida!
-
-
-
-
-
 
 #inicio botao reinicio
 reinicio=Button(janela)
 reinicioimg=PhotoImage(file=r"image\restart2.png")
 reinicio['image']=reinicioimg
 reinicio['relief']=FLAT
-reinicio['command']=play
+reinicio['command']=novaPartida
 reinicio['bg']='#006400'
 #fim reincio
 
-#inicio limpar
-'''
-limpar=Button(janela)
-limparimg=PhotoImage(file=r"image\limpar.png")
-limpar['image']=limparimg
-limpar['relief']=FLAT
-limpar['command']=zeraLimpa
-limpar['bg']='#006400'
-'''
-#fim limpar
-
 #LOGOgnus
 logo=Label(janela)
-imglogo=PhotoImage(file=r"image\blackjackLogo.png")
+imglogo=PhotoImage(file=r"image\meio.png")
 logo['image']=imglogo
 logo['bg']='#006400'
-logo.place(x=340,y=200)
-
+logo.place(x=340,y=240)
 
 #botao comecar partida!
 inicio=Button(janela)
 imgInicio=PhotoImage(file=r"image\play2.png")
 inicio['image']=imgInicio
 inicio['relief']=FLAT
-inicio['command']=play
+inicio['command']=novaPartida
 inicio['bg']='#006400'
-inicio.place(x=740,y=500)
+inicio.place(x=400,y=165)
 #fim botao comecar partida!
-
-
-
 
 #MAQUINA SLOT CARTAS
 #perfil label img MAQUINA gnu
 imagemperfil=Label(janela)
-imgperfil=PhotoImage(file=r"image\gnu.png")
+imgperfil=PhotoImage(file=r"image\mrgnu2.png")
 imagemperfil['image']=imgperfil
 imagemperfil['bg']='#006400'
 imagemperfil.place(x=160,y=10)
@@ -517,11 +578,17 @@ imagem2.place(x=443,y=30)
 #JOGADOR SLOT CARTAS
 #img personagem jogador perfil
 imagemPer=Label(janela)
-imgPer=PhotoImage(file=r"image\user.png")
+imgPer=PhotoImage(file=r"image\user2.png") #FIX-ME
 imagemPer['image']=imgPer
 imagemPer['bg']='#006400'
 imagemPer.place(x=160,y=430)
 #fim perfil jogador img
+
+#imagem de olho virado para mover olho do personagem.
+img_olho_virado=PhotoImage(file=r"image\user2vira.png")
+img_olho_cima=PhotoImage(file=r"image\user2cima.png")
+#fim img de olho virado
+
 #soma label img placar jogador
 imagemsoma=Label(janela)
 imgsoma=PhotoImage(file=r"image\SOMA.png")
@@ -543,6 +610,21 @@ imagem4['image']=img4
 imagem4['bg']='#006400'
 imagem4.place(x=443,y=460)
 #fim slot4 jogador
+
+#inicio quadro ranking
+rank=Label(janela)
+imgrank=PhotoImage(file=r"image\quadroRanking.png")
+rank['bg']="#006400"
+rank.place(x=5,y=10)
+
+#label ranking
+ranking=Label(janela)
+ranking['bg']='#C8AB37'
+ranking['font']='Arial',12,"bold"
+ranking.place(x=1000,y=38)
+#ranking['text']="igor21\nigor1\nteste\nmatheus\nbruno2342\nsexto\nsetimolugar\noituvao\nultimo\nlanterna2"
+ranking['text']=" "
+#fim quadro ranking
 
 #teste
 
@@ -614,7 +696,6 @@ btnParar['relief']=FLAT
 btnParar['command']=pararcarta
 imgbtnP=PhotoImage(file=r"image\btnP.png")
 btnParar['image']=imgbtnP
-#btnParar.place(x=550,y=500)
 #fim botao parar
 
 #botao descer mais carta
@@ -624,13 +705,11 @@ btnDescer['command']=puxarcarta
 btnDescer['relief']=FLAT
 imgbtnD=PhotoImage(file=r"image\btnD.png")
 btnDescer['image']=imgbtnD
-#btnDescer.place(x=615,y=500)
 #fim botao descer mais carta
 
 #inicio  botao sair sistema
 sa=Label(janela,text="Sair")
 sa['bg']='#006400'
-#sa['fg']="#c8ab37"
 sa['font']='Arial',12,"bold"
 sa['bg']="#C8AB37"
 sa.place(x=15,y=570)
@@ -649,8 +728,28 @@ imagem5['image']=img5
 imagem5['bg']='#006400'
 imagem5['height']=300
 imagem5['width']=300
-imagem5.place(x=650,y=20)
+imagem5.place(x=670,y=60)
 #fim imagem label, monte do lado direito>>>>>>>>>>>>>>>>>>>>>>>
+
+#carteira
+carteira=Label(janela)
+cimg=PhotoImage(file=r"image\carteira.png")
+carteira['image']=cimg
+carteira['bg']="#006400"
+carteira.place(x=790,y=20)
+
+qtdcarteira=Label(janela)
+qtdcartimg=PhotoImage(file=r"image\qtdcarteira.png")
+qtdcarteira['image']=qtdcartimg
+qtdcarteira['bg']="#006400"
+qtdcarteira.place(x=698,y=38)
+
+saldo_carteira_lb=Label(janela)
+saldo_carteira_lb['text']="%.2f"%saldo_carteira
+saldo_carteira_lb['bg']="#C8AB37"
+saldo_carteira_lb['font']="Arial",12,"bold"
+saldo_carteira_lb.place(x=710,y=45)
+#fim carteira
 
 #label mostrador da maquina
 lbMaquina=Label(janela,text='00')
@@ -715,6 +814,66 @@ lbPontuacaoJogador['font']='Arial',12,"bold"
 lbPontuacaoJogador['bg']="#C8AB37"
 lbPontuacaoJogador.place(x=1000, y=415)
 #lbPontuacao Jogador fim
+
+#fichas na tela 5,10,25,50,100
+ficha5=Button(janela)
+fimg5=PhotoImage(file=r"image/ficha/cinco.png")
+ficha5['bg']="#006400"
+ficha5['image']=fimg5
+ficha5['command']=partial(aposta_ficha,5)
+ficha5['relief']=FLAT
+
+ficha10=Button(janela)
+fimg10=PhotoImage(file=r"image/ficha/dez.png")
+ficha10['bg']="#006400"
+ficha10['image']=fimg10
+ficha10['relief']=FLAT
+ficha10['command']=partial(aposta_ficha,10)
+
+ficha25=Button(janela)
+fimg25=PhotoImage(file=r"image/ficha/vintecinco.png")
+ficha25['bg']="#006400"
+ficha25['image']=fimg25
+ficha25['relief']=FLAT
+ficha25['command']=partial(aposta_ficha,25)
+
+ficha50=Button(janela)
+fimg50=PhotoImage(file=r"image/ficha/cinquenta.png")
+ficha50['bg']="#006400"
+ficha50['image']=fimg50
+ficha50['relief']=FLAT
+ficha50['command']=partial(aposta_ficha,50)
+
+ficha100=Button(janela)
+fimg100=PhotoImage(file=r"image/ficha/cem.png")
+ficha100['bg']="#006400"
+ficha100['relief']=FLAT
+ficha100['image']=fimg100
+ficha100['command']=partial(aposta_ficha,100)
+#fim de fichas
+#quadro de apostas
+aposta=Label(janela)
+imgAposta=PhotoImage(file=r"image/aposta3.png")
+aposta['image']=imgAposta
+aposta['bg']="#006400"
+#fim quadro de apostas
+
+valor_aposta_lb=Label(janela)
+valor_aposta_lb['text']="%.2f"%valor_aposta
+valor_aposta_lb['bg']="#C8AB37"
+valor_aposta_lb['font']="Arial",12,"bold"
+
+#btn Ok
+btnOk=Button(janela)
+btnOk['bg']='#006400'
+btnOk['command']=Ok
+btnOk['relief']=FLAT
+imgbtnOk=PhotoImage(file=r"image\btnOk.png")
+btnOk['image']=imgbtnOk
+btnOk.place(x=1000,y=350)
+#fim btn Ok
+
+aposta_status("fechado")# esta linha é super importante para fazer com que as fichas não entrem ao iniciar o sistema.
 
 #outras configurações da janela..
 janela.iconbitmap(r"image\logoSistema.ico")
