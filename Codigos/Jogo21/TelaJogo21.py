@@ -3,10 +3,11 @@ from pygame  import mixer
 from tkinter import *
 from Codigos.classes_auxiliares.Ranking import Raking
 from functools import partial
+from tkinter import messagebox
 
 #TODO 1 - LEMBRAR DE ADICIONAR FUNÇÃO PARA APLICAÇÃO REINICIAR APÓS CARTEIRA IGUAL A 0.0
 #TODO 2 - LEMBRAR DE ADICIONAR FUNÇÕES PARA ATUALIZAR VALOR DO ARQUIVO DA CLASSE RANKING, CASO A PARTIDA TERMINE.
-
+#TODO 3 - REVISAR O CÓDIGO TODO, E MUDAR AS FUNÇÕES PARA MÉTODOS DE UMA CLASSE JOGO21.
 
 #fodasticamente by:grupomaisfodadoBrasil <"G'NUS DIGITAIS"> não ouse tocar nesta linha!>>risco de morte
 #melhor team: "G'NUS DIGITAIS"> Matheus Dias, Bruno Felipe, Rodrigo Rocca e Igor Ramos(6998121-0671)..
@@ -27,9 +28,7 @@ def aposta_status(stat):
         ficha25.place(x=1140, y=500)
         ficha50.place(x=1130, y=500)
         ficha100.place(x=1100, y=500)
-        #aposta.place(x=1100,y=400)
         btnOk.place(x=1000,y=240)
-        #valor_aposta_lb.place(x=740,y=415)
 
 def aposta_ficha(ficha):
     global saldo_carteira
@@ -150,19 +149,15 @@ def zerarPartida():
     global valorMaquina
     global cartasMaquina
     global cartasJogador
-
     valorMaquina = 0
     valorJogador = 0
-    #olhar esta linha FIX-ME
-    bara.baralho=[]
-    #fim olhar esta linha FIX-ME
+    bara.baralho=[]  #TODO olhar esta linha..(ps. ESTOU MODIFICANDO DIRETO NUM ATRIBUTO(get) DA CLASSE BARALHO)
     cartasJogador = []
     cartasMaquina = []
     print("Máquina cards:. " + str(cartasMaquina) + " Pts: " + str(valorMaquina))
     print("Jogador cards:. " + str(cartasJogador) + " Pts: " + str(valorJogador))
     qtdCartasJogador = 2
     qtdCartasMaquina = 2
-    #valor_aposta_lb['text'] = "%.2f" % valor_aposta
 
 
 def resultadoTela(s):
@@ -184,7 +179,7 @@ def resultadoTela(s):
         lbResultadoJogador['image']=''
         lbResultadoMaquina['image']=''
 
-def imprimir_ranking(): #TODO ADICIONAR NA CLASSE RANKING - METODOQ QUE RETORNA STRING.
+def imprimir_ranking(): #TODO ADICIONAR NA CLASSE RANKING - METODO QUE RETORNA STRING.
     string=''
     global r
     rankingg=r.ler_ranking()
@@ -350,7 +345,7 @@ def puxarcarta():
     jogador = Trata(cartasJogador)
     valorJogador = placarJogador(jogador)
     lbJogador['text']=valorJogador
-    print(len(bara.embalharada))#print testeeeeeeeeeeeeeeeeeeeeeeeeeee
+    print(len(bara.embalharada))#todo - retirar isso daqui -> print testeeeeeeeeeeeeeeeeeeeeeeeeeee
     if valorJogador>21:
         perdeu()
         print("1-perdeu")
@@ -406,7 +401,7 @@ def pararcarta():
             maquina = Trata(cartasMaquina)
             valorMaquina = placarMaquina(maquina)
             lbMaquina['text']=valorMaquina
-            print(len(bara.embalharada))  # print testeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee
+            print(len(bara.embalharada))  #todo - retirar isso daqui-> print testeeeeeeeeeeeeeeeeeeeeeeeeeee
 
         if valorMaquina==valorJogador:
             empatou()
@@ -450,7 +445,7 @@ def placarJogador(v):
     print(tex+t+" PTs: "+str(soma))
     return soma
 
-def Trata(cartas): #teste FIX-ME, por enquanto favor não remover código de cima entre comentario!!!@@@
+def Trata(cartas):
     vet=[]
     for i in range(len(cartas)):
         carM=0
@@ -532,7 +527,7 @@ valor_aposta=00.00
 r = Raking("0",0,"f","blackjack")#TODO REMOVER PARÂMETROS NA CLASSE RAKING
 r.addRecord()
 
-'''fim codigo principal aplicacao'''
+'''fim DO codigo principal DA aplicacao'''
 
 #inicio botao reinicio
 reinicio=Button(janela)
@@ -639,13 +634,9 @@ ranking=Label(janela)
 ranking['bg']='#C8AB37'
 ranking['font']='Arial',12,"bold"
 ranking.place(x=1000,y=38)
-#ranking['text']="igor21\nigor1\nteste\nmatheus\nbruno2342\nsexto\nsetimolugar\noituvao\nultimo\nlanterna2"
 ranking['text']=" "
 #fim quadro ranking
 
-#teste
-
-"""FIX-ME"""
 """algumas imagens reservas em slots invisiveis que ficarão do lado direito do user: """
 
 imag1 = Label(janela)
@@ -702,9 +693,6 @@ imag10 = Label(janela)
 imag10Carta = PhotoImage(file=r"image\Baralho\Ap.png")
 imag10['image'] = imag10Carta
 imag10['bg'] = '#006400'
-
-#FIX-ME FIM"""
-#fim teste
 
 #botao de parar
 btnParar=Button(janela)
@@ -898,6 +886,7 @@ rank['image'] = imgrank
 ranking.place(x=25, y=43)
 
 #outras configurações da janela..
+
 janela.iconbitmap(r"image\logoSistema.ico")
 janela.resizable(0,0)
 x = (janela.winfo_screenwidth() // 2) - (900// 2)
@@ -907,3 +896,5 @@ janela['bg'] = "#006400"
 #janela.overrideredirect(True)#retira bordas
 janela.mainloop()
 #fim configs da janela e chamada do MAINLOOP()..
+
+#TODO -REVISAR CÓDIGO TODO..!!!!!!
