@@ -3,7 +3,6 @@ from pygame  import mixer
 from tkinter import *
 from Codigos.classes_auxiliares.Ranking import Raking
 from functools import partial
-from tkinter import messagebox
 
 #TODO 1 - LEMBRAR DE ADICIONAR FUNÇÃO PARA APLICAÇÃO REINICIAR APÓS CARTEIRA IGUAL A 0.0
 #TODO 2 - LEMBRAR DE ADICIONAR FUNÇÕES PARA ATUALIZAR VALOR DO ARQUIVO DA CLASSE RANKING, CASO A PARTIDA TERMINE.
@@ -540,7 +539,7 @@ reinicio['bg']='#006400'
 
 #LOGOgnus
 logo=Label(janela)
-imglogo=PhotoImage(file=r"image\meio.png")
+imglogo=PhotoImage(file=r"image\meio2.png")
 logo['image']=imglogo
 logo['bg']='#006400'
 logo.place(x=340,y=240)
