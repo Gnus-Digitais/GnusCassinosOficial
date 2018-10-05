@@ -737,7 +737,7 @@ imagem5.place(x=670,y=60)
 
 #carteira
 carteira=Label(janela)
-cimg=PhotoImage(file=r"image\carteira.png")
+cimg=PhotoImage(file=r"image\carteira2.png")
 carteira['image']=cimg
 carteira['bg']="#006400"
 carteira.place(x=790,y=20)
@@ -746,13 +746,13 @@ qtdcarteira=Label(janela)
 qtdcartimg=PhotoImage(file=r"image\qtdcarteira.png")
 qtdcarteira['image']=qtdcartimg
 qtdcarteira['bg']="#006400"
-qtdcarteira.place(x=698,y=38)
+qtdcarteira.place(x=702,y=47)
 
 saldo_carteira_lb=Label(janela)
 saldo_carteira_lb['text']="%.2f"%saldo_carteira
 saldo_carteira_lb['bg']="#C8AB37"
 saldo_carteira_lb['font']="Arial",12,"bold"
-saldo_carteira_lb.place(x=710,y=45)
+saldo_carteira_lb.place(x=710,y=54)
 #fim carteira
 
 #label mostrador da maquina
