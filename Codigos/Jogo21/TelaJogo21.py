@@ -195,9 +195,7 @@ def empatou():
     reinicio['image'] = reinicioimg
     reinicio.place(x=748, y=500)
     estadoBtn("desativa")
-    mixer.init()
-    mixer.music.load(r'sounds/uhoh.mp3')
-    mixer.music.play()
+    perdeuSom()
     tiralogo()
     resultadoTela("sim")
     lbJogador['text']=''
@@ -217,10 +215,7 @@ def ganhou():
     reinicio['image'] = reinicioimg
     reinicio.place(x=748, y=500)
     estadoBtn("desativa")
-    #musica ganhou
-    mixer.init()
-    mixer.music.load(r'sounds/ganhou.mp3')
-    mixer.music.play()
+    ganhouSom()
     tiralogo()
     resultadoTela("sim")
     lbJogador['text'] = ''
@@ -239,9 +234,7 @@ def perdeu():
     reinicio.place(x=748, y=500)
     #musica perdeu
     estadoBtn("desativa")
-    mixer.init()
-    mixer.music.load(r'sounds/uhoh.mp3')
-    mixer.music.play()
+    perdeuSom()
     tiralogo()
     resultadoTela("sim")
     lbJogador['text'] = ''
@@ -268,12 +261,19 @@ def play():
     perdeuimg.place(x=0,y=0)
     inicio.place(x=0,y=0)
     logo.place(x=340, y=240)
-    #AtualizaPlay()
     reinicio.place(x=748, y=500)
 
 def EmbaralharSom():
-    mixer.init()
-    mixer.music.load(r'sounds/emb3.wav')
+    mixer.music.load(r'sounds/emb3.wav')  # embaralhar
+    mixer.music.play()
+def perdeuSom():
+    mixer.music.load(r'sounds/uhoh.mp3') # perdeu
+    mixer.music.play()
+def ganhouSom():
+    mixer.music.load(r'sounds/ganhou.mp3') # ganhou
+    mixer.music.play()
+def puxacartaSom():
+    mixer.music.load(r'sounds/DEAL1.wav') # puxando carta
     mixer.music.play()
 def adicionaCartaSlot(jogador,url):
     global qtdCartasJogador
@@ -332,9 +332,7 @@ def adicionaCartaSlot(jogador,url):
 
 def puxarcarta():
     imagemPer['image']=img_olho_virado
-    mixer.init()
-    mixer.music.load(r'sounds/DEAL1.wav')
-    mixer.music.play()
+    puxacartaSom()
     global cartasJogador
     global valorJogador
     global valorMaquina
@@ -353,17 +351,20 @@ def puxarcarta():
         zerarPartida()
         lbJogador['text']=''
         lbMaquina['text']=''
-
+        '''
     elif valorJogador==21 and valorMaquina==21:
         empatou()
         desvira()
         print("1-Empate com a maquina!")
         zerarPartida()
+       
     elif valorJogador==21:
         ganhou()
         desvira()
         print("1-ganhou de cara21!")
         zerarPartida()
+        '''
+    '''
     elif(valorMaquina==21):
         perdeu()
         desvira()
@@ -375,7 +376,7 @@ def puxarcarta():
         desvira()
         print("1-ganhou! maquina estourou21")
         zerarPartida()
-
+    '''
 def pararcarta():
     imagemPer['image'] = img_olho_cima
     global cartasJogador
@@ -386,6 +387,16 @@ def pararcarta():
         empatou()
         desvira()
         print("c-3 #ESPECIAL#-maquina empatou pois os valores eram iguais NO INICIO")
+        zerarPartida()
+    elif valorJogador>21:
+        perdeu()
+        desvira()
+        print("c-3 #especial2 - MAQUINA TINHA VALOR ABAIXO DE 21 E JOGADOR 22. DE CARA.azar MAIOR")
+        zerarPartida()
+    elif valorMaquina>21:
+        ganhou()
+        desvira()
+        print("c-4- especial - Maquina iniciou com 22 de cara: sorte...")
         zerarPartida()
     elif valorMaquina>valorJogador:
         perdeu()
@@ -515,6 +526,7 @@ def jogar():
 janela = Tk()
 janela.title("G'nus Cassinos")
 bara = Baralho()
+mixer.init()
 cartasMaquina=[]
 cartasJogador=[]
 valorJogador=0

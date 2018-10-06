@@ -5,10 +5,10 @@ import time
 from SlotMachine import SlotMachine
 
 sm = SlotMachine()
-
+sm.spin()
+mixer.init()
+mixer.music.load(r'sounds/DEAL1.wav')
 def pin():
-    mixer.init()
-    mixer.music.load(r'sounds/DEAL1.wav')
     mixer.music.play()
 
 def muda_alavanca(status):
@@ -44,7 +44,7 @@ def gira():
         img3['file'] = "imagens/slots/" + nome3 + ".png"
         if i==22:
             pin()
-        time.sleep(0.090)
+        time.sleep(0.09)
     for j in range(8):
         nome2 = str(sm.spin())
         img2['file'] = "imagens/slots/" + nome2 + ".png"
@@ -52,13 +52,13 @@ def gira():
         img3['file'] = "imagens/slots/" + nome3 + ".png"
         if j==7:
             pin()
-        time.sleep(0.090)
+        time.sleep(0.09)
     for k in range(6):
         nome3 = str(sm.spin())
         img3['file'] = "imagens/slots/" + nome3 + ".png"
         if k==5:
             pin()
-        time.sleep(0.090)
+        time.sleep(0.09)
 
     print("gotcha parou")
     status=1
