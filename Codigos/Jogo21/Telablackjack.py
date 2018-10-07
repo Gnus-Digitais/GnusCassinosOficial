@@ -1,4 +1,4 @@
-from baralho import Baralho
+from Codigos.Jogo21.baralho import Baralho
 from pygame import mixer
 from tkinter import *
 from Codigos.classes_auxiliares.Ranking import Raking
@@ -516,7 +516,7 @@ class Telablackjack:
     def zerarPartida(self):
         self.valorMaquina = 0
         self.valorJogador = 0
-        self.bara.baralho = []  # TODO olhar esta linha..(ps. ESTOU MODIFICANDO DIRETO NUM ATRIBUTO(get) DA CLASSE BARALHO)
+        self.bara.baralho = []  #TODO olhar esta linha..(ps. ESTOU MODIFICANDO DIRETO NUM ATRIBUTO(get) DA CLASSE BARALHO)
         self.cartasJogador = []
         self.cartasMaquina = []
         print("Máquina cards:. " + str(self.cartasMaquina) + " Pts: " + str(self.valorMaquina))
@@ -542,7 +542,7 @@ class Telablackjack:
             self.lbResultadoJogador['image'] = ''
             self.lbResultadoMaquina['image'] = ''
 
-    def imprimir_ranking(self):  # TODO ADICIONAR NA CLASSE RANKING - METODO QUE RETORNA STRING.
+    def imprimir_ranking(self):  #TODO ADICIONAR NA CLASSE RANKING - METODO QUE RETORNA STRING.
         string = ''
         rankingg = self.r.ler_ranking()
         for i in range(len(rankingg)):
@@ -685,7 +685,6 @@ class Telablackjack:
                 self.imag10Carta['file'] = url
                 self.imag10.place(x=500, y=30)
 
-
     def puxarcarta(self):
         self.imagemPer['image'] = self.img_olho_virado
         self.puxacartaSom()
@@ -698,12 +697,20 @@ class Telablackjack:
         self.lbJogador['text'] = self.valorJogador
         print(len(self.bara.embalharada))  # todo - retirar isso daqui -> print testeeeeeeeeeeeeeeeeeeeeeeeeeee
         if self.valorJogador > 21:
-            self.perdeu()
-            print("1-perdeu")
-            self.desvira()
-            self.zerarPartida()
-            self.lbJogador['text'] = ''
-            self.lbMaquina['text'] = ''
+            if self.valorMaquina>21:
+                self.empatou()
+                print("empatou")
+                self.desvira()
+                self.zerarPartida()
+                self.lbJogador['text'] = ''
+                self.lbMaquina['text'] = ''
+            else:
+                self.perdeu()
+                print("1-perdeu@MAQUINAVALORMENOSQUE21")
+                self.desvira()
+                self.zerarPartida()
+                self.lbJogador['text'] = ''
+                self.lbMaquina['text'] = ''
 
     def pararcarta(self):
         self.imagemPer['image'] = self.img_olho_cima
@@ -792,18 +799,15 @@ class Telablackjack:
             vet.append(carM)
         return vet
 
-
     def criaString(self,entrada):
         s = r"image\Baralho\ " + str(entrada) + ".png"
         return s.replace(" ", "")
-
 
     def descobreCarta(self,mat):
         ultima = mat[-1]
         valor = ''
         valor = ultima[1] + ultima[2][0]
         return valor
-
 
     def jogar(self):
         self.EmbaralharSom()
@@ -847,6 +851,8 @@ class Telablackjack:
 
 
 janela = Tk()
+Telablackjack("igor",janela)
+
 janela['bg'] = "#006400"
 janela.title("G'nus Cassinos")
 janela.iconbitmap(r"image\logoSistema.ico")
@@ -855,7 +861,7 @@ x = (janela.winfo_screenwidth() // 2) - (900 // 2)
 y = (janela.winfo_screenheight() // 2) - (600 // 2)
 janela.geometry("900x600+{}+{}".format(x, y))  # largura x altura + esquerda + topo
 # janela.overrideredirect(True)#retira bordas
-Telablackjack("igor",janela)
+
 janela.mainloop()
 # fim configs da janela e chamada do MAINLOOP().
 # TODO - REVISAR CÓDIGO TODO..!!!!!!
