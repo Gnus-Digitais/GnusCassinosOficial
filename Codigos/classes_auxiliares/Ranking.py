@@ -1,13 +1,7 @@
 class Raking:
-    def __init__(self, nick, ponto, dificuldade, jogo):
-        self.__nickname = nick
-        self.__pontuacao = ponto
+    def __init__(self, jogo, dificuldade):
         self.__dificuldade = dificuldade
         self.__jogo = jogo
-
-    #TODO ADICIONAR PARÂMETROS DIRETO NO MÉTODO E TIRAR DO CONSTRUTOR DA CLASSE.
-
-
     
     @property
     def nickname(self):
@@ -58,7 +52,6 @@ class Raking:
             arquivo.close()
             self.ler_ranking()
 
-
     def gravarRanking(self, vetor_ranking):
         txt = ""
         arq = open("rankings/"+self.__jogo+'_'+self.__dificuldade+'.txt', "w")
@@ -67,21 +60,21 @@ class Raking:
         arq.write(txt)
         arq.close()
 
-    def addRecord(self):
+    def addRecord(self, nickname, pontuacao):
         lista = self.ler_ranking()
         n = 0
         for i in lista:
-            if self.pontuacao > int(i[1]):
-                lista.insert(n, [self.__nickname, self.__pontuacao, self.__dificuldade])
+            if pontuacao > int(i[1]):
+                lista.insert(n, [nickname, pontuacao, self.__dificuldade])
                 if len(lista) > 10:
                     lista.pop()
                 self.gravarRanking(lista)
                 return lista
             n += 1
 
-
-
-
-#r = Raking("matheus",150,"f","blackjack")
-#print(r.addRecord())
-#print(r.ler_ranking())
+    def retorna_ranking(self):
+        string = ""
+        vetor_rank = self.ler_ranking()
+        for i in range(len(vetor_rank)):
+            string = string + vetor_rank[i][0] + "\t" + vetor_rank[i][1] + "\n"
+        return string.strip()
