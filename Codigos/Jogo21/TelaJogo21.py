@@ -184,6 +184,10 @@ def imprimir_ranking():
     global r
     return r.retorna_ranking()
 
+def inserir_no_ranking(score):
+    global r, carteira
+    r.addRecord("testador", int(score))
+
 
 def empatou():
     global saldo_carteira
@@ -227,8 +231,10 @@ def ganhou():
     medalha['image']=imgMedalha
     medalha.place(x=330, y=220)
     logo.place(x=0,y=0)
+    inserir_no_ranking(saldo_carteira)
     ranking['text'] = imprimir_ranking()
     ranking.place(x=25, y=43)
+
 
 def perdeu():
     global saldo_carteira
@@ -523,7 +529,6 @@ urlDesvira=''
 saldo_carteira=250.00
 valor_aposta=00.00
 r = Raking("blackjack", "f")
-r.addRecord("0", 0)
 
 '''fim DO codigo principal DA aplicacao'''
 

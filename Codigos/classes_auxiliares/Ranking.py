@@ -38,7 +38,7 @@ class Raking:
     def ler_ranking(self):
         try:
             result = []
-            arq = open("rankings/"+self.__jogo + '_' + self.__dificuldade + '.txt', "r",encoding="utf-8")
+            arq = open("rankings/"+self.__jogo + '_' + self.__dificuldade + '.txt', "r",encoding="UTF-8")
             for linha in arq.read().split():
                 colocacao = linha.split('|')
                 result.append(colocacao)
@@ -54,7 +54,7 @@ class Raking:
 
     def gravarRanking(self, vetor_ranking):
         txt = ""
-        arq = open("rankings/"+self.__jogo+'_'+self.__dificuldade+'.txt', "w")
+        arq = open("rankings/"+self.__jogo+'_'+self.__dificuldade+'.txt', "w", encoding="UTF-8")
         for vetor in vetor_ranking:
             txt += vetor[0]+'|'+str(vetor[1])+'|'+vetor[2]+'\n'
         arq.write(txt)
