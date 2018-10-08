@@ -695,7 +695,7 @@ class Telablackjack:
         jogador = self.Trata(self.cartasJogador)
         self.valorJogador = self.placarJogador(jogador)
         self.lbJogador['text'] = self.valorJogador
-        print(len(self.bara.embalharada))  # todo - retirar isso daqui -> print testeeeeeeeeeeeeeeeeeeeeeeeeeee
+        print(len(self.bara.embalharada))  # TODO - retirar isso daqui -> print testeeeeeeeeeeeeeeeeeeeeeeeeeee
         if self.valorJogador > 21:
             if self.valorMaquina>21:
                 self.empatou()
@@ -762,10 +762,8 @@ class Telablackjack:
                 print("2-perdeu! maquina venceu abaixo de 21!")
                 self.zerarPartida()
 
-
     def sair(self):
         self.janela.destroy()
-
 
     def placarMaquina(self,v):
         # inicio do print de placar da maquina
@@ -778,7 +776,6 @@ class Telablackjack:
         print(tex + t + " PTs: " + str(soma))
         return soma
 
-
     def placarJogador(self,v):
         # inicio do print de placar da maquina
         tex = "Jogador cards:. "
@@ -789,7 +786,6 @@ class Telablackjack:
             t = t + str(v[i]) + ", "
         print(tex + t + " PTs: " + str(soma))
         return soma
-
 
     def Trata(self,cartas):
         vet = []
@@ -848,7 +844,6 @@ class Telablackjack:
         self.valorJogador = self.placarJogador(jogador)
         self.lbMaquina['text'] = maquina[0]
         self.lbJogador['text'] = self.valorJogador
-
 
 janela = Tk()
 Telablackjack("igor",janela)

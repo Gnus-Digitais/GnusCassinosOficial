@@ -65,7 +65,7 @@ btnS.place(x=602,y=380)
 
 telaprincipal['bg'] = "#000080"
 telaprincipal.title("G'nus Cassinos")
-telaprincipal.iconbitmap("Jogo21\image\logoSistema.ico")
+#telaprincipal.iconbitmap("Jogo21/image/logoSistema.ico")
 telaprincipal.resizable(0, 0)
 x = (telaprincipal.winfo_screenwidth() // 2) - (910 // 2)
 y = (telaprincipal.winfo_screenheight() // 2) - (600 // 2)
