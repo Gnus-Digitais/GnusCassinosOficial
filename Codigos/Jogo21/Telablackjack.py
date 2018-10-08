@@ -3,6 +3,7 @@ from pygame import mixer
 from tkinter import *
 from Codigos.classes_auxiliares.Ranking import Raking
 from functools import partial
+import time
 
 class Telablackjack:
     """Esta é a classe TelablackJack que serve que é usada para criar a tela do jogo blacjjack e todas as funxionalidades do mesmo."""
@@ -624,6 +625,7 @@ class Telablackjack:
         self.ranking['text'] = self.imprimir_ranking()
         self.ranking.place(x=25, y=43)
 
+
     def play(self):
         """Este metodo serve para ser chamado quando precisar iniciar uma nova partida, e deve ser chamado por outros métodos"""
         self.ranking['text'] = self.imprimir_ranking()
@@ -739,6 +741,8 @@ class Telablackjack:
                 self.zerarPartida()
                 self.lbJogador['text'] = ''
                 self.lbMaquina['text'] = ''
+                if self.saldo_carteira < 1:
+                    self.sair()
 
     def pararcarta(self):
         """Este metodo serve para a maquina decidir se compra ou não mais cartas, se ela decidir comprar então esta ação é feita."""
@@ -753,6 +757,9 @@ class Telablackjack:
             self.desvira()
             print("c-3 #especial2 - MAQUINA TINHA VALOR ABAIXO DE 21 E JOGADOR 22. DE CARA.azar MAIOR")
             self.zerarPartida()
+            if self.saldo_carteira < 1:
+                self.sair()
+
         elif self.valorMaquina > 21:
             self.ganhou()
             self.desvira()
@@ -763,6 +770,9 @@ class Telablackjack:
             self.desvira()
             print("2-perdeu, maquina tinha valor maior!")
             self.zerarPartida()
+            if self.saldo_carteira < 1:
+                self.sair()
+
         else:
             # maquina joga!@@@
             while (self.valorMaquina < self.valorJogador):
@@ -786,10 +796,15 @@ class Telablackjack:
                 self.perdeu()
                 print("2-perdeu, maquina fez exatamente21!")
                 self.zerarPartida()
+                if self.saldo_carteira < 1:
+                    self.sair()
+
             else:
                 self.perdeu()
                 print("2-perdeu! maquina venceu abaixo de 21!")
                 self.zerarPartida()
+                if self.saldo_carteira < 1:
+                    self.sair()
 
     def sair(self):
         """Este metodo serve para fechar a janela do jogo blackjack"""
@@ -885,13 +900,7 @@ class Telablackjack:
         """Este metodo serve para analisar se nome/valor é superior ao ultimo valor do mesmo jogador no ranking."""
         #TODO- AJUSTAR PLACAR DO RANKING POR NICKNAME- MATHEUS - IGOR
         pass
-    def analisa_fim(self):
-        """este metodo serve para analisar se o jogador acabou tudo que tinha na carteira, caso sim este metodo destroi a janela do jogo"""
-        #TODO- AJUSTAR JOGO- QUANDO ZERAR CARTEIRA APÓS UMA MENSAGEM DE PERDEU, O GAME DEVE EMITIR ALERTA E FECHAR. - IGOR
-        #TODO- LEMBRAR TAMBÉM DE DESENHAR O ALERTA DE GRANA ESGOTADA E FIM DE JOGO - IGOR
-        #Todo- este metodo precisa ser chamado após perdeu. e precisa ser testado.
-        if self.saldo_carteira<1:
-            self.sair()
+
 
 
 janela = Tk()
@@ -899,7 +908,7 @@ Telablackjack("igor",janela)
 
 janela['bg'] = "#006400"
 janela.title("G'nus Cassinos")
-janela.iconbitmap(r"image\logoSistema2.ico")
+janela.iconbitmap(r"image\logoSistema.ico")
 janela.resizable(0, 0)
 x = (janela.winfo_screenwidth() // 2) - (900 // 2)
 y = (janela.winfo_screenheight() // 2) - (600 // 2)
