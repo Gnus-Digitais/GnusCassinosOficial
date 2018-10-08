@@ -5,6 +5,7 @@ from Codigos.classes_auxiliares.Ranking import Raking
 from functools import partial
 
 class Telablackjack:
+    """Esta é a classe TelablackJack que serve que é usada para criar a tela do jogo blacjjack e todas as funxionalidades do mesmo."""
     def __init__(self, user,janela):
         self.__user = user
         self.janela=janela
@@ -379,6 +380,7 @@ class Telablackjack:
         self.rank['image'] = self.imgrank
         self.ranking.place(x=25, y=43)
 
+    #get e set do user
     @property
     def user(self):
         return self.__user
@@ -390,6 +392,7 @@ class Telablackjack:
     # fodasticamente by:grupomaisfodadoBrasil <"G'NUS DIGITAIS"> não ouse tocar nesta linha!>>risco de morte
     # melhor team: "G'NUS DIGITAIS"> Matheus Dias, Bruno Felipe, Rodrigo Rocca e Igor Ramos(6998121-0671)..
     def aposta_status(self,stat):
+        """Este método serve para esconder as fichas(botões), do jogador no momento em que esses botões não são necessários"""
         if stat == "aberto":
             self.ficha5.place(x=597, y=520)
             self.ficha10.place(x=657, y=520)
@@ -408,6 +411,7 @@ class Telablackjack:
             self.btnOk.place(x=1000, y=240)
 
     def aposta_ficha(self,ficha):
+        """Este método serve para configurar apostas feitas pelo jogador, e também mudar o valor da carteira do jogador"""
         if self.saldo_carteira - ficha >= 0:
             if ficha == 5:
                 self.valor_aposta = self.valor_aposta + 5
@@ -438,14 +442,17 @@ class Telablackjack:
             print("não deixa apostar essa quantia ! :( ")
 
     def reiniciarCarteira(self):
+        """Este método serve para resetar o valor da carteira para o valor inicial"""
         self.saldo_carteira = 250.0
         self.valor_aposta_lb.place(x=1000, y=230)
 
     def Ok(self):
+        """Este metodo serve para chamar esconder as fichas de aposta e iniciar uma partida do game"""
         self.aposta_status("fechado")
         self.play()
 
     def novaPartida(self):
+        """Este metodo serve para Configurar uma nova partida limpando a tela sem alterar o valor da carteira."""
         self.zeraLimpa()
         self.valor_aposta = 00
         self.valor_aposta_lb['text'] = "%.2f" % self.valor_aposta
@@ -456,6 +463,7 @@ class Telablackjack:
         self.inicio.place(x=0, y=0)
 
     def estadoBtn(self,est):
+        """Este metodo serve para esconder/mostrar os botoes D(descer carta) e P(parar de comprar) """
         if est == "ativa":
             # print("ativou")
             self.btnDescer['image'] = self.imgbtnD
@@ -470,18 +478,22 @@ class Telablackjack:
             self.btnDescer.place(x=0, y=0)
 
     def tiralogo(self):
+        """este metodo retira a logo do centro da tela"""
         self.logo['image'] = ''
         self.logo.place(x=0, y=0)
 
     def zeraLimpa(self):
+        """Este metodo serve para ser chamado por outros metodos quando precisar zerar uma partida e limpar o centro da tela"""
         self.zerarPartida()
         self.limpaMeio()
 
     def desvira(self):
+        """este metodo serve para desvirar a carta da máquina que inicialmente está virada para baixo"""
         self.img2['file'] = self.urlDesvira
         self.imagem2.place(x=443, y=30)
 
     def limpaMeio(self):
+        """este metodo reconfigura o centro do jogo limpando tudo que é resultado de uma partida."""
         self.imagemPer['image'] = self.imgPer
         self.medalha['image'] = ''
         self.perdeuimg['image'] = ''
@@ -514,6 +526,7 @@ class Telablackjack:
         self.resultadoTela("não")
 
     def zerarPartida(self):
+        """este metodo zera uma partida e serve para ser chamado junto com outros metodos de configuração de tela"""
         self.valorMaquina = 0
         self.valorJogador = 0
         self.bara.baralho = []  #TODO olhar esta linha..(ps. ESTOU MODIFICANDO DIRETO NUM ATRIBUTO(get) DA CLASSE BARALHO)
@@ -525,6 +538,7 @@ class Telablackjack:
         self.qtdCartasMaquina = 2
 
     def resultadoTela(self,s):
+        """este metodo serve para mostrar o resultado do maquina/jogador no centro da tela"""
         if s == 'sim':
             self.lbResultadoMaquina.place(x=360, y=160)
             self.lbPontuacaoMaquina.place(x=472, y=168)
@@ -543,6 +557,7 @@ class Telablackjack:
             self.lbResultadoMaquina['image'] = ''
 
     def imprimir_ranking(self):  #TODO ADICIONAR NA CLASSE RANKING - METODO QUE RETORNA STRING.
+        """este metodo serve para retornar uma string com os nomes e pontuação que aparecerão no ranking"""
         string = ''
         rankingg = self.r.ler_ranking()
         for i in range(len(rankingg)):
@@ -550,6 +565,7 @@ class Telablackjack:
         return string.strip()
 
     def empatou(self):
+        """Este metodo serve para mostrar a mensagem de - empate."""
         self.saldo_carteira = self.saldo_carteira + self.valor_aposta
         self.saldo_carteira_lb['text'] = "%.2f" % self.saldo_carteira
         self.reinicio['image'] = self.reinicioimg
@@ -568,6 +584,7 @@ class Telablackjack:
         self.ranking.place(x=25, y=43)
 
     def ganhou(self):
+        """Este metodo serve para mostrar a mensagem de - ganhou partida."""
         self.saldo_carteira = self.saldo_carteira + (self.valor_aposta * 3)
         self.saldo_carteira_lb['text'] = "%.2f" % self.saldo_carteira
         self.reinicio['image'] = self.reinicioimg
@@ -586,6 +603,7 @@ class Telablackjack:
         self.ranking.place(x=25, y=43)
 
     def perdeu(self):
+        """Este metodo serve para mostrar a mensagem de - perdeu partida."""
         self.saldo_carteira_lb['text'] = "%.2f" % self.saldo_carteira
         self.reinicio['image'] = self.reinicioimg
         self.reinicio.place(x=748, y=500)
@@ -604,6 +622,7 @@ class Telablackjack:
         self.ranking.place(x=25, y=43)
 
     def play(self):
+        """Este metodo serve para ser chamado quando precisar iniciar uma nova partida, e deve ser chamado por outros métodos"""
         self.ranking['text'] = self.imprimir_ranking()
         self.ranking.place(x=25, y=43)
         self.rank['image'] = self.imgrank
@@ -621,22 +640,27 @@ class Telablackjack:
         self.reinicio.place(x=748, y=500)
 
     def EmbaralharSom(self):
+        """Este metodo serve para tocar o som de - embaralhamento de cartas"""
         mixer.music.load(r'sounds/emb3.wav')  # embaralhar
         mixer.music.play()
 
     def perdeuSom(self):
+        """Este metodo serve para tocar o som de - perdeu"""
         mixer.music.load(r'sounds/uhoh.mp3')  # perdeu
         mixer.music.play()
 
     def ganhouSom(self):
+        """Este metodo serve para tocar o som de - ganhou"""
         mixer.music.load(r'sounds/ganhou.mp3')  # ganhou
         mixer.music.play()
 
     def puxacartaSom(self):
+        """Este metodo serve para tocar o som de - compra de carta"""
         mixer.music.load(r'sounds/DEAL1.wav')  # puxando carta
         mixer.music.play()
 
     def adicionaCartaSlot(self,jogador, url):
+        """Este metodo serve para sobrepor as cartas que o jogador/maquina compra uma do lado da outra na tela de jogo."""
         if jogador == "jogador":
             # 1- passo, mover carta slot 2 para a esquerda em (x).
             self.imagem3.place(x=320, y=460)
@@ -686,6 +710,7 @@ class Telablackjack:
                 self.imag10.place(x=500, y=30)
 
     def puxarcarta(self):
+        """Este metodo serve para a compra de mais cartas- botão D(descer carta)"""
         self.imagemPer['image'] = self.img_olho_virado
         self.puxacartaSom()
 
@@ -713,6 +738,7 @@ class Telablackjack:
                 self.lbMaquina['text'] = ''
 
     def pararcarta(self):
+        """Este metodo serve para a maquina decidir se compra ou não mais cartas, se ela decidir comprar então esta ação é feita."""
         self.imagemPer['image'] = self.img_olho_cima
         if self.valorJogador == self.valorMaquina:
             self.empatou()
@@ -763,9 +789,11 @@ class Telablackjack:
                 self.zerarPartida()
 
     def sair(self):
+        """Este metodo serve para fechar a janela do jogo blackjack"""
         self.janela.destroy()
 
     def placarMaquina(self,v):
+        """Este metodo serve para somar o valor das cartas da maquina"""
         # inicio do print de placar da maquina
         tex = "Máquina cards:. "
         t = ''
@@ -777,6 +805,7 @@ class Telablackjack:
         return soma
 
     def placarJogador(self,v):
+        """Este metodo serve para somar o valor das cartas do jogador"""
         # inicio do print de placar da maquina
         tex = "Jogador cards:. "
         t = ''
@@ -788,6 +817,7 @@ class Telablackjack:
         return soma
 
     def Trata(self,cartas):
+        """Este metodo serve para tratar a matriz que contém as cartas e retornar apenas um vetor com o valor das cartas do jogador/maquina"""
         vet = []
         for i in range(len(cartas)):
             carM = 0
@@ -796,16 +826,19 @@ class Telablackjack:
         return vet
 
     def criaString(self,entrada):
+        """Este metodo serve para criar a string de URL(caminho) que será passada na hora de chamar a imagem de alguma carta"""
         s = r"image\Baralho\ " + str(entrada) + ".png"
         return s.replace(" ", "")
 
     def descobreCarta(self,mat):
+        """Este metodo serve para retornar o nome da ultima carta comprada."""
         ultima = mat[-1]
         valor = ''
         valor = ultima[1] + ultima[2][0]
         return valor
 
     def jogar(self):
+        """Este metodo serve para iniciar uma partida entre jogador/maquina."""
         self.EmbaralharSom()
         urlFechada = r"image\cartafechada.png"
         self.cartasMaquina = []
@@ -845,12 +878,18 @@ class Telablackjack:
         self.lbMaquina['text'] = maquina[0]
         self.lbJogador['text'] = self.valorJogador
 
+    def analisa_rank(self):
+        """Este metodo serve para analisar se nome/valor é superior ao ultimo valor do mesmo jogador no ranking."""
+        #TODO- AJUSTAR PLACAR DO RANKING POR NICKNAME-IGOR
+        pass
+
+
 janela = Tk()
 Telablackjack("igor",janela)
 
 janela['bg'] = "#006400"
 janela.title("G'nus Cassinos")
-janela.iconbitmap(r"image\logoSistema.ico")
+janela.iconbitmap(r"image\logoSistema2.ico")
 janela.resizable(0, 0)
 x = (janela.winfo_screenwidth() // 2) - (900 // 2)
 y = (janela.winfo_screenheight() // 2) - (600 // 2)
