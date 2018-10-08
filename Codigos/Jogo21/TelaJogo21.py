@@ -179,13 +179,15 @@ def resultadoTela(s):
         lbResultadoJogador['image']=''
         lbResultadoMaquina['image']=''
 
-def imprimir_ranking(): #TODO ADICIONAR NA CLASSE RANKING - METODO QUE RETORNA STRING.
-    string=''
+
+def imprimir_ranking():
     global r
-    rankingg=r.ler_ranking()
-    for i in range(len(rankingg)):
-        string=string+rankingg[i][0]+"\t"+rankingg[i][1]+"\n"
-    return string.strip()
+    return r.retorna_ranking()
+
+def inserir_no_ranking(score):
+    global r, carteira
+    r.addRecord("testador", int(score))
+
 
 def empatou():
     global saldo_carteira
@@ -224,8 +226,10 @@ def ganhou():
     medalha['image']=imgMedalha
     medalha.place(x=330, y=220)
     logo.place(x=0,y=0)
+    inserir_no_ranking(saldo_carteira)
     ranking['text'] = imprimir_ranking()
     ranking.place(x=25, y=43)
+
 
 def perdeu():
     global saldo_carteira
@@ -536,8 +540,7 @@ qtdCartasMaquina=2
 urlDesvira=''
 saldo_carteira=250.00
 valor_aposta=00.00
-r = Raking("0",0,"f","blackjack")#TODO REMOVER PARÂMETROS NA CLASSE RAKING
-r.addRecord()
+r = Raking("blackjack", "f")
 
 '''fim DO codigo principal DA aplicacao'''
 
