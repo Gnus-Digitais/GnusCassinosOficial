@@ -889,7 +889,7 @@ class Telablackjack:
         """este metodo serve para analisar se o jogador acabou tudo que tinha na carteira, caso sim este metodo destroi a janela do jogo"""
         #TODO- AJUSTAR JOGO- QUANDO ZERAR CARTEIRA APÓS UMA MENSAGEM DE PERDEU, O GAME DEVE EMITIR ALERTA E FECHAR. - IGOR
         #TODO- LEMBRAR TAMBÉM DE DESENHAR O ALERTA DE GRANA ESGOTADA E FIM DE JOGO - IGOR
-        #Todo- este metodo precisa ser chamado após perdeu.
+        #Todo- este metodo precisa ser chamado após perdeu. e precisa ser testado.
         if self.saldo_carteira<1:
             self.sair()
 
