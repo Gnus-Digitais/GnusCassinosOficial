@@ -1,3 +1,5 @@
+tester|457|f
+tester|457|f
 Pantera|300|f
 Felipão|225|f
 Matanob|225|f
@@ -6,5 +8,3 @@ João|255|f
 Maria|255|f
 José|255|f
 Felipe|255|f
-Pereira|255|f
-Igor|255|f

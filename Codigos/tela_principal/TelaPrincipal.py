@@ -38,6 +38,7 @@ cx_nome=Entry(telaprincipal)
 cx_nome['font'] = 'sans', 19, "bold"
 cx_nome['bg'] = "#C8AB37"
 cx_nome['relief']=FLAT
+cx_nome['justify']=CENTER
 cx_nome['width']=12
 cx_nome.place(x=366,y=270)
 

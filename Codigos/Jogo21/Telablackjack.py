@@ -3,7 +3,8 @@ from pygame import mixer
 from tkinter import *
 from Codigos.classes_auxiliares.Ranking import Raking
 from functools import partial
-import time
+
+#todo - modificar esta classe no metodo ganhou e adicionar metodos que o matheus fez.
 
 class Telablackjack:
     """Esta é a classe TelablackJack que serve que é usada para criar a tela do jogo blacjjack e todas as funxionalidades do mesmo."""
@@ -12,8 +13,8 @@ class Telablackjack:
         self.janela=janela
         mixer.init()
         self.bara = Baralho()
-        self.r = Raking("0", 0, "f", "blackjack")  # TODO REMOVER PARÂMETROS NA CLASSE RAKING - MATHEUS SE FOR POSSIVEL
-        self.r.addRecord()
+        self.r = Raking("blackjack","f")  # TODO REMOVER PARÂMETROS NA CLASSE RAKING - MATHEUS SE FOR POSSIVEL
+        self.r.addRecord("tester",457)
         self.cartasMaquina = []
         self.cartasJogador = []
         self.valorJogador = 0
