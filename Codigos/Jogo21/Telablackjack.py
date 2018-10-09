@@ -3,18 +3,20 @@ from pygame import mixer
 from tkinter import *
 from Codigos.classes_auxiliares.Ranking import Raking
 from functools import partial
+from tkinter import messagebox
 
-#todo - modificar esta classe no metodo ganhou e adicionar metodos que o matheus fez.
+
 
 class Telablackjack:
-    """Esta é a classe TelablackJack que serve que é usada para criar a tela do jogo blacjjack e todas as funxionalidades do mesmo."""
+    """Esta é a classe TelablackJack que serve que é usada para criar a tela do jogo blackjack e todas as funxionalidades do mesmo."""
     def __init__(self, user,janela):
+        #anterior.destroy()
         self.__user = user
         self.janela=janela
         mixer.init()
         self.bara = Baralho()
-        self.r = Raking("blackjack","f")  # TODO REMOVER PARÂMETROS NA CLASSE RAKING - MATHEUS SE FOR POSSIVEL
-        self.r.addRecord("tester",457)
+        self.r = Raking("blackjack","f")
+        #self.r.addRecord(self.user,458)
         self.cartasMaquina = []
         self.cartasJogador = []
         self.valorJogador = 0
@@ -26,12 +28,10 @@ class Telablackjack:
         self.valor_aposta = 00.00
 
         #TODO 1 - LEMBRAR DE CONECTAR TELA PRINCIPAL DO JOGO COM OS DEMAIS JOGOS. INCLUSIVE ESTE JOGO AQUI - IGOR - MATHEUS - BRUNO
-        #TODO 2 - LEMBRAR DE ADICIONAR FUNÇÕES PARA ATUALIZAR VALOR DO ARQUIVO DA CLASSE RANKING, CASO A PARTIDA TERMINE. - IGOR
-        #TODO 4 - VERIFICAR QUANDO MAQUINA VENCE ANTES DO USUARIO FINALIZAR A JOGADA. - REVISAR ESTE TÓPICO, ACHO QUE JA RESOLVI ISSO - IGOR
 
         # inicio botao reinicio
         self.reinicio = Button(self.janela)
-        self.reinicioimg = PhotoImage(file=r"image\restart2.png")
+        self.reinicioimg = PhotoImage(file=r"image/restart2.png")
         self.reinicio['image'] = self.reinicioimg
         self.reinicio['relief'] = FLAT
         self.reinicio['command'] = self.novaPartida
@@ -127,7 +127,7 @@ class Telablackjack:
         self.rank = Label(self.janela)
         self.imgrank = PhotoImage(file=r"image\quadroRanking.png")
         self.rank['bg'] = "#006400"
-        self.rank.place(x=5, y=10)
+        self.rank.place(x=9, y=10)
 
         # label ranking
         self.ranking = Label(self.janela)
@@ -534,7 +534,7 @@ class Telablackjack:
         """este metodo zera uma partida e serve para ser chamado junto com outros metodos de configuração de tela"""
         self.valorMaquina = 0
         self.valorJogador = 0
-        self.bara.baralho = []  #TODO olhar esta linha..(ps. ESTOU MODIFICANDO DIRETO NUM ATRIBUTO(get) DA CLASSE BARALHO) -IGOR-MATHEUS
+        self.bara.baralho = []
         self.cartasJogador = []
         self.cartasMaquina = []
         print("Máquina cards:. " + str(self.cartasMaquina) + " Pts: " + str(self.valorMaquina))
@@ -561,13 +561,13 @@ class Telablackjack:
             self.lbResultadoJogador['image'] = ''
             self.lbResultadoMaquina['image'] = ''
 
-    def imprimir_ranking(self):  #TODO ADICIONAR NA CLASSE RANKING - METODO QUE RETORNA STRING. - MATHEUS -IGOR
+    def imprimir_ranking(self):
         """este metodo serve para retornar uma string com os nomes e pontuação que aparecerão no ranking"""
-        string = ''
-        rankingg = self.r.ler_ranking()
-        for i in range(len(rankingg)):
-            string = string + rankingg[i][0] + "\t" + rankingg[i][1] + "\n"
-        return string.strip()
+        return self.r.retorna_ranking()
+
+    def inserir_no_ranking(self,score):
+        """este metodo adiciona o usuario do game ao ranking"""
+        self.r.addRecord(self.user, int(score))
 
     def empatou(self):
         """Este metodo serve para mostrar a mensagem de - empate."""
@@ -604,6 +604,7 @@ class Telablackjack:
         self.medalha['image'] = self.imgMedalha
         self.medalha.place(x=330, y=220)
         self.logo.place(x=0, y=0)
+        self.inserir_no_ranking(self.saldo_carteira)
         self.ranking['text'] = self.imprimir_ranking()
         self.ranking.place(x=25, y=43)
 
@@ -726,7 +727,7 @@ class Telablackjack:
         jogador = self.Trata(self.cartasJogador)
         self.valorJogador = self.placarJogador(jogador)
         self.lbJogador['text'] = self.valorJogador
-        print(len(self.bara.embalharada))  # TODO - retirar isso daqui -> print testeeeeeeee - IGOR
+
         if self.valorJogador > 21:
             if self.valorMaquina>21:
                 self.empatou()
@@ -743,6 +744,7 @@ class Telablackjack:
                 self.lbJogador['text'] = ''
                 self.lbMaquina['text'] = ''
                 if self.saldo_carteira < 1:
+                    messagebox.showinfo("Que pena!" ,"Perdeu tudo!")
                     self.sair()
 
     def pararcarta(self):
@@ -759,6 +761,7 @@ class Telablackjack:
             print("c-3 #especial2 - MAQUINA TINHA VALOR ABAIXO DE 21 E JOGADOR 22. DE CARA.azar MAIOR")
             self.zerarPartida()
             if self.saldo_carteira < 1:
+                messagebox.showinfo("Que pena!", "Perdeu tudo!")
                 self.sair()
 
         elif self.valorMaquina > 21:
@@ -772,6 +775,7 @@ class Telablackjack:
             print("2-perdeu, maquina tinha valor maior!")
             self.zerarPartida()
             if self.saldo_carteira < 1:
+                messagebox.showinfo("Que pena!", "Perdeu tudo!")
                 self.sair()
 
         else:
@@ -783,7 +787,6 @@ class Telablackjack:
                 maquina = self.Trata(self.cartasMaquina)
                 self.valorMaquina = self.placarMaquina(maquina)
                 self.lbMaquina['text'] = self.valorMaquina
-                print(len(self.bara.embalharada))  # todo - retirar isso daqui-> print testeeeeee - IGOR
 
             if self.valorMaquina == self.valorJogador:
                 self.empatou()
@@ -798,6 +801,7 @@ class Telablackjack:
                 print("2-perdeu, maquina fez exatamente21!")
                 self.zerarPartida()
                 if self.saldo_carteira < 1:
+                    messagebox.showinfo("Que pena!" ,"Perdeu tudo!")
                     self.sair()
 
             else:
@@ -805,6 +809,7 @@ class Telablackjack:
                 print("2-perdeu! maquina venceu abaixo de 21!")
                 self.zerarPartida()
                 if self.saldo_carteira < 1:
+                    messagebox.showinfo("Que pena!" ,"Perdeu tudo!")
                     self.sair()
 
     def sair(self):
@@ -904,8 +909,9 @@ class Telablackjack:
 
 
 
+#'''
 janela = Tk()
-Telablackjack("igor",janela)
+Telablackjack("igor21",janela)
 
 janela['bg'] = "#006400"
 janela.title("G'nus Cassinos")
@@ -914,8 +920,9 @@ janela.resizable(0, 0)
 x = (janela.winfo_screenwidth() // 2) - (900 // 2)
 y = (janela.winfo_screenheight() // 2) - (600 // 2)
 janela.geometry("900x600+{}+{}".format(x, y))  # largura x altura + esquerda + topo
-# janela.overrideredirect(True)#retira bordas
+#janela.overrideredirect(True)#retira bordas
 
 janela.mainloop()
 # fim configs da janela e chamada do MAINLOOP().
+#'''
 # TODO - REVISAR CÓDIGO TODO..!!!!!! - IGOR - MATHEUS - BRUNO(se quiser).
