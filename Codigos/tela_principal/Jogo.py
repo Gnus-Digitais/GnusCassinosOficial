@@ -60,18 +60,21 @@ class Jogo:
         self.btnS.place(x=602,y=380)
 
     def abre_blackjack(self):
-        pai = Tk()
+
         usuario=self.cx_nome.get()
-        Telablackjack(usuario,pai)
+        pai = Tk()
         pai['bg'] = "#006400"
         pai.title("G'nus Cassinos")
-        pai.iconbitmap("Codigos\Jogo21\image\logoSistema.ico")
-        pai.resizable(0,0)
+        pai.iconbitmap("imagem\logoSistema.ico")
+        pai.resizable(0, 0)
         x = (pai.winfo_screenwidth() // 2) - (900 // 2)
         y = (pai.winfo_screenheight() // 2) - (600 // 2)
         pai.geometry("900x600+{}+{}".format(x, y))  # largura x altura + esquerda + topo
         # pai.overrideredirect(True)#retira bordas
+        Telablackjack(usuario,pai,tela)
         pai.mainloop()
+
+
 
 
 
@@ -79,6 +82,7 @@ tela = Tk()
 tela['bg']="#000080"
 tela.title("G'nus Cassinos")
 tela.resizable(0, 0)
+tela.iconbitmap("imagem\logoSistema.ico")
 x = (tela.winfo_screenwidth() // 2) - (910 // 2)
 y = (tela.winfo_screenheight() // 2) - (600 // 2)
 tela.geometry("910x600+{}+{}".format(x, y))  # largura x altura + esquerda + topo
