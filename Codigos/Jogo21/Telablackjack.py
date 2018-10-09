@@ -5,8 +5,6 @@ from Codigos.classes_auxiliares.Ranking import Raking
 from functools import partial
 from tkinter import messagebox
 
-
-
 class Telablackjack:
     """Esta é a classe TelablackJack que serve que é usada para criar a tela do jogo blackjack e todas as funxionalidades do mesmo."""
     def __init__(self, user,janela):
@@ -915,7 +913,7 @@ Telablackjack("igor21",janela)
 
 janela['bg'] = "#006400"
 janela.title("G'nus Cassinos")
-janela.iconbitmap(r"image\logoSistema.ico")
+janela.iconbitmap(r"image\logoSistema7.ico")#TODO - TEMOS QUE ESCOLHER UM ICONE.
 janela.resizable(0, 0)
 x = (janela.winfo_screenwidth() // 2) - (900 // 2)
 y = (janela.winfo_screenheight() // 2) - (600 // 2)
