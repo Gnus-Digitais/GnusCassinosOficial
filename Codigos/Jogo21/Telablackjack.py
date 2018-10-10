@@ -906,8 +906,6 @@ class Telablackjack:
         #TODO- AJUSTAR PLACAR DO RANKING POR NICKNAME- MATHEUS - IGOR
         pass
 
-
-
 #'''
 janela = Tk()
 Telablackjack("igor214",janela)
@@ -920,7 +918,6 @@ x = (janela.winfo_screenwidth() // 2) - (900 // 2)
 y = (janela.winfo_screenheight() // 2) - (600 // 2)
 janela.geometry("900x600+{}+{}".format(x, y))  # largura x altura + esquerda + topo
 #janela.overrideredirect(True)#retira bordas
-
 janela.mainloop()
 #'''
 # fim configs da janela e chamada do MAINLOOP().
