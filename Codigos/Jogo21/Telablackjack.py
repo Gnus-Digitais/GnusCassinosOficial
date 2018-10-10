@@ -7,8 +7,8 @@ from tkinter import messagebox
 
 class Telablackjack:
     """Esta é a classe TelablackJack que serve que é usada para criar a tela do jogo blackjack e todas as funxionalidades do mesmo."""
-    def __init__(self, user,janela,anterior):
-        anterior.destroy()
+    def __init__(self, user,janela):
+        #anterior.destroy()
         self.__user = user
         self.janela=janela
         mixer.init()
@@ -907,9 +907,9 @@ class Telablackjack:
 
 
 
-'''#
+
 janela = Tk()
-Telablackjack("igor21",janela)
+Telablackjack("igor214",janela)
 
 janela['bg'] = "#006400"
 janela.title("G'nus Cassinos")
@@ -921,7 +921,7 @@ janela.geometry("900x600+{}+{}".format(x, y))  # largura x altura + esquerda + t
 #janela.overrideredirect(True)#retira bordas
 
 janela.mainloop()
-'''#
+
 # fim configs da janela e chamada do MAINLOOP().
 
 # TODO - REVISAR CÓDIGO TODO..!!!!!! - IGOR - MATHEUS - BRUNO(se quiser).

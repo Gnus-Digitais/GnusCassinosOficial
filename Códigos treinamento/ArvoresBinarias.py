@@ -72,6 +72,26 @@ class ArvoreBinaria:
 		while nodo_temp.esquerda!=None:
 			nodo_temp=nodo_temp.esquerda
 		return nodo_temp.dado
+	def caminhamento_ordem(self,raiz):
+		if not raiz:
+			return
+		self.caminhamento_ordem(raiz.esquerda)
+		print(raiz.dado)
+		self.caminhamento_ordem(raiz.direita)
+
+	def caminhamento_pre_ordem(self,raiz):
+		if not raiz:
+			return
+		print(raiz.dado)
+		self.caminhamento_pre_ordem(raiz.esquerda)
+		self.caminhamento_pre_ordem(raiz.direita)
+
+	def caminhamento_pos_ordem(self,raiz):
+		if not raiz:
+			return
+		self.caminhamento_pos_ordem(raiz.esquerda)
+		self.caminhamento_pos_ordem(raiz.direita)
+		print(raiz.dado)
 
 	def altura(self):
 		if self.raiz==None:
@@ -109,18 +129,26 @@ def verifica_igualdade(x,y):
 
 def testeArvore():
 
-    arvore=ArvoreBinaria()
-    arvore.insere(arvore.raiz,10)
-    arvore.insere(arvore.raiz,13)
-    arvore.insere(arvore.raiz,12)
-    arvore.insere(arvore.raiz,16)
-    arvore.insere(arvore.raiz,15)
-    arvore.insere(arvore.raiz,8)
-    arvore.insere(arvore.raiz,9)
-    arvore.insere(arvore.raiz,5)
-    arvore.insere(arvore.raiz,3)
-    arvore.insere(arvore.raiz, 209)
-    arvore.insere(arvore.raiz,18)
+	arvore=ArvoreBinaria()
+	arvore.insere(arvore.raiz,21)
+	arvore.insere(arvore.raiz, 51)
+	arvore.insere(arvore.raiz, 17)
+	arvore.insere(arvore.raiz, 30)
+	arvore.insere(arvore.raiz, 50)
+	arvore.insere(arvore.raiz, 7)
+	arvore.insere(arvore.raiz, 1)
+	'''
+	arvore.insere(arvore.raiz,10)
+	arvore.insere(arvore.raiz,13)
+	arvore.insere(arvore.raiz,12)
+	arvore.insere(arvore.raiz,16)
+	arvore.insere(arvore.raiz,15)
+	arvore.insere(arvore.raiz,8)
+	arvore.insere(arvore.raiz,9)
+	arvore.insere(arvore.raiz,5)
+	arvore.insere(arvore.raiz,3)
+	arvore.insere(arvore.raiz, 209)
+	arvore.insere(arvore.raiz,18)
     arvore.insere(arvore.raiz,6)
     arvore.insere(arvore.raiz,13)
     #arvore.insere(arvore.raiz,209)
@@ -131,30 +159,32 @@ def testeArvore():
     print(arvore.busca(arvore.raiz,35))
     print(arvore.maximo())#sem nodo partida(raiz)
     print(arvore.minimo())#sem nodo partida(raiz)
-
-    #arvore 2
-    arvore2 = ArvoreBinaria()
-    arvore2.insere(arvore2.raiz, 10)
-    arvore2.insere(arvore2.raiz, 13)
-    arvore2.insere(arvore2.raiz, 12)
-    arvore2.insere(arvore2.raiz, 16)
-    arvore2.insere(arvore2.raiz, 15)
-    arvore2.insere(arvore2.raiz, 8)
-    arvore2.insere(arvore2.raiz, 9)
-    arvore2.insere(arvore2.raiz, 5)
-    arvore2.insere(arvore2.raiz, 3)
-    arvore2.insere(arvore2.raiz, 209)
-    arvore2.insere(arvore2.raiz, 18)
-    arvore2.insere(arvore2.raiz, 6)
-    arvore2.insere(arvore2.raiz, 13)
-    arvore2.insere(arvore2.raiz, 10)
-    arvore2.insere(arvore2.raiz,2)
-    print(arvore2)
-    print(arvore2.altura())
-    print(arvore2.busca(arvore2.raiz, 35))
-    print(arvore2.maximo())  # sem nodo partida(raiz)
-    print(arvore2.minimo())  # sem nodo partida(raiz)
-    print(verifica_igualdade(arvore.raiz,arvore2.raiz))
-
+	'''
+	#arvore 2
+	arvore2 = ArvoreBinaria()
+	arvore2.insere(arvore2.raiz, 10)
+	arvore2.insere(arvore2.raiz, 13)
+	arvore2.insere(arvore2.raiz, 12)
+	arvore2.insere(arvore2.raiz, 16)
+	arvore2.insere(arvore2.raiz, 15)
+	arvore2.insere(arvore2.raiz, 8)
+	arvore2.insere(arvore2.raiz, 9)
+	arvore2.insere(arvore2.raiz, 5)
+	arvore2.insere(arvore2.raiz, 3)
+	arvore2.insere(arvore2.raiz, 209)
+	arvore2.insere(arvore2.raiz, 18)
+	arvore2.insere(arvore2.raiz, 6)
+	arvore2.insere(arvore2.raiz, 13)
+	arvore2.insere(arvore2.raiz, 10)
+	arvore2.insere(arvore2.raiz,2)
+	print(arvore2)
+	print(arvore2.altura())
+	print(arvore2.busca(arvore2.raiz, 35))
+	print(arvore2.maximo())  # sem nodo partida(raiz)
+	print(arvore2.minimo())  # sem nodo partida(raiz)
+	print(verifica_igualdade(arvore.raiz,arvore2.raiz))
+	arvore.caminhamento_ordem(arvore.raiz)
+	arvore.caminhamento_pre_ordem(arvore.raiz)
+	arvore.caminhamento_pos_ordem(arvore.raiz)
 
 testeArvore()
