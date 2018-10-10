@@ -160,5 +160,3 @@ while True:
         print(linha1,'linha1')
 
         quadrado(linha1)
-
-

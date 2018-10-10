@@ -150,6 +150,7 @@ tela.title("G'nus Slot Machine") # titulo da janela
 tela.iconbitmap(r"imagens\logoSistema.ico")# icone do programa
 tela['bg'] = "#006400" # Background color
 tela.resizable(0,0) # seta a janela com tamanho fixo
+#tela.overrideredirect(True)
 x = (tela.winfo_screenwidth() // 2) - (700 // 2) # Pega o valor X do ponto central
 y = (tela.winfo_screenheight() // 2) - (550 // 2) # Pega o valor Y do ponto central
 tela.geometry("700x550+{}+{}".format(x, y))  # largura x altura + esquerda + topo

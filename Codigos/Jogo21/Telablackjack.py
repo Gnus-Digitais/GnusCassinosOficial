@@ -27,14 +27,15 @@ class Telablackjack:
 
         #TODO 1 - LEMBRAR DE CONECTAR TELA PRINCIPAL DO JOGO COM OS DEMAIS JOGOS. INCLUSIVE ESTE JOGO AQUI - IGOR - MATHEUS - BRUNO
 
+
         # inicio botao reinicio
         self.reinicio = Button(self.janela)
-        self.reinicioimg =PhotoImage(file=r"image/restart2.png")
+        self.reinicioimg =PhotoImage(file="image/restart2.png")
         self.reinicio['image'] = self.reinicioimg
         self.reinicio['relief'] = FLAT
         self.reinicio['command'] = self.novaPartida
         self.reinicio['bg'] = '#006400'
-        # fim reincio
+        # fim reinicio
 
         # LOGOgnus
         self.logo = Label(self.janela)
@@ -55,70 +56,70 @@ class Telablackjack:
 
         # MAQUINA SLOT CARTAS
         # perfil label img MAQUINA gnu
-        self.imagemperfil = Label(self.janela)
+        self.mperfil = Label(self.janela)
         self.imgperfil = PhotoImage(file=r"image\mrgnu2.png")
-        self.imagemperfil['image'] = self.imgperfil
-        self.imagemperfil['bg'] = '#006400'
-        self.imagemperfil.place(x=160, y=10)
+        self.mperfil['image'] = self.imgperfil
+        self.mperfil['bg'] = '#006400'
+        self.mperfil.place(x=160, y=10)
         # fim perfil gnu
         # soma, placar da maquina gnu
-        self.imagemsomam = Label(self.janela)
+        self.msomam = Label(self.janela)
         self.imgsomam = PhotoImage(file=r"image\SOMA.png")
-        self.imagemsomam['image'] = self.imgsomam
-        self.imagemsomam['bg'] = '#006400'
-        self.imagemsomam.place(x=160, y=130)
+        self.msomam['image'] = self.imgsomam
+        self.msomam['bg'] = '#006400'
+        self.msomam.place(x=160, y=130)
         # fim placar maquina soma, GNU
 
         # slot 1 para cartas
-        self.imagem = Label(self.janela)
+        self.m = Label(self.janela)
         self.img1 = PhotoImage(file="image/cartasSlot.png")
-        self.imagem['image'] = self.img1
-        self.imagem['bg'] = '#006400'
-        self.imagem.place(x=350, y=30)
+        self.m['image'] = self.img1
+        self.m['bg'] = '#006400'
+        self.m.place(x=350, y=30)
         # fim slot 1 para cartas
         # slot 2 para cartas
-        self.imagem2 = Label(self.janela)
+        self.m2 = Label(self.janela)
         self.img2 = PhotoImage(file=r"image\cartasSlot.png")
-        self.imagem2['image'] = self.img2
-        self.imagem2['bg'] = '#006400'
-        self.imagem2.place(x=443, y=30)
+        self.m2['image'] = self.img2
+        self.m2['bg'] = '#006400'
+        self.m2.place(x=443, y=30)
         # fim do slot 2 para cartas maquina
         # fim maquina !
 
         # JOGADOR SLOT CARTAS
         # img personagem jogador perfil
-        self.imagemPer = Label(self.janela)
+        self.mPer = Label(self.janela)
         self.imgPer = PhotoImage(file=r"image\user2.png")
-        self.imagemPer['image'] = self.imgPer
-        self.imagemPer['bg'] = '#006400'
-        self.imagemPer.place(x=160, y=430)
+        self.mPer['image'] = self.imgPer
+        self.mPer['bg'] = '#006400'
+        self.mPer.place(x=160, y=430)
         # fim perfil jogador img
 
-        # imagem de olho virado para mover olho do personagem.
+        # m_principal de olho virado para mover olho do personagem.
         self.img_olho_virado = PhotoImage(file=r"image\user2vira.png")
         self.img_olho_cima = PhotoImage(file=r"image\user2cima.png")
         # fim img de olho virado
 
         # soma label img placar jogador
-        self.imagemsoma = Label(self.janela)
+        self.msoma = Label(self.janela)
         self.imgsoma = PhotoImage(file=r"image\SOMA.png")
-        self.imagemsoma['image'] = self.imgsoma
-        self.imagemsoma['bg'] = '#006400'
-        self.imagemsoma.place(x=160, y=550)
+        self.msoma['image'] = self.imgsoma
+        self.msoma['bg'] = '#006400'
+        self.msoma.place(x=160, y=550)
         # fim label soma, placar do jogador
         # slot3, jogador
-        self.imagem3 = Label(self.janela)
+        self.m3 = Label(self.janela)
         self.img3 = PhotoImage(file=r"image\cartasSlot.png")
-        self.imagem3['image'] = self.img3
-        self.imagem3['bg'] = '#006400'
-        self.imagem3.place(x=350, y=460)
+        self.m3['image'] = self.img3
+        self.m3['bg'] = '#006400'
+        self.m3.place(x=350, y=460)
         # fim slot3 jogador
         # slot4 jogador
-        self.imagem4 = Label(self.janela)
+        self.m4 = Label(self.janela)
         self.img4 = PhotoImage(file=r"image\cartasSlot.png")
-        self.imagem4['image'] = self.img4
-        self.imagem4['bg'] = '#006400'
-        self.imagem4.place(x=443, y=460)
+        self.m4['image'] = self.img4
+        self.m4['bg'] = '#006400'
+        self.m4.place(x=443, y=460)
         # fim slot4 jogador
 
         # inicio quadro ranking
@@ -135,7 +136,7 @@ class Telablackjack:
         self.ranking['text'] = " "
         # fim quadro ranking
 
-        """algumas imagens reservas em slots invisiveis que ficarão do lado direito do user: """
+        """algumas ns_slotmachine reservas em slots invisiveis que ficarão do lado direito do user: """
 
         self.imag1 = Label(self.janela)
         self.imag1Carta = PhotoImage(file=r"image\Baralho\Ao.png")
@@ -221,15 +222,15 @@ class Telablackjack:
         self.btnExit['image'] = self.imgbtnExit
         self.btnExit.place(x=0, y=505)
         # FIM BTN SAIR SISTEMA
-        # monte label img, imagem do monte de cartas no lado direito>>>
-        self.imagem5 = Label(self.janela)
+        # monte label img, m_principal do monte de cartas no lado direito>>>
+        self.m5 = Label(self.janela)
         self.img5 = PhotoImage(file=r"image\monteC3.png")
-        self.imagem5['image'] = self.img5
-        self.imagem5['bg'] = '#006400'
-        self.imagem5['height'] = 300
-        self.imagem5['width'] = 300
-        self.imagem5.place(x=670, y=60)
-        # fim imagem label, monte do lado direito>>>>>>>>>>>>>>>>>>>>>>>
+        self.m5['image'] = self.img5
+        self.m5['bg'] = '#006400'
+        self.m5['height'] = 300
+        self.m5['width'] = 300
+        self.m5.place(x=670, y=60)
+        # fim m_principal label, monte do lado direito>>>>>>>>>>>>>>>>>>>>>>>
 
         # carteira
         self.carteira = Label(self.janela)
@@ -493,11 +494,11 @@ class Telablackjack:
     def desvira(self):
         """este metodo serve para desvirar a carta da máquina que inicialmente está virada para baixo"""
         self.img2['file'] = self.urlDesvira
-        self.imagem2.place(x=443, y=30)
+        self.m2.place(x=443, y=30)
 
     def limpaMeio(self):
         """este metodo reconfigura o centro do jogo limpando tudo que é resultado de uma partida."""
-        self.imagemPer['image'] = self.imgPer
+        self.mPer['image'] = self.imgPer
         self.medalha['image'] = ''
         self.perdeuimg['image'] = ''
         self.empateimg['image'] = ''
@@ -508,10 +509,10 @@ class Telablackjack:
         self.medalha.place(x=0, y=0)
         self.perdeuimg.place(x=0, y=0)
         self.empateimg.place(x=0, y=0)
-        self.imagem.place(x=350, y=30)
-        self.imagem2.place(x=443, y=30)
-        self.imagem3.place(x=350, y=460)
-        self.imagem4.place(x=443, y=460)
+        self.m.place(x=350, y=30)
+        self.m2.place(x=443, y=30)
+        self.m3.place(x=350, y=460)
+        self.m4.place(x=443, y=460)
         self.img1['file'] = r"image\cartasSlot.png"
         self.img2['file'] = r"image\cartasSlot.png"
         self.img3['file'] = r"image\cartasSlot.png"
@@ -668,8 +669,8 @@ class Telablackjack:
         """Este metodo serve para sobrepor as cartas que o jogador/maquina compra uma do lado da outra na tela de jogo."""
         if jogador == "jogador":
             # 1- passo, mover carta slot 2 para a esquerda em (x).
-            self.imagem3.place(x=320, y=460)
-            self.imagem4.place(x=350, y=460)
+            self.m3.place(x=320, y=460)
+            self.m4.place(x=350, y=460)
             self.qtdCartasJogador = self.qtdCartasJogador + 1
             if self.qtdCartasJogador == 3:
                 self.imag1Carta['file'] = url
@@ -689,9 +690,9 @@ class Telablackjack:
         else:
             # é igual a maquina:
             # 1- passo desvirar carta slot 2 maquina e mover pra esquerda (x)
-            self.imagem.place(x=320, y=30)
+            self.m.place(x=320, y=30)
             self.img2['file'] = self.urlDesvira
-            self.imagem2.place(x=350, y=30)
+            self.m2.place(x=350, y=30)
 
             self.qtdCartasMaquina = self.qtdCartasMaquina + 1
             if self.qtdCartasMaquina == 3:
@@ -716,7 +717,7 @@ class Telablackjack:
 
     def puxarcarta(self):
         """Este metodo serve para a compra de mais cartas- botão D(descer carta)"""
-        self.imagemPer['image'] = self.img_olho_virado
+        self.mPer['image'] = self.img_olho_virado
         self.puxacartaSom()
 
         self.cartasJogador.append(self.bara.topo_da_pilha())
@@ -747,7 +748,7 @@ class Telablackjack:
 
     def pararcarta(self):
         """Este metodo serve para a maquina decidir se compra ou não mais cartas, se ela decidir comprar então esta ação é feita."""
-        self.imagemPer['image'] = self.img_olho_cima
+        self.mPer['image'] = self.img_olho_cima
         if self.valorJogador == self.valorMaquina:
             self.empatou()
             self.desvira()
@@ -848,7 +849,7 @@ class Telablackjack:
         return vet
 
     def criaString(self,entrada):
-        """Este metodo serve para criar a string de URL(caminho) que será passada na hora de chamar a imagem de alguma carta"""
+        """Este metodo serve para criar a string de URL(caminho) que será passada na hora de chamar a m_principal de alguma carta"""
         s = r"image\Baralho\ " + str(entrada) + ".png"
         return s.replace(" ", "")
 
@@ -907,7 +908,7 @@ class Telablackjack:
 
 
 
-
+#'''
 janela = Tk()
 Telablackjack("igor214",janela)
 
@@ -921,7 +922,7 @@ janela.geometry("900x600+{}+{}".format(x, y))  # largura x altura + esquerda + t
 #janela.overrideredirect(True)#retira bordas
 
 janela.mainloop()
-
+#'''
 # fim configs da janela e chamada do MAINLOOP().
 
 # TODO - REVISAR CÓDIGO TODO..!!!!!! - IGOR - MATHEUS - BRUNO(se quiser).

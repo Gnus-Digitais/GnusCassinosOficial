@@ -1,12 +1,11 @@
 from tkinter import *
-from Codigos.Jogo21.Telablackjack import Telablackjack
 
 class Jogo:
     def __init__(self,tela):
         self.principal=tela
 
         self.tridir=Label(self.principal)
-        self.imgdir=PhotoImage(file=r"imagem/trinagulodireita.png")
+        self.imgdir=PhotoImage(file=r"imagem/triangulodireita2.png")
         self.tridir['image']=self.imgdir
         self.tridir['bg']="#000080"
         self.tridir.place(x=570,y=-8)
@@ -30,12 +29,13 @@ class Jogo:
         self.lb_caixa.place(x=300,y=265)
 
         self.cx_nome=Entry(self.principal)
-        self.cx_nome['font'] = 'sans', 19, "bold"
+        self.cx_nome['font'] = 'Courier New', 18, "bold" #sans
+        self.cx_nome['fg']="#000080"
         self.cx_nome['bg'] = "#C8AB37"
         self.cx_nome['relief']=FLAT
         self.cx_nome['justify']=CENTER
         self.cx_nome['width']=12
-        self.cx_nome.place(x=366,y=270)
+        self.cx_nome.place(x=366,y=271)
 
         self.btnM=Button(self.principal)
         self.btnM['relief']=FLAT
@@ -59,8 +59,18 @@ class Jogo:
         self.btnS['bg'] = "#000080"
         self.btnS.place(x=602,y=380)
 
-    def abre_blackjack(self):
+        self.btnExit=Button(self.principal)
+        self.imgExit=PhotoImage(file="imagem/exit.png")
+        self.btnExit['image']=self.imgExit
+        self.btnExit['relief']=FLAT
+        self.btnExit['command']=self.sair
+        self.btnExit['bg']="#000080"
+        self.btnExit.place(x=2,y=2)
 
+    def sair(self):
+        self.principal.destroy()
+    def abre_blackjack(self):
+        '''
         usuario=self.cx_nome.get()
         pai = Tk()
         pai['bg'] = "#006400"
@@ -73,9 +83,8 @@ class Jogo:
         # pai.overrideredirect(True)#retira bordas
         Telablackjack(usuario,pai,tela)
         pai.mainloop()
-
-
-
+        '''
+        pass
 
 
 tela = Tk()
@@ -89,5 +98,3 @@ tela.geometry("910x600+{}+{}".format(x, y))  # largura x altura + esquerda + top
 # telaprincipal.overrideredirect(True)#retira bordas
 Jogo(tela)
 tela.mainloop()
-
-

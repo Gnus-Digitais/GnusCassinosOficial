@@ -1,10 +1,10 @@
 igor21|4450|f
+igor214|3350|f
 igor21|2250|f
+igor214|2050|f
 igor21|750|f
 igor21|750|f
 igor21|750|f
+igor214|750|f
 igor21|695|f
 igor21|625|f
-igor21|600|f
-tester|457|f
-tester|457|f
