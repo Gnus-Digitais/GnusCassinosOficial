@@ -36,6 +36,7 @@ class Jogo:
         self.cx_nome['justify']=CENTER
         self.cx_nome['width']=12
         self.cx_nome.place(x=366,y=271)
+        self.cx_nome.focus()
 
         self.btnM=Button(self.principal)
         self.btnM['relief']=FLAT
