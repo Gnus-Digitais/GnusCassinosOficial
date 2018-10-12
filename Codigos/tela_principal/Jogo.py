@@ -1,9 +1,16 @@
-from tkinter import *
 from Codigos.Jogo21.Telablackjack import Telablackjack
+from Codigos.slotmachine.telaSlotMachine import TelaSlotMachine
+
+from tkinter import *
 
 class Jogo:
+    """Classe principal JOGO, onde todos os jogos são abertos."""
     def __init__(self,tela):
-        self.principal=tela
+        self.principal=Frame(tela)
+        self.principal['width']=910
+        self.principal['height']=600
+        self.principal['bg']="#000080"
+        self.principal.place(x=0,y=0)
 
         self.tridir=Label(self.principal)
         self.imgdir=PhotoImage(file="imagem/triangulodireita2.png")
@@ -59,6 +66,7 @@ class Jogo:
         self.imgS=PhotoImage(file="imagem/playSlotmachine.png")
         self.btnS['image']=self.imgS
         self.btnS['bg'] = "#000080"
+        self.btnS['command'] = self.abre_slotmachine
         self.btnS.place(x=602,y=380)
 
         self.btnExit=Button(self.principal)
@@ -69,22 +77,41 @@ class Jogo:
         self.btnExit['bg']="#000080"
         self.btnExit.place(x=2,y=2)
 
-    def sair(self):
-        self.principal.destroy()
-    def abre_blackjack(self):
+    def trata_texto(self,texto):
+        """Metodo que trata o nick do jogador e retorna o nick já tratado."""
+        textoR = texto.strip()
+        if len(textoR) <=2:
+            return False
+        elif (len(textoR)>2 and len(textoR)<=7):
+            return textoR
+        else:
+            return textoR[0:7]
 
+    def sair(self):
+        """metodo que fecha a tela principal do jogo."""
+        tela.destroy()
+
+    def abre_blackjack(self):
+        """Metodo que abre a tela BlackJack, passando como parametro o nome do jogador, tela mãe e tela atual"""
         usuario=self.cx_nome.get()
-        pai = Tk()
-        pai['bg'] = "#006400"
-        pai.title("G'nus Cassinos")
-        pai.iconbitmap("imagem\logoSistema.ico")
-        pai.resizable(0, 0)
-        x = (pai.winfo_screenwidth() // 2) - (900 // 2)
-        y = (pai.winfo_screenheight() // 2) - (600 // 2)
-        pai.geometry("900x600+{}+{}".format(x, y))  # largura x altura + esquerda + topo
-        # pai.overrideredirect(True)#retira bordas
-        Telablackjack(usuario,pai,tela)
-        pai.mainloop()
+        nome=self.trata_texto(usuario)
+        if nome !=False:
+            Telablackjack(nome,tela,self.principal)#todo - aparentemente ok.
+        else:
+            print("sem texto no campo.")#todo- bloqueio ao entrar em tela de jogo.
+
+    def abre_slotmachine(self):
+        """Metodo que abre a tela SLOTMACHINE, passando como parametro o nome do jogador, tela mãe e tela atual"""
+        usuario = self.cx_nome.get()
+        nome = self.trata_texto(usuario)
+        if nome != False:
+            TelaSlotMachine(nome, tela, self.principal)  # todo - aparentemente ok.
+        else:
+            print("sem texto no campo.")  # todo- bloqueio ao entrar em tela de jogo.
+
+    def abre_megastacker(self):
+        usuario = self.cx_nome.get()  # todo - não ligado ainda-BRUNO...
+
 
 
 
@@ -99,3 +126,5 @@ tela.geometry("910x600+{}+{}".format(x, y))  # largura x altura + esquerda + top
 # telaprincipal.overrideredirect(True)#retira bordas
 Jogo(tela)
 tela.mainloop()
+
+# TODO - REVISAR CÓDIGO TODO..!!!!!! - IGOR - MATHEUS - BRUNO(se quiser).

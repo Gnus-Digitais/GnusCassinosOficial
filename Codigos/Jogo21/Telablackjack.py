@@ -4,15 +4,21 @@ from tkinter import *
 from Codigos.classes_auxiliares.Ranking import Raking
 from functools import partial
 from tkinter import messagebox
-import os
 
 
 class Telablackjack:
     """Esta é a classe TelablackJack que serve que é usada para criar a tela do jogo blackjack e todas as funxionalidades do mesmo."""
+    # def __init__(self, user,janela):
     def __init__(self, user,janela,anterior):
-        anterior.destroy()
+        anterior.focus_displayof()  # desativa tela principal
         self.__user = user
-        self.janela=janela
+        #criando frame desta janela e posicionando.
+        self.janela = Frame(janela)
+        self.janela['width'] = 910
+        self.janela['height'] = 600
+        self.janela['bg'] = "#006400"
+        self.janela.place(x=0, y=0)
+        #fim do frame tela principal do jogo.
         mixer.init()
         self.bara = Baralho()
         self.r = Raking("blackjack","f")
@@ -32,8 +38,11 @@ class Telablackjack:
 
         # inicio botao reinicio
         self.reinicio = Button(self.janela)
-        print(os.getcwd())
-        self.reinicioimg =PhotoImage(file="imagem/restart2.png")
+        #print(os.getcwd())
+        #img = os.path.join("C:\\Users\\Igor\\PycharmProjects\\master\\Codigos\\tela_principal","imagem", "restart2.png")
+        #print(img)
+        # self.reinicioimg = PhotoImage(file=img)
+        self.reinicioimg =PhotoImage(file="../Jogo21/image/restart2.png")
         self.reinicio['image'] = self.reinicioimg
         self.reinicio['relief'] = FLAT
         self.reinicio['command'] = self.novaPartida
@@ -49,7 +58,7 @@ class Telablackjack:
 
         # botao comecar partida!
         self.inicio = Button(self.janela)
-        self.imgInicio = PhotoImage(file=r"../Jogo21/imagem\play2.png")
+        self.imgInicio = PhotoImage(file=r"../Jogo21/image/play2.png")
         self.inicio['image'] = self.imgInicio
         self.inicio['relief'] = FLAT
         self.inicio['command'] = self.novaPartida
@@ -60,14 +69,14 @@ class Telablackjack:
         # MAQUINA SLOT CARTAS
         # perfil label img MAQUINA gnu
         self.mperfil = Label(self.janela)
-        self.imgperfil = PhotoImage(file=r"image\mrgnu2.png")
+        self.imgperfil = PhotoImage(file=r"../Jogo21/image/mrgnu2.png")
         self.mperfil['image'] = self.imgperfil
         self.mperfil['bg'] = '#006400'
         self.mperfil.place(x=160, y=10)
         # fim perfil gnu
         # soma, placar da maquina gnu
         self.msomam = Label(self.janela)
-        self.imgsomam = PhotoImage(file=r"image\SOMA.png")
+        self.imgsomam = PhotoImage(file=r"../Jogo21/image/SOMA.png")
         self.msomam['image'] = self.imgsomam
         self.msomam['bg'] = '#006400'
         self.msomam.place(x=160, y=130)
@@ -82,7 +91,7 @@ class Telablackjack:
         # fim slot 1 para cartas
         # slot 2 para cartas
         self.m2 = Label(self.janela)
-        self.img2 = PhotoImage(file=r"image\cartasSlot.png")
+        self.img2 = PhotoImage(file=r"../Jogo21/image/cartasSlot.png")
         self.m2['image'] = self.img2
         self.m2['bg'] = '#006400'
         self.m2.place(x=443, y=30)
@@ -92,34 +101,34 @@ class Telablackjack:
         # JOGADOR SLOT CARTAS
         # img personagem jogador perfil
         self.mPer = Label(self.janela)
-        self.imgPer = PhotoImage(file=r"image\user2.png")
+        self.imgPer = PhotoImage(file=r"../Jogo21/image/user2.png")
         self.mPer['image'] = self.imgPer
         self.mPer['bg'] = '#006400'
         self.mPer.place(x=160, y=430)
         # fim perfil jogador img
 
         # m_principal de olho virado para mover olho do personagem.
-        self.img_olho_virado = PhotoImage(file=r"image\user2vira.png")
-        self.img_olho_cima = PhotoImage(file=r"image\user2cima.png")
+        self.img_olho_virado = PhotoImage(file=r"../Jogo21/image/user2vira.png")
+        self.img_olho_cima = PhotoImage(file=r"../Jogo21/image/user2cima.png")
         # fim img de olho virado
 
         # soma label img placar jogador
         self.msoma = Label(self.janela)
-        self.imgsoma = PhotoImage(file=r"image\SOMA.png")
+        self.imgsoma = PhotoImage(file=r"../Jogo21/image/SOMA.png")
         self.msoma['image'] = self.imgsoma
         self.msoma['bg'] = '#006400'
         self.msoma.place(x=160, y=550)
         # fim label soma, placar do jogador
         # slot3, jogador
         self.m3 = Label(self.janela)
-        self.img3 = PhotoImage(file=r"image\cartasSlot.png")
+        self.img3 = PhotoImage(file=r"../Jogo21/image/cartasSlot.png")
         self.m3['image'] = self.img3
         self.m3['bg'] = '#006400'
         self.m3.place(x=350, y=460)
         # fim slot3 jogador
         # slot4 jogador
         self.m4 = Label(self.janela)
-        self.img4 = PhotoImage(file=r"image\cartasSlot.png")
+        self.img4 = PhotoImage(file=r"../Jogo21/image/cartasSlot.png")
         self.m4['image'] = self.img4
         self.m4['bg'] = '#006400'
         self.m4.place(x=443, y=460)
@@ -127,7 +136,7 @@ class Telablackjack:
 
         # inicio quadro ranking
         self.rank = Label(self.janela)
-        self.imgrank = PhotoImage(file=r"image\quadroRanking.png")
+        self.imgrank = PhotoImage(file=r"../Jogo21/image/quadroRanking.png")
         self.rank['bg'] = "#006400"
         self.rank.place(x=9, y=10)
 
@@ -142,54 +151,54 @@ class Telablackjack:
         """algumas ns_slotmachine reservas em slots invisiveis que ficarão do lado direito do user: """
 
         self.imag1 = Label(self.janela)
-        self.imag1Carta = PhotoImage(file=r"image\Baralho\Ao.png")
+        self.imag1Carta = PhotoImage(file=r"../Jogo21/image/Baralho\Ao.png")
         self.imag1['image'] = self.imag1Carta
         self.imag1['bg'] = '#006400'
 
         self.imag2 = Label(self.janela)
-        self.imag2Carta = PhotoImage(file=r"image\Baralho\Ao.png")
+        self.imag2Carta = PhotoImage(file=r"../Jogo21/image/Baralho\Ao.png")
         self.imag2['image'] = self.imag2Carta
         self.imag2['bg'] = '#006400'
 
         self.imag3 = Label(self.janela)
-        self.imag3Carta = PhotoImage(file=r"image\Baralho\Ao.png")
+        self.imag3Carta = PhotoImage(file=r"../Jogo21/image/Baralho\Ao.png")
         self.imag3['image'] = self.imag3Carta
         self.imag3['bg'] = '#006400'
 
         self.imag4 = Label(self.janela)
-        self.imag4Carta = PhotoImage(file=r"image\Baralho\Ao.png")
+        self.imag4Carta = PhotoImage(file=r"../Jogo21/image/Baralho\Ao.png")
         self.imag4['image'] = self.imag4Carta
         self.imag4['bg'] = '#006400'
 
         self.imag5 = Label(self.janela)
-        self.imag5Carta = PhotoImage(file=r"image\Baralho\Ao.png")
+        self.imag5Carta = PhotoImage(file=r"../Jogo21/image/Baralho\Ao.png")
         self.imag5['image'] = self.imag5Carta
         self.imag5['bg'] = '#006400'
 
         # daqui pra baixo fica slots para mais cartas da maquina!!@
 
         self.imag6 = Label(self.janela)
-        self.imag6Carta = PhotoImage(file=r"image\Baralho\Ap.png")
+        self.imag6Carta = PhotoImage(file=r"../Jogo21/image/Baralho\Ap.png")
         self.imag6['image'] = self.imag6Carta
         self.imag6['bg'] = '#006400'
 
         self.imag7 = Label(self.janela)
-        self.imag7Carta = PhotoImage(file=r"image\Baralho\Ap.png")
+        self.imag7Carta = PhotoImage(file=r"../Jogo21/image/Baralho\Ap.png")
         self.imag7['image'] = self.imag7Carta
         self.imag7['bg'] = '#006400'
 
         self.imag8 = Label(self.janela)
-        self.imag8Carta = PhotoImage(file=r"image\Baralho\Ap.png")
+        self.imag8Carta = PhotoImage(file=r"../Jogo21/image/Baralho\Ap.png")
         self.imag8['image'] = self.imag8Carta
         self.imag8['bg'] = '#006400'
 
         self.imag9 = Label(self.janela)
-        self.imag9Carta = PhotoImage(file=r"image\Baralho\Ap.png")
+        self.imag9Carta = PhotoImage(file=r"../Jogo21/image/Baralho\Ap.png")
         self.imag9['image'] = self.imag9Carta
         self.imag9['bg'] = '#006400'
 
         self.imag10 = Label(self.janela)
-        self.imag10Carta = PhotoImage(file=r"image\Baralho\Ap.png")
+        self.imag10Carta = PhotoImage(file=r"../Jogo21/image/Baralho\Ap.png")
         self.imag10['image'] = self.imag10Carta
         self.imag10['bg'] = '#006400'
 
@@ -198,7 +207,7 @@ class Telablackjack:
         self.btnParar['bg'] = '#006400'
         self.btnParar['relief'] = FLAT
         self.btnParar['command'] = self.pararcarta
-        self.imgbtnP = PhotoImage(file=r"image\btnP.png")
+        self.imgbtnP = PhotoImage(file=r"../Jogo21/image/btnP.png")
         self.btnParar['image'] = self.imgbtnP
         # fim botao parar
 
@@ -207,7 +216,7 @@ class Telablackjack:
         self.btnDescer['bg'] = '#006400'
         self.btnDescer['command'] = self.puxarcarta
         self.btnDescer['relief'] = FLAT
-        self.imgbtnD = PhotoImage(file=r"image\btnD.png")
+        self.imgbtnD = PhotoImage(file=r"../Jogo21/image/btnD.png")
         self.btnDescer['image'] = self.imgbtnD
         # fim botao descer mais carta
 
@@ -221,13 +230,13 @@ class Telablackjack:
         self.btnExit['bg'] = '#006400'
         self.btnExit['command'] = self.sair
         self.btnExit['relief'] = FLAT
-        self.imgbtnExit = PhotoImage(file=r"image\exit.png")
+        self.imgbtnExit = PhotoImage(file=r"../Jogo21/image/exit.png")
         self.btnExit['image'] = self.imgbtnExit
         self.btnExit.place(x=0, y=505)
         # FIM BTN SAIR SISTEMA
         # monte label img, m_principal do monte de cartas no lado direito>>>
         self.m5 = Label(self.janela)
-        self.img5 = PhotoImage(file=r"image\monteC3.png")
+        self.img5 = PhotoImage(file=r"../Jogo21/image/monteC3.png")
         self.m5['image'] = self.img5
         self.m5['bg'] = '#006400'
         self.m5['height'] = 300
@@ -237,13 +246,13 @@ class Telablackjack:
 
         # carteira
         self.carteira = Label(self.janela)
-        self.cimg = PhotoImage(file=r"image\carteira2.png")
+        self.cimg = PhotoImage(file=r"../Jogo21/image/carteira2.png")
         self.carteira['image'] = self.cimg
         self.carteira['bg'] = "#006400"
         self.carteira.place(x=790, y=20)
 
         self.qtdcarteira = Label(self.janela)
-        self.qtdcartimg = PhotoImage(file=r"image\qtdcarteira.png")
+        self.qtdcartimg = PhotoImage(file=r"../Jogo21/image/qtdcarteira.png")
         self.qtdcarteira['image'] = self.qtdcartimg
         self.qtdcarteira['bg'] = "#006400"
         self.qtdcarteira.place(x=702, y=47)
@@ -270,21 +279,21 @@ class Telablackjack:
 
         # medalha ganhou partida
         self.medalha = Label(self.janela)
-        self.imgMedalha = PhotoImage(file=r"image\ganhou2.png")
+        self.imgMedalha = PhotoImage(file=r"../Jogo21/image/ganhou2.png")
         self.medalha['image'] = self.imgMedalha
         self.medalha['bg'] = '#006400'
         # fim medalha ganhou partida
 
         # perdeu  partida
         self.perdeuimg = Label(self.janela)
-        self.imgPerdeu = PhotoImage(file=r"image\perdeu1.png")
+        self.imgPerdeu = PhotoImage(file=r"../Jogo21/image/perdeu1.png")
         self.perdeuimg['image'] = self.imgPerdeu
         self.perdeuimg['bg'] = '#006400'
         # fim perdeu partida
 
         # EMPATOU partida
         self.empateimg = Label(self.janela)
-        self.imgEmpate = PhotoImage(file=r"image\empate.png")
+        self.imgEmpate = PhotoImage(file=r"../Jogo21/image/empate.png")
         self.empateimg['image'] = self.imgEmpate
         self.empateimg['bg'] = '#006400'
         # fim EMPATOU partida
@@ -292,7 +301,7 @@ class Telablackjack:
         # lbResultadoMaquina
         self.lbResultadoMaquina = Label(self.janela)
         self.lbResultadoMaquina['font'] = 'Arial', 12, "bold"
-        self.pontoMaquina = PhotoImage(file=r"image\pontoM.png")
+        self.pontoMaquina = PhotoImage(file=r"../Jogo21/image/pontoM.png")
         self.lbResultadoMaquina['bg'] = '#006400'
         self.lbResultadoMaquina['image'] = self.pontoMaquina
         # fim lbResultadoMaquina
@@ -300,7 +309,7 @@ class Telablackjack:
         # lbResultadoJogador
         self.lbResultadoJogador = Label(self.janela)
         self.lbResultadoJogador['font'] = 'Arial', 12, "bold"
-        self.pontoJogador = PhotoImage(file=r"image\pontoM.png")
+        self.pontoJogador = PhotoImage(file=r"../Jogo21/image/pontoM.png")
         self.lbResultadoJogador['bg'] = '#006400'
         self.lbResultadoJogador['image'] = self.pontoJogador
         # fim lbResultadoJogador
@@ -321,35 +330,35 @@ class Telablackjack:
 
         # fichas na tela 5,10,25,50,100
         self.ficha5 = Button(self.janela)
-        self.fimg5 = PhotoImage(file=r"image/ficha/cinco.png")
+        self.fimg5 = PhotoImage(file=r"../Jogo21/image/ficha/cinco.png")
         self.ficha5['bg'] = "#006400"
         self.ficha5['image'] = self.fimg5
         self.ficha5['command'] = partial(self.aposta_ficha, 5)
         self.ficha5['relief'] = FLAT
 
         self.ficha10 = Button(self.janela)
-        self.fimg10 = PhotoImage(file=r"image/ficha/dez.png")
+        self.fimg10 = PhotoImage(file=r"../Jogo21/image/ficha/dez.png")
         self.ficha10['bg'] = "#006400"
         self.ficha10['image'] = self.fimg10
         self.ficha10['relief'] = FLAT
         self.ficha10['command'] = partial(self.aposta_ficha, 10)
 
         self.ficha25 = Button(self.janela)
-        self.fimg25 = PhotoImage(file=r"image/ficha/vintecinco.png")
+        self.fimg25 = PhotoImage(file=r"../Jogo21/image/ficha/vintecinco.png")
         self.ficha25['bg'] = "#006400"
         self.ficha25['image'] = self.fimg25
         self.ficha25['relief'] = FLAT
         self.ficha25['command'] = partial(self.aposta_ficha, 25)
 
         self.ficha50 = Button(self.janela)
-        self.fimg50 = PhotoImage(file=r"image/ficha/cinquenta.png")
+        self.fimg50 = PhotoImage(file=r"../Jogo21/image/ficha/cinquenta.png")
         self.ficha50['bg'] = "#006400"
         self.ficha50['image'] = self.fimg50
         self.ficha50['relief'] = FLAT
         self.ficha50['command'] = partial(self.aposta_ficha, 50)
 
         self.ficha100 = Button(self.janela)
-        self.fimg100 = PhotoImage(file=r"image/ficha/cem.png")
+        self.fimg100 = PhotoImage(file=r"../Jogo21/image/ficha/cem.png")
         self.ficha100['bg'] = "#006400"
         self.ficha100['relief'] = FLAT
         self.ficha100['image'] = self.fimg100
@@ -357,7 +366,7 @@ class Telablackjack:
         # fim de fichas
         # quadro de apostas
         self.aposta = Label(self.janela)
-        self.imgAposta = PhotoImage(file=r"image/aposta3.png")
+        self.imgAposta = PhotoImage(file=r"../Jogo21/image/aposta3.png")
         self.aposta['image'] = self.imgAposta
         self.aposta['bg'] = "#006400"
         # fim quadro de apostas
@@ -372,7 +381,7 @@ class Telablackjack:
         self.btnOk['bg'] = '#006400'
         self.btnOk['command'] = self.Ok
         self.btnOk['relief'] = FLAT
-        self.imgbtnOk = PhotoImage(file=r"image\btnOk.png")
+        self.imgbtnOk = PhotoImage(file=r"../Jogo21/image/btnOk.png")
         self.btnOk['image'] = self.imgbtnOk
         self.btnOk.place(x=1000, y=350)
         # fim btn Ok
@@ -516,10 +525,10 @@ class Telablackjack:
         self.m2.place(x=443, y=30)
         self.m3.place(x=350, y=460)
         self.m4.place(x=443, y=460)
-        self.img1['file'] = r"image\cartasSlot.png"
-        self.img2['file'] = r"image\cartasSlot.png"
-        self.img3['file'] = r"image\cartasSlot.png"
-        self.img4['file'] = r"image\cartasSlot.png"
+        self.img1['file'] = r"../Jogo21/image/cartasSlot.png"
+        self.img2['file'] = r"../Jogo21/image/cartasSlot.png"
+        self.img3['file'] = r"../Jogo21/image/cartasSlot.png"
+        self.img4['file'] = r"../Jogo21/image/cartasSlot.png"
         self.imag1.place(x=1000, y=400)
         self.imag2.place(x=1000, y=400)
         self.imag3.place(x=1000, y=400)
@@ -650,22 +659,22 @@ class Telablackjack:
 
     def EmbaralharSom(self):
         """Este metodo serve para tocar o som de - embaralhamento de cartas"""
-        mixer.music.load(r'sounds/emb3.wav')  # embaralhar
+        mixer.music.load(r'../Jogo21/sounds/emb3.wav')  # embaralhar
         mixer.music.play()
 
     def perdeuSom(self):
         """Este metodo serve para tocar o som de - perdeu"""
-        mixer.music.load(r'sounds/uhoh.mp3')  # perdeu
+        mixer.music.load(r'../Jogo21/sounds/uhoh.mp3')  # perdeu
         mixer.music.play()
 
     def ganhouSom(self):
         """Este metodo serve para tocar o som de - ganhou"""
-        mixer.music.load(r'sounds/ganhou.mp3')  # ganhou
+        mixer.music.load(r'../Jogo21/sounds/ganhou.mp3')  # ganhou
         mixer.music.play()
 
     def puxacartaSom(self):
         """Este metodo serve para tocar o som de - compra de carta"""
-        mixer.music.load(r'sounds/DEAL1.wav')  # puxando carta
+        mixer.music.load(r'../Jogo21/sounds/DEAL1.wav')  # puxando carta
         mixer.music.play()
 
     def adicionaCartaSlot(self,jogador, url):
@@ -853,7 +862,7 @@ class Telablackjack:
 
     def criaString(self,entrada):
         """Este metodo serve para criar a string de URL(caminho) que será passada na hora de chamar a m_principal de alguma carta"""
-        s = r"image\Baralho\ " + str(entrada) + ".png"
+        s = r"../Jogo21/image/Baralho\ " + str(entrada) + ".png"
         return s.replace(" ", "")
 
     def descobreCarta(self,mat):
@@ -866,7 +875,7 @@ class Telablackjack:
     def jogar(self):
         """Este metodo serve para iniciar uma partida entre jogador/maquina."""
         self.EmbaralharSom()
-        urlFechada = r"image\cartafechada.png"
+        urlFechada = r"../Jogo21/image/cartafechada.png"
         self.cartasMaquina = []
         self.cartasJogador = []
         self.valorJogador = 0
@@ -908,21 +917,5 @@ class Telablackjack:
         """Este metodo serve para analisar se nome/valor é superior ao ultimo valor do mesmo jogador no ranking."""
         #TODO- AJUSTAR PLACAR DO RANKING POR NICKNAME- MATHEUS - IGOR
         pass
-
-'''
-janela = Tk()
-Telablackjack("igor214",janela)
-
-janela['bg'] = "#006400"
-janela.title("G'nus Cassinos")
-janela.iconbitmap(r"image\logoSistema7.ico")#TODO - TEMOS QUE ESCOLHER UM ICONE.
-janela.resizable(0, 0)
-x = (janela.winfo_screenwidth() // 2) - (900 // 2)
-y = (janela.winfo_screenheight() // 2) - (600 // 2)
-janela.geometry("900x600+{}+{}".format(x, y))  # largura x altura + esquerda + topo
-#janela.overrideredirect(True)#retira bordas
-janela.mainloop()
-'''
-# fim configs da janela e chamada do MAINLOOP().
 
 # TODO - REVISAR CÓDIGO TODO..!!!!!! - IGOR - MATHEUS - BRUNO(se quiser).

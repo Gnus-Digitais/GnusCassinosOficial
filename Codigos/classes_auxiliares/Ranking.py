@@ -38,7 +38,12 @@ class Raking:
     def ler_ranking(self):
         try:
             result = []
-            arq = open("rankings/"+self.__jogo + '_' + self.__dificuldade + '.txt', "r",encoding="UTF-8")
+            if self.jogo=='blackjack':#TODO - ADICIONEI ESSES ELIFS PARA MUDAR CAMINHO DOS RANKINGS.
+                arq = open("../Jogo21/rankings/" + self.__jogo + '_' + self.__dificuldade + '.txt', "r", encoding="UTF-8")
+            elif self.jogo=='slotmachine':
+                arq = open("../slotmachine/rankings/" + self.__jogo + '_' + self.__dificuldade + '.txt', "r", encoding="UTF-8")
+            elif self.jogo=='megastacker':
+                arq = open("../MegaStacker/rankings/"+self.__jogo + '_' + self.__dificuldade + '.txt', "r",encoding="UTF-8")
             for linha in arq.read().split():
                 colocacao = linha.split('|')
                 result.append(colocacao)
@@ -53,8 +58,13 @@ class Raking:
             self.ler_ranking()
 
     def gravarRanking(self, vetor_ranking):
+        if self.jogo == 'blackjack':  # TODO - ADICIONEI ESSES ELIFS PARA MUDAR CAMINHO DOS RANKINGS.
+            arq = open("../Jogo21/rankings/" + self.__jogo + '_' + self.__dificuldade + '.txt', "w", encoding="UTF-8")
+        elif self.jogo == 'slotmachine':
+            arq = open("../slotmachine/rankings/" + self.__jogo + '_' + self.__dificuldade + '.txt', "w", encoding="UTF-8")
+        elif self.jogo == 'megastacker':
+            arq = open("../MegaStacker/rankings/" + self.__jogo + '_' + self.__dificuldade + '.txt', "w", encoding="UTF-8")
         txt = ""
-        arq = open("rankings/"+self.__jogo+'_'+self.__dificuldade+'.txt', "w", encoding="UTF-8")
         for vetor in vetor_ranking:
             txt += vetor[0]+'|'+str(vetor[1])+'|'+vetor[2]+'\n'
         arq.write(txt)
