@@ -1,11 +1,12 @@
 from tkinter import *
+from Codigos.Jogo21.Telablackjack import Telablackjack
 
 class Jogo:
     def __init__(self,tela):
         self.principal=tela
 
         self.tridir=Label(self.principal)
-        self.imgdir=PhotoImage(file=r"imagem/triangulodireita2.png")
+        self.imgdir=PhotoImage(file="imagem/triangulodireita2.png")
         self.tridir['image']=self.imgdir
         self.tridir['bg']="#000080"
         self.tridir.place(x=570,y=-8)
@@ -71,7 +72,7 @@ class Jogo:
     def sair(self):
         self.principal.destroy()
     def abre_blackjack(self):
-        '''
+
         usuario=self.cx_nome.get()
         pai = Tk()
         pai['bg'] = "#006400"
@@ -84,8 +85,7 @@ class Jogo:
         # pai.overrideredirect(True)#retira bordas
         Telablackjack(usuario,pai,tela)
         pai.mainloop()
-        '''
-        pass
+
 
 
 tela = Tk()

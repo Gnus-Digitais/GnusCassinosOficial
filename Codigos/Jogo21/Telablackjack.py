@@ -4,11 +4,13 @@ from tkinter import *
 from Codigos.classes_auxiliares.Ranking import Raking
 from functools import partial
 from tkinter import messagebox
+import os
+
 
 class Telablackjack:
     """Esta é a classe TelablackJack que serve que é usada para criar a tela do jogo blackjack e todas as funxionalidades do mesmo."""
-    def __init__(self, user,janela):
-        #anterior.destroy()
+    def __init__(self, user,janela,anterior):
+        anterior.destroy()
         self.__user = user
         self.janela=janela
         mixer.init()
@@ -30,7 +32,8 @@ class Telablackjack:
 
         # inicio botao reinicio
         self.reinicio = Button(self.janela)
-        self.reinicioimg =PhotoImage(file="image/restart2.png")
+        print(os.getcwd())
+        self.reinicioimg =PhotoImage(file="imagem/restart2.png")
         self.reinicio['image'] = self.reinicioimg
         self.reinicio['relief'] = FLAT
         self.reinicio['command'] = self.novaPartida
@@ -39,14 +42,14 @@ class Telablackjack:
 
         # LOGOgnus
         self.logo = Label(self.janela)
-        self.imglogo = PhotoImage(file=r"image\meio2.png")
+        self.imglogo = PhotoImage(file="../Jogo21/image/meio2.png")
         self.logo['image'] = self.imglogo
         self.logo['bg'] = '#006400'
         self.logo.place(x=340, y=240)
 
         # botao comecar partida!
         self.inicio = Button(self.janela)
-        self.imgInicio = PhotoImage(file=r"image\play2.png")
+        self.imgInicio = PhotoImage(file=r"../Jogo21/imagem\play2.png")
         self.inicio['image'] = self.imgInicio
         self.inicio['relief'] = FLAT
         self.inicio['command'] = self.novaPartida
@@ -72,7 +75,7 @@ class Telablackjack:
 
         # slot 1 para cartas
         self.m = Label(self.janela)
-        self.img1 = PhotoImage(file="image/cartasSlot.png")
+        self.img1 = PhotoImage(file="../Jogo21/image/cartasSlot.png")
         self.m['image'] = self.img1
         self.m['bg'] = '#006400'
         self.m.place(x=350, y=30)
@@ -906,7 +909,7 @@ class Telablackjack:
         #TODO- AJUSTAR PLACAR DO RANKING POR NICKNAME- MATHEUS - IGOR
         pass
 
-#'''
+'''
 janela = Tk()
 Telablackjack("igor214",janela)
 
@@ -919,7 +922,7 @@ y = (janela.winfo_screenheight() // 2) - (600 // 2)
 janela.geometry("900x600+{}+{}".format(x, y))  # largura x altura + esquerda + topo
 #janela.overrideredirect(True)#retira bordas
 janela.mainloop()
-#'''
+'''
 # fim configs da janela e chamada do MAINLOOP().
 
 # TODO - REVISAR CÓDIGO TODO..!!!!!! - IGOR - MATHEUS - BRUNO(se quiser).
