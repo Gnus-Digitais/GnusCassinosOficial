@@ -96,7 +96,7 @@ class Jogo:
         usuario=self.cx_nome.get()
         nome=self.trata_texto(usuario)
         if nome !=False:
-            Telablackjack(nome,tela,self.principal)
+            Telablackjack(nome,tela)
         else:
             print("sem texto no campo.")#todo- bloqueio ao entrar em tela de jogo.
 
@@ -105,7 +105,7 @@ class Jogo:
         usuario = self.cx_nome.get()
         nome = self.trata_texto(usuario)
         if nome != False:
-            TelaSlotMachine(nome, tela, self.principal)
+            TelaSlotMachine(nome, tela)
         else:
             print("sem texto no campo.")  # todo- bloqueio ao entrar em tela de jogo.
 

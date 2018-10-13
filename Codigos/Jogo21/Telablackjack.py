@@ -5,12 +5,12 @@ from Codigos.classes_auxiliares.Ranking import Raking
 from functools import partial
 from tkinter import messagebox
 
+# TODO 1 - LEMBRAR DE CONECTAR  TELA PRINCIPAL COM O MEGASTACKER - BRUNO
 
 class Telablackjack:
     """Esta é a classe TelablackJack que serve que é usada para criar a tela do jogo blackjack e todas as funxionalidades do mesmo."""
     # def __init__(self, user,janela):
-    def __init__(self, user,janela,anterior):
-        #anterior.focus_displayof()  # desativa tela principal
+    def __init__(self, user,janela):
         self.__user = user
         #criando frame desta janela e posicionando.
         self.janela = Frame(janela)
@@ -22,7 +22,6 @@ class Telablackjack:
         mixer.init()
         self.bara = Baralho()
         self.r = Raking("blackjack","f")
-        #self.r.addRecord(self.user,458)
         self.cartasMaquina = []
         self.cartasJogador = []
         self.valorJogador = 0
@@ -30,18 +29,14 @@ class Telablackjack:
         self.qtdCartasJogador = 2
         self.qtdCartasMaquina = 2
         self.urlDesvira = ''
-        self.saldo_carteira = 250.00
-        self.valor_aposta = 00.00
+        self.saldo_carteira = 250
+        self.valor_aposta = 00
 
-        #TODO 1 - LEMBRAR DE CONECTAR TELA PRINCIPAL DO JOGO COM OS DEMAIS JOGOS. INCLUSIVE ESTE JOGO AQUI - IGOR - MATHEUS - BRUNO
+        #TODO 1 - LEMBRAR DE CONECTAR  TELA PRINCIPAL COM O MEGASTACKER - BRUNO
 
 
         # inicio botao reinicio
         self.reinicio = Button(self.janela)
-        #print(os.getcwd())
-        #img = os.path.join("C:\\Users\\Igor\\PycharmProjects\\master\\Codigos\\tela_principal","imagem", "restart2.png")
-        #print(img)
-        # self.reinicioimg = PhotoImage(file=img)
         self.reinicioimg =PhotoImage(file="../Jogo21/image/restart2.png")
         self.reinicio['image'] = self.reinicioimg
         self.reinicio['relief'] = FLAT
@@ -258,7 +253,7 @@ class Telablackjack:
         self.qtdcarteira.place(x=702, y=47)
 
         self.saldo_carteira_lb = Label(self.janela)
-        self.saldo_carteira_lb['text'] = "%.2f" % self.saldo_carteira
+        self.saldo_carteira_lb['text'] =   self.saldo_carteira
         self.saldo_carteira_lb['bg'] = "#C8AB37"
         self.saldo_carteira_lb['font'] = "Arial", 12, "bold"
         self.saldo_carteira_lb.place(x=710, y=54)
@@ -372,7 +367,7 @@ class Telablackjack:
         # fim quadro de apostas
 
         self.valor_aposta_lb = Label(self.janela)
-        self.valor_aposta_lb['text'] = "%.2f" % self.valor_aposta
+        self.valor_aposta_lb['text'] =   self.valor_aposta
         self.valor_aposta_lb['bg'] = "#C8AB37"
         self.valor_aposta_lb['font'] = "Arial", 12, "bold"
 
@@ -429,34 +424,34 @@ class Telablackjack:
             if ficha == 5:
                 self.valor_aposta = self.valor_aposta + 5
                 self.saldo_carteira = self.saldo_carteira - 5
-                self.saldo_carteira_lb['text'] = "%.2f" % self.saldo_carteira
-                self.valor_aposta_lb['text'] = "%.2f" % self.valor_aposta
+                self.saldo_carteira_lb['text'] =   self.saldo_carteira
+                self.valor_aposta_lb['text'] =   self.valor_aposta
             if ficha == 10:
                 self.valor_aposta = self.valor_aposta + 10
                 self.saldo_carteira = self.saldo_carteira - 10
-                self.saldo_carteira_lb['text'] = "%.2f" % self.saldo_carteira
-                self.valor_aposta_lb['text'] = "%.2f" % self.valor_aposta
+                self.saldo_carteira_lb['text'] =   self.saldo_carteira
+                self.valor_aposta_lb['text'] =   self.valor_aposta
             if ficha == 25:
                 self.valor_aposta = self.valor_aposta + 25
                 self.saldo_carteira = self.saldo_carteira - 25
-                self.saldo_carteira_lb['text'] = "%.2f" % self.saldo_carteira
-                self.valor_aposta_lb['text'] = "%.2f" % self.valor_aposta
+                self.saldo_carteira_lb['text'] =   self.saldo_carteira
+                self.valor_aposta_lb['text'] =   self.valor_aposta
             if ficha == 50:
                 self.valor_aposta = self.valor_aposta + 50
                 self.saldo_carteira = self.saldo_carteira - 50
-                self.saldo_carteira_lb['text'] = "%.2f" % self.saldo_carteira
-                self.valor_aposta_lb['text'] = "%.2f" % self.valor_aposta
+                self.saldo_carteira_lb['text'] =   self.saldo_carteira
+                self.valor_aposta_lb['text'] =   self.valor_aposta
             if ficha == 100:
                 self.valor_aposta = self.valor_aposta + 100
                 self.saldo_carteira = self.saldo_carteira - 100
-                self.saldo_carteira_lb['text'] = "%.2f" % self.saldo_carteira
-                self.valor_aposta_lb['text'] = "%.2f" % self.valor_aposta
+                self.saldo_carteira_lb['text'] =   self.saldo_carteira
+                self.valor_aposta_lb['text'] =   self.valor_aposta
         else:
             print("não deixa apostar essa quantia ! :( ")
 
     def reiniciarCarteira(self):
         """Este método serve para resetar o valor da carteira para o valor inicial"""
-        self.saldo_carteira = 250.0
+        self.saldo_carteira = 250
         self.valor_aposta_lb.place(x=1000, y=230)
 
     def Ok(self):
@@ -471,7 +466,7 @@ class Telablackjack:
         """Este metodo serve para Configurar uma nova partida limpando a tela sem alterar o valor da carteira."""
         self.zeraLimpa()
         self.valor_aposta = 00
-        self.valor_aposta_lb['text'] = "%.2f" % self.valor_aposta
+        self.valor_aposta_lb['text'] =   self.valor_aposta
         self.aposta_status("aberto")
         self.reinicio['image'] = ""
         self.inicio['image'] = ""
@@ -583,7 +578,7 @@ class Telablackjack:
     def empatou(self):
         """Este metodo serve para mostrar a mensagem de - empate."""
         self.saldo_carteira = self.saldo_carteira + self.valor_aposta
-        self.saldo_carteira_lb['text'] = "%.2f" % self.saldo_carteira
+        self.saldo_carteira_lb['text'] =   self.saldo_carteira
         self.reinicio['image'] = self.reinicioimg
         self.reinicio.place(x=748, y=500)
         self.estadoBtn("desativa")
@@ -602,7 +597,7 @@ class Telablackjack:
     def ganhou(self):
         """Este metodo serve para mostrar a mensagem de - ganhou partida."""
         self.saldo_carteira = self.saldo_carteira + (self.valor_aposta * 3)
-        self.saldo_carteira_lb['text'] = "%.2f" % self.saldo_carteira
+        self.saldo_carteira_lb['text'] =   self.saldo_carteira
         self.reinicio['image'] = self.reinicioimg
         self.reinicio.place(x=748, y=500)
         self.estadoBtn("desativa")
@@ -621,7 +616,7 @@ class Telablackjack:
 
     def perdeu(self):
         """Este metodo serve para mostrar a mensagem de - perdeu partida."""
-        self.saldo_carteira_lb['text'] = "%.2f" % self.saldo_carteira
+        self.saldo_carteira_lb['text'] =   self.saldo_carteira
         self.reinicio['image'] = self.reinicioimg
         self.reinicio.place(x=748, y=500)
         # musica perdeu

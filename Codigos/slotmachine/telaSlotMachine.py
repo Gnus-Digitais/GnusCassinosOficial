@@ -10,8 +10,7 @@ from Codigos.classes_auxiliares.Ranking import Raking
 #TODO- VERIFICAR NO RANKING SE FOI TRATADO O NOME SLOTMACHINE E SE EXISTE PASTA COM RANKING DESTE JOGO NESTE PACKAGE.
 
 class TelaSlotMachine:
-    def __init__(self,user,janela,anterior):
-        anterior.focus_displayof()  # desativa tela principal
+    def __init__(self,user,janela):
         self.__user = user
         # criando frame desta janela e posicionando.
         self.janela = Frame(janela)
@@ -22,16 +21,16 @@ class TelaSlotMachine:
         # fim do frame tela principal do jogo.
 
         self.girando=False
-        self.saldo_carteira = 250.00
-        self.valor_aposta = 00.00
+        self.saldo_carteira = 250
+        self.valor_aposta = 00
         self.status = 0
         self.sm = SlotMachine()
         self.sm.spin()
         self.r = Raking("slotmachine", "f")
         mixer.init()
+
         self.imglpdLigada = PhotoImage(file="../slotmachine/imagens/cacaniquel4.png")
 
-        # fim lampadas
         # caça niquel logo !
         self.cNiquel = Label(self.janela)
         self.imgcNiquel = PhotoImage(file="../slotmachine/imagens/cacaniquel3.png")
@@ -165,7 +164,7 @@ class TelaSlotMachine:
         # fim quadro de apostas
 
         self.valor_aposta_lb = Label(self.janela)
-        self.valor_aposta_lb['text'] = "%.2f" % self.valor_aposta
+        self.valor_aposta_lb['text'] = self.valor_aposta
         self.valor_aposta_lb['bg'] = "#C8AB37"
         self.valor_aposta_lb['font'] = "Arial", 12, "bold"
 
@@ -183,15 +182,21 @@ class TelaSlotMachine:
         self.ranking['text'] = " "
         # fim quadro ranking
 
-
-
         self.aposta_status("aberto")
 
         self.texto_ranking = self.imprimir_ranking()
-
         self.ranking['text'] = self.texto_ranking
         self.rank['image'] = self.imgrank
         self.ranking.place(x=25, y=43)
+
+    # get e set do user
+    @property
+    def user(self):
+        return self.__user
+
+    @user.setter
+    def user(self, valor):
+        self.__user = valor
 
     def aposta_status(self, stat):
         """Este método serve para esconder as fichas(botões), do jogador no momento em que esses botões não são necessários"""
@@ -218,35 +223,35 @@ class TelaSlotMachine:
             if ficha == 5:
                 self.valor_aposta = self.valor_aposta + 5
                 self.saldo_carteira = self.saldo_carteira - 5
-                self.saldo_carteira_lb['text'] = "%.2f" % self.saldo_carteira
-                self.valor_aposta_lb['text'] = "%.2f" % self.valor_aposta
+                self.saldo_carteira_lb['text'] =  self.saldo_carteira
+                self.valor_aposta_lb['text'] =  self.valor_aposta
             if ficha == 10:
                 self.valor_aposta = self.valor_aposta + 10
                 self.saldo_carteira = self.saldo_carteira - 10
-                self.saldo_carteira_lb['text'] = "%.2f" % self.saldo_carteira
-                self.valor_aposta_lb['text'] = "%.2f" % self.valor_aposta
+                self.saldo_carteira_lb['text'] =  self.saldo_carteira
+                self.valor_aposta_lb['text'] =  self.valor_aposta
             if ficha == 25:
                 self.valor_aposta = self.valor_aposta + 25
                 self.saldo_carteira = self.saldo_carteira - 25
-                self.saldo_carteira_lb['text'] = "%.2f" % self.saldo_carteira
-                self.valor_aposta_lb['text'] = "%.2f" % self.valor_aposta
+                self.saldo_carteira_lb['text'] = self.saldo_carteira
+                self.valor_aposta_lb['text'] =  self.valor_aposta
             if ficha == 50:
                 self.valor_aposta = self.valor_aposta + 50
                 self.saldo_carteira = self.saldo_carteira - 50
-                self.saldo_carteira_lb['text'] = "%.2f" % self.saldo_carteira
-                self.valor_aposta_lb['text'] = "%.2f" % self.valor_aposta
+                self.saldo_carteira_lb['text'] = self.saldo_carteira
+                self.valor_aposta_lb['text'] = self.valor_aposta
             if ficha == 100:
                 self.valor_aposta = self.valor_aposta + 100
                 self.saldo_carteira = self.saldo_carteira - 100
-                self.saldo_carteira_lb['text'] = "%.2f" % self.saldo_carteira
-                self.valor_aposta_lb['text'] = "%.2f" % self.valor_aposta
+                self.saldo_carteira_lb['text'] = self.saldo_carteira
+                self.valor_aposta_lb['text'] = self.valor_aposta
         else:
             print("não deixa apostar essa quantia ! :( ")
 
-    def novaPartida(self):
+    def reseta(self):
         """Este metodo serve para Configurar uma nova partida limpando a tela sem alterar o valor da carteira."""
         self.valor_aposta = 00
-        self.valor_aposta_lb['text'] = "%.2f" % self.valor_aposta
+        self.valor_aposta_lb['text'] =self.valor_aposta
         self.aposta_status("aberto")
 
     def sair(self):
@@ -305,6 +310,7 @@ class TelaSlotMachine:
             self.img2['file'] = "../slotmachine/imagens/slots/" + nome2 + ".png"
             nome3 = str(self.sm.spin())
             self.img3['file'] = "../slotmachine/imagens/slots/" + nome3 + ".png"
+
             if i==22:
                 self.pin()
             time.sleep(0.09)
@@ -314,6 +320,7 @@ class TelaSlotMachine:
             self.img2['file'] = "../slotmachine/imagens/slots/" + nome2 + ".png"
             nome3 = str(self.sm.spin())
             self.img3['file'] = "../slotmachine/imagens/slots/" + nome3 + ".png"
+
             if j==7:
                 self.pin()
             time.sleep(0.09)
@@ -321,6 +328,7 @@ class TelaSlotMachine:
         for k in range(6):
             nome3 = str(self.sm.spin())
             self.img3['file'] = "../slotmachine/imagens/slots/" + nome3 + ".png"
+
             if k==5:
                 self.pin()
             time.sleep(0.09)
@@ -332,25 +340,26 @@ class TelaSlotMachine:
         self.status=1
         self.muda_alavanca("cima")
         time.sleep(0.5)
-        self.novaPartida()
         resposta = self.igual(vet_auxiliar)
         self.girando = False
         if resposta == True:
             # ganhou
             self.ganhouSom()
-            self.texto_ranking=self.imprimir_ranking()
+            #self.texto_ranking=self.imprimir_ranking()
             print("ganhou")  # todo- ganhou. multiplica por 10 o valor da aposta
             self.saldo_carteira = self.saldo_carteira + (self.valor_aposta * 10)
-            self.saldo_carteira_lb['text'] = "%.2f" % self.saldo_carteira
+            self.saldo_carteira_lb['text'] = self.saldo_carteira
+            self.inserir_no_ranking(self.saldo_carteira)
+            self.ranking['text'] = self.imprimir_ranking()
+            self.reseta()
         else:
+            self.reseta()
             self.perdeuSom()
             # perdeu
             print("perdeu")
             if self.saldo_carteira < 1:
                 messagebox.showinfo("Que pena!", "Perdeu tudo!")
                 self.sair()
-
-
 
     def igual(self,vet):
         anterior=vet[0]
@@ -367,6 +376,10 @@ class TelaSlotMachine:
     def imprimir_ranking(self):
         """este metodo serve para retornar uma string com os nomes e pontuação que aparecerão no ranking"""
         return self.r.retorna_ranking()
+
+    def inserir_no_ranking(self, score):
+        """este metodo adiciona o usuario do game ao ranking"""
+        self.r.addRecord(self.user, int(score))
 
     def sorteia(self):
         if self.valor_aposta > 0:
