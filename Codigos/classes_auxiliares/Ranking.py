@@ -86,5 +86,5 @@ class Raking:
         string = ""
         vetor_rank = self.ler_ranking()
         for i in range(len(vetor_rank)):
-            string = string + vetor_rank[i][0] + "\t" + vetor_rank[i][1] + "\n"
+            string = string + str(vetor_rank[i][0]) + "\t" + str(vetor_rank[i][1]) + "\n"
         return string.strip()

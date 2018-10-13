@@ -96,7 +96,7 @@ class Jogo:
         usuario=self.cx_nome.get()
         nome=self.trata_texto(usuario)
         if nome !=False:
-            Telablackjack(nome,tela,self.principal)#todo - aparentemente ok.
+            Telablackjack(nome,tela,self.principal)
         else:
             print("sem texto no campo.")#todo- bloqueio ao entrar em tela de jogo.
 
@@ -105,15 +105,12 @@ class Jogo:
         usuario = self.cx_nome.get()
         nome = self.trata_texto(usuario)
         if nome != False:
-            TelaSlotMachine(nome, tela, self.principal)  # todo - aparentemente ok.
+            TelaSlotMachine(nome, tela, self.principal)
         else:
             print("sem texto no campo.")  # todo- bloqueio ao entrar em tela de jogo.
 
     def abre_megastacker(self):
         usuario = self.cx_nome.get()  # todo - não ligado ainda-BRUNO...
-
-
-
 
 tela = Tk()
 tela['bg']="#000080"

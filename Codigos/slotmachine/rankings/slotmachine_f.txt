@@ -1,0 +1,10 @@
+ganhei|1000|f
+perdeu|1500|f
+igor02|1400|f
+igor09|1200|f
+teste2|1100|f
+teste1|1050|f
+teste8|1000|f
+igor|150|f
+perdeu|100|f
+ganhei|50|f

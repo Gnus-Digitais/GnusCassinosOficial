@@ -10,7 +10,7 @@ class Telablackjack:
     """Esta é a classe TelablackJack que serve que é usada para criar a tela do jogo blackjack e todas as funxionalidades do mesmo."""
     # def __init__(self, user,janela):
     def __init__(self, user,janela,anterior):
-        anterior.focus_displayof()  # desativa tela principal
+        #anterior.focus_displayof()  # desativa tela principal
         self.__user = user
         #criando frame desta janela e posicionando.
         self.janela = Frame(janela)
