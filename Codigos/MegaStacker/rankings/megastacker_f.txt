@@ -1,0 +1,10 @@
+testeig|1000|f
+teste|700|f
+teste|650|f
+teste|600|f
+teste|500|f
+teste|450|f
+teste|400|f
+test|350|f
+teste|350|f
+teste|300|f
