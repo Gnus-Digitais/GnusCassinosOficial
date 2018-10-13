@@ -1,4 +1,4 @@
-import random
+from Codigos.classes_auxiliares.RandInt import RandInt
 
 #melhor team: "G'NUS DIGITAIS"> Matheus Dias, Bruno Felipe, Rodrigo Rocca e Igor Ramos..
 class Baralho:
@@ -31,11 +31,12 @@ class Baralho:
     def fisher_yates_shuffle(self, vet_ordenado):
         """Implementa o algoritmo avançado Fisher Yates Shuffle. Esse algoritmo embaralha os itens
         de uma sequencia finita (vetor) e a retorna"""
+        rand = RandInt()
         vetor_ordenado = [i for i in vet_ordenado]
         a = len(vetor_ordenado)
         b = a - 1
         for d in range(b, 0, -1):
-            e = random.randint(0, d)
+            e = rand.numero_aleatorio(d)
             if e == d:
                 continue
             vetor_ordenado[d], vetor_ordenado[e] = vetor_ordenado[e], vetor_ordenado[d]
