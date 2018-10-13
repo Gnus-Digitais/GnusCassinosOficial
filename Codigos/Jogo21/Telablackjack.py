@@ -470,8 +470,8 @@ class Telablackjack:
         self.aposta_status("aberto")
         self.reinicio['image'] = ""
         self.inicio['image'] = ""
-        self.reinicio.place(x=0, y=0)
-        self.inicio.place(x=0, y=0)
+        self.reinicio.place(x=1000, y=200)
+        self.inicio.place(x=1000, y=200)
 
     def estadoBtn(self,est):
         """Este metodo serve para esconder/mostrar os botoes D(descer carta) e P(parar de comprar) """
@@ -485,13 +485,13 @@ class Telablackjack:
             # print("desativou")
             self.btnDescer['image'] = ''
             self.btnParar['image'] = ''
-            self.btnParar.place(x=0, y=0)
-            self.btnDescer.place(x=0, y=0)
+            self.btnParar.place(x=1000, y=200)
+            self.btnDescer.place(x=1000, y=200)
 
     def tiralogo(self):
         """este metodo retira a logo do centro da tela"""
         self.logo['image'] = ''
-        self.logo.place(x=0, y=0)
+        self.logo.place(x=1000, y=200)
 
     def zeraLimpa(self):
         """Este metodo serve para ser chamado por outros metodos quando precisar zerar uma partida e limpar o centro da tela"""
@@ -513,9 +513,9 @@ class Telablackjack:
         self.lbJogador['text'] = ''
         self.logo['image'] = self.imglogo
         self.logo.place(x=340, y=240)
-        self.medalha.place(x=0, y=0)
-        self.perdeuimg.place(x=0, y=0)
-        self.empateimg.place(x=0, y=0)
+        self.medalha.place(x=1000, y=200)
+        self.perdeuimg.place(x=1000, y=200)
+        self.empateimg.place(x=1000, y=200)
         self.m.place(x=350, y=30)
         self.m2.place(x=443, y=30)
         self.m3.place(x=350, y=460)
@@ -590,7 +590,7 @@ class Telablackjack:
         self.logo['image'] = ''
         self.empateimg['image'] = self.imgEmpate
         self.empateimg.place(x=330, y=220)
-        self.logo.place(x=0, y=0)
+        self.logo.place(x=1000, y=200)
         self.ranking['text'] = self.imprimir_ranking()
         self.ranking.place(x=25, y=43)
 
@@ -609,7 +609,7 @@ class Telablackjack:
         self.logo['image'] = ''
         self.medalha['image'] = self.imgMedalha
         self.medalha.place(x=330, y=220)
-        self.logo.place(x=0, y=0)
+        self.logo.place(x=1000, y=200)
         self.inserir_no_ranking(self.saldo_carteira)
         self.ranking['text'] = self.imprimir_ranking()
         self.ranking.place(x=25, y=43)
@@ -629,7 +629,7 @@ class Telablackjack:
         self.logo['image'] = ''
         self.perdeuimg['image'] = self.imgPerdeu
         self.perdeuimg.place(x=330, y=220)
-        self.logo.place(x=0, y=0)
+        self.logo.place(x=1000, y=200)
         self.ranking['text'] = self.imprimir_ranking()
         self.ranking.place(x=25, y=43)
 
@@ -645,10 +645,10 @@ class Telablackjack:
         self.inicio['image'] = ''
         self.logo['image'] = self.imglogo
         self.medalha['image'] = ''
-        self.medalha.place(x=0, y=0)
+        self.medalha.place(x=1000, y=200)
         self.perdeuimg['image'] = ''
-        self.perdeuimg.place(x=0, y=0)
-        self.inicio.place(x=0, y=0)
+        self.perdeuimg.place(x=1000, y=200)
+        self.inicio.place(x=1000, y=200)
         self.logo.place(x=340, y=240)
         self.reinicio.place(x=748, y=500)
 
