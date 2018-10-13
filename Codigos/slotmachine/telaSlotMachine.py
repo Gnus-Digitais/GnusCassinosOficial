@@ -114,7 +114,7 @@ class TelaSlotMachine:
         self.qtdcarteira.place(x=702, y=47)
 
         self.saldo_carteira_lb = Label(self.janela)
-        self.saldo_carteira_lb['text'] = "%.2f" % self.saldo_carteira
+        self.saldo_carteira_lb['text'] =  self.saldo_carteira
         self.saldo_carteira_lb['bg'] = "#C8AB37"
         self.saldo_carteira_lb['font'] = "Arial", 12, "bold"
         self.saldo_carteira_lb.place(x=710, y=54)

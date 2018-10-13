@@ -59,7 +59,7 @@ class Jogo:
         self.btnB['image']=self.imgB
         self.btnB['bg'] = "#000080"
         self.btnB['command']=self.abre_blackjack
-        self.btnB.place(x=302, y=380)
+        self.btnB.place(x=296, y=380)
 
         self.btnS=Button(self.principal)
         self.btnS['relief']=FLAT
