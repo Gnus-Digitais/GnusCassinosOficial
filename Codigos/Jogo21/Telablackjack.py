@@ -376,7 +376,7 @@ class Telablackjack:
         # fim btn Ok
 
         self.aposta_status("fechado")  # esta linha é super importante para fazer com que as fichas não entrem ao iniciar o sistema.
-        self.texto_ranking = self.imprimir_ranking()
+        self.texto_ranking = self.r.retorna_ranking()
 
         self.ranking['text'] = self.texto_ranking
         self.rank['image'] = self.imgrank
@@ -561,13 +561,7 @@ class Telablackjack:
             self.lbResultadoJogador['image'] = ''
             self.lbResultadoMaquina['image'] = ''
 
-    def imprimir_ranking(self):  #TODO ADICIONAR NA CLASSE RANKING - METODO QUE RETORNA STRING. - MATHEUS -IGOR
-        """este metodo serve para retornar uma string com os nomes e pontuação que aparecerão no ranking"""
-        string = ''
-        rankingg = self.r.ler_ranking()
-        for i in range(len(rankingg)):
-            string = string + rankingg[i][0] + "\t" + rankingg[i][1] + "\n"
-        return string.strip()
+
 
     def empatou(self):
         """Este metodo serve para mostrar a mensagem de - empate."""
@@ -585,7 +579,7 @@ class Telablackjack:
         self.empateimg['image'] = self.imgEmpate
         self.empateimg.place(x=330, y=220)
         self.logo.place(x=0, y=0)
-        self.ranking['text'] = self.imprimir_ranking()
+        self.ranking['text'] = self.r.retorna_ranking()
         self.ranking.place(x=25, y=43)
 
     def ganhou(self):
@@ -604,7 +598,7 @@ class Telablackjack:
         self.medalha['image'] = self.imgMedalha
         self.medalha.place(x=330, y=220)
         self.logo.place(x=0, y=0)
-        self.ranking['text'] = self.imprimir_ranking()
+        self.ranking['text'] = self.r.retorna_ranking()
         self.ranking.place(x=25, y=43)
 
     def perdeu(self):
@@ -623,13 +617,13 @@ class Telablackjack:
         self.perdeuimg['image'] = self.imgPerdeu
         self.perdeuimg.place(x=330, y=220)
         self.logo.place(x=0, y=0)
-        self.ranking['text'] = self.imprimir_ranking()
+        self.ranking['text'] = self.r.retorna_ranking()
         self.ranking.place(x=25, y=43)
 
 
     def play(self):
         """Este metodo serve para ser chamado quando precisar iniciar uma nova partida, e deve ser chamado por outros métodos"""
-        self.ranking['text'] = self.imprimir_ranking()
+        self.ranking['text'] = self.r.retorna_ranking()
         self.ranking.place(x=25, y=43)
         self.rank['image'] = self.imgrank
         self.zeraLimpa()
