@@ -302,7 +302,7 @@ class TelaSlotMachine:
         resposta=False
         threading.Timer(0.1, self.muda_meio).start()
         self.status=0
-        # for magico da porra.25 é uma forma de fazer tempo junto com o time.sleep()0.090 la de baixo.
+        # for - 25 é uma forma de fazer tempo junto com o time.sleep()0.090 la de baixo.
         for i in range(25):
             nome = str(self.sm.spin())
             self.img1['file'] = "../slotmachine/imagens/slots/"+nome+".png"
@@ -334,12 +334,9 @@ class TelaSlotMachine:
             time.sleep(0.09)
         vet_auxiliar.append(nome3)
 
-        #print(vet_auxiliar)
-
         print("gotcha parou")
         self.status=1
         self.muda_alavanca("cima")
-        time.sleep(0.5)
         resposta = self.igual(vet_auxiliar)
         self.girando = False
         if resposta == True:

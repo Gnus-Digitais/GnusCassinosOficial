@@ -98,7 +98,7 @@ class Jogo:
         if nome !=False:
             Telablackjack(nome,tela)
         else:
-            print("sem texto no campo.")#todo- bloqueio ao entrar em tela de jogo.
+            print("sem texto no campo ou inválido!")#todo- bloqueio ao entrar em tela de jogo.
 
     def abre_slotmachine(self):
         """Metodo que abre a tela SLOTMACHINE, passando como parametro o nome do jogador, tela mãe e tela atual"""
@@ -107,7 +107,7 @@ class Jogo:
         if nome != False:
             TelaSlotMachine(nome, tela)
         else:
-            print("sem texto no campo.")  # todo- bloqueio ao entrar em tela de jogo.
+            print("sem texto no campo ou inválido! ")  # todo- bloqueio ao entrar em tela de jogo.
 
     def abre_megastacker(self):
         usuario = self.cx_nome.get()  # todo - não ligado ainda-BRUNO...

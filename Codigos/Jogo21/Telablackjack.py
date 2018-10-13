@@ -913,4 +913,6 @@ class Telablackjack:
         #TODO- AJUSTAR PLACAR DO RANKING POR NICKNAME- MATHEUS - IGOR
         pass
 
+
+# TODO - já revisei depois de um teste com a tela principal.
 # TODO - REVISAR CÓDIGO TODO..!!!!!! - IGOR - MATHEUS - BRUNO(se quiser).
