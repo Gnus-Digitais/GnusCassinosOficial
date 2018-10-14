@@ -108,6 +108,9 @@ class Telablackjack:
         self.img_olho_cima_ganhou = PhotoImage(file=r"../Jogo21/image/user2cimaganhou.png")
         self.img_olho_cima_perdeu = PhotoImage(file=r"../Jogo21/image/user2cimaperdeu.png")
         self.img_olho_cima_empatou = PhotoImage(file=r"../Jogo21/image/user2cimaempatou.png")
+        #img da maquina
+        self.img_olho_ganhou=PhotoImage(file=r"../Jogo21/image/mrgnu2ganhou.png")
+        self.img_olho_perdeu = PhotoImage(file=r"../Jogo21/image/mrgnu2perdeu.png")
         # fim img de olho virado
 
         # soma label img placar jogador
@@ -509,6 +512,7 @@ class Telablackjack:
     def limpaMeio(self):
         """este metodo reconfigura o centro do jogo limpando tudo que é resultado de uma partida."""
         self.mPer['image'] = self.imgPer
+        self.mperfil['image'] = self.imgperfil
         self.medalha['image'] = ''
         self.perdeuimg['image'] = ''
         self.empateimg['image'] = ''
@@ -584,7 +588,7 @@ class Telablackjack:
         self.saldo_carteira_lb['text'] =   self.saldo_carteira
         self.reinicio['image'] = self.reinicioimg
         self.reinicio.place(x=748, y=500)
-        self.imgPer['image']=self.img_olho_cima_empatou
+        self.mPer['image']=self.img_olho_cima_empatou
         self.estadoBtn("desativa")
         self.perdeuSom()
         self.tiralogo()
@@ -604,7 +608,8 @@ class Telablackjack:
         self.saldo_carteira_lb['text'] =   self.saldo_carteira
         self.reinicio['image'] = self.reinicioimg
         self.reinicio.place(x=748, y=500)
-        self.imgPer['image'] = self.img_olho_cima_ganhou
+        self.mPer['image'] = self.img_olho_cima_ganhou
+        self.mperfil['image'] = self.img_olho_perdeu
         self.estadoBtn("desativa")
         self.ganhouSom()
         self.tiralogo()
@@ -624,7 +629,8 @@ class Telablackjack:
         self.saldo_carteira_lb['text'] =   self.saldo_carteira
         self.reinicio['image'] = self.reinicioimg
         self.reinicio.place(x=748, y=500)
-        self.imgPer['image'] = self.img_olho_cima_perdeu
+        self.mPer['image'] = self.img_olho_cima_perdeu
+        self.mperfil['image'] = self.img_olho_ganhou
         self.estadoBtn("desativa")
         self.perdeuSom()
         self.tiralogo()
