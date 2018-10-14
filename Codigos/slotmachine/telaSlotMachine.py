@@ -260,7 +260,6 @@ class TelaSlotMachine:
         else:
             print("EM ANDAMENTO.espere finalizar ")
 
-
     def pin(self):
         """este metodo serve para tocar o som mp3 que inicia assim que o slot termina de girar."""
         mixer.music.load(r'../slotmachine/sounds/DEAL1.wav')
@@ -333,16 +332,14 @@ class TelaSlotMachine:
                 self.pin()
             time.sleep(0.09)
         vet_auxiliar.append(nome3)
-
+        self.status = 1
         print("gotcha parou")
-        self.status=1
         self.muda_alavanca("cima")
         resposta = self.igual(vet_auxiliar)
         self.girando = False
         if resposta == True:
             # ganhou
             self.ganhouSom()
-            #self.texto_ranking=self.imprimir_ranking()
             print("ganhou")  # todo- ganhou. multiplica por 10 o valor da aposta
             self.saldo_carteira = self.saldo_carteira + (self.valor_aposta * 10)
             self.saldo_carteira_lb['text'] = self.saldo_carteira
@@ -353,7 +350,7 @@ class TelaSlotMachine:
             self.reseta()
             self.perdeuSom()
             # perdeu
-            print("perdeu")
+            print("perdeu") #todo- perdeu, verifica se a carteira possui dinheiro, caso contrário sai do jogo.
             if self.saldo_carteira < 1:
                 messagebox.showinfo("Que pena!", "Perdeu tudo!")
                 self.sair()

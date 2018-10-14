@@ -1,6 +1,5 @@
 from Codigos.Jogo21.Telablackjack import Telablackjack
 from Codigos.slotmachine.telaSlotMachine import TelaSlotMachine
-
 from tkinter import *
 
 class Jogo:
