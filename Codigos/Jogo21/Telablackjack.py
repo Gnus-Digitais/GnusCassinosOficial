@@ -104,7 +104,10 @@ class Telablackjack:
 
         # m_principal de olho virado para mover olho do personagem.
         self.img_olho_virado = PhotoImage(file=r"../Jogo21/image/user2vira.png")
-        self.img_olho_cima = PhotoImage(file=r"../Jogo21/image/user2cima.png")
+        #self.img_olho_cima = PhotoImage(file=r"../Jogo21/image/user2cima.png")
+        self.img_olho_cima_ganhou = PhotoImage(file=r"../Jogo21/image/user2cimaganhou.png")
+        self.img_olho_cima_perdeu = PhotoImage(file=r"../Jogo21/image/user2cimaperdeu.png")
+        self.img_olho_cima_empatou = PhotoImage(file=r"../Jogo21/image/user2cimaempatou.png")
         # fim img de olho virado
 
         # soma label img placar jogador
@@ -581,6 +584,7 @@ class Telablackjack:
         self.saldo_carteira_lb['text'] =   self.saldo_carteira
         self.reinicio['image'] = self.reinicioimg
         self.reinicio.place(x=748, y=500)
+        self.imgPer['image']=self.img_olho_cima_empatou
         self.estadoBtn("desativa")
         self.perdeuSom()
         self.tiralogo()
@@ -600,6 +604,7 @@ class Telablackjack:
         self.saldo_carteira_lb['text'] =   self.saldo_carteira
         self.reinicio['image'] = self.reinicioimg
         self.reinicio.place(x=748, y=500)
+        self.imgPer['image'] = self.img_olho_cima_ganhou
         self.estadoBtn("desativa")
         self.ganhouSom()
         self.tiralogo()
@@ -619,7 +624,7 @@ class Telablackjack:
         self.saldo_carteira_lb['text'] =   self.saldo_carteira
         self.reinicio['image'] = self.reinicioimg
         self.reinicio.place(x=748, y=500)
-        # musica perdeu
+        self.imgPer['image'] = self.img_olho_cima_perdeu
         self.estadoBtn("desativa")
         self.perdeuSom()
         self.tiralogo()
@@ -726,7 +731,6 @@ class Telablackjack:
         """Este metodo serve para a compra de mais cartas- botão D(descer carta)"""
         self.mPer['image'] = self.img_olho_virado
         self.puxacartaSom()
-
         self.cartasJogador.append(self.bara.topo_da_pilha())
         url1 = self.criaString(self.descobreCarta(self.cartasJogador))
         self.adicionaCartaSlot("jogador", url1)
@@ -755,7 +759,6 @@ class Telablackjack:
 
     def pararcarta(self):
         """Este metodo serve para a maquina decidir se compra ou não mais cartas, se ela decidir comprar então esta ação é feita."""
-        self.mPer['image'] = self.img_olho_cima
         if self.valorJogador == self.valorMaquina:
             self.empatou()
             self.desvira()
