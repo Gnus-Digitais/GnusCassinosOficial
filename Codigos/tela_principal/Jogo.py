@@ -79,7 +79,9 @@ class Jogo:
     def trata_texto(self,texto):
         """Metodo que trata o nick do jogador e retorna o nick já tratado."""
         textoR = texto.strip()
-        if len(textoR) <=2:
+        if " " in textoR:
+            return False
+        elif len(textoR) <=2:
             return False
         elif (len(textoR)>2 and len(textoR)<=7):
             return textoR
