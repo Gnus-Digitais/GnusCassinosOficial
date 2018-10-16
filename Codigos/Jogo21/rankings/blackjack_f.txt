@@ -4,7 +4,7 @@ igor|5700|f
 deuxx|5100|f
 igor|4400|f
 igor|4305|f
+ifgr|3750|f
 igor|3350|f
 deuxx|3100|f
 igor007|2750|f
-igor|2550|f
