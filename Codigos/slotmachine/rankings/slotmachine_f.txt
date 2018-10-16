@@ -1,3 +1,4 @@
+catarin|3100|f
 sr.gnu|1000|f
 fabio|1500|f
 julia|1400|f
@@ -7,4 +8,3 @@ josé|1050|f
 monik|1000|f
 raje|550|f
 igor|500|f
-igor|350|f

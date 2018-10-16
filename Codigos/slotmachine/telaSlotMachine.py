@@ -12,6 +12,7 @@ from Codigos.classes_auxiliares.Ranking import Raking
 class TelaSlotMachine:
     def __init__(self,user,janela):
         self.__user = user
+
         # criando frame desta janela e posicionando.
         self.janela = Frame(janela)
         self.janela['width'] = 910
