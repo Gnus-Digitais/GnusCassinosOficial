@@ -13,6 +13,7 @@ tamanho = 43
 fundo = pygame.image.load('imagens/megaStacker.png')
 btnPare = pygame.image.load('imagens/spacebtn.png')
 btnReinicia = pygame.image.load('imagens/reiniciarbtn.png')
+imgWin = pygame.image.load('imagens/ganhou2.png')
 largura = 900
 altura = 600
 tela = pygame.display.set_mode((largura,altura))
@@ -30,6 +31,7 @@ cinquenta = pygame.image.load('imagens/cinquenta.png')
 cem = pygame.image.load('imagens/cem.png')
 perdeuimagem = pygame.image.load('imagens/perdeu1.png')
 somperdeu = pygame.mixer.Sound('sounds/perdeu.ogg')
+somwin = pygame.mixer.Sound('sounds/ganhou .ogg')
 musicafundo = pygame.mixer.Sound('sounds/musicafundo.ogg')
 subirLinha = pygame.mixer.Sound('sounds/subir.wav')
 sombotao = pygame.mixer.Sound('sounds/teste.wav')
@@ -55,6 +57,12 @@ def perdeu(lista):
         somperdeu.play()
     else:
         subirLinha.play()
+
+def ganhou():
+    tela.blit(imgWin, (300, 100))
+    pygame.display.update()
+    musicafundo.stop()
+    somwin.play()
 def texto(msg, cor, tam, x, y):
     font = pygame.font.SysFont("Arial", tam,"bold")
     texto1 = font.render(msg, True, cor)
@@ -124,46 +132,7 @@ def linha(velocidade,x,y):
                     v = True
                     stop = False
                     return vet, True
-                elif xm > 600 and ym > 500 and xm < 655 and ym < 555:
-                    sommoeda.play()
-                    moneyaposta+=5
-                    moneycarteira -= 5
-                    tela.blit(saldoCarteira, (707, 39))
-                    tela.blit(aposta, (650, 250))
-                    dinheiro()
-                    apostar(moneyaposta)
-                elif xm > 660 and ym > 500 and xm < 715 and ym < 555:
-                    sommoeda.play()
-                    moneyaposta += 10
-                    moneycarteira-= 10
-                    tela.blit(saldoCarteira,(707, 39))
-                    tela.blit(aposta, (650, 250))
-                    dinheiro()
-                    apostar(moneyaposta)
-                elif xm > 720 and ym > 500 and xm < 775 and ym < 555:
-                    sommoeda.play()
-                    moneyaposta += 25
-                    moneycarteira -= 25
-                    tela.blit(saldoCarteira, (707, 39))
-                    tela.blit(aposta, (650, 250))
-                    dinheiro()
-                    apostar(moneyaposta)
-                elif xm > 780 and ym > 500 and xm < 835 and ym < 555:
-                    sommoeda.play()
-                    moneyaposta += 50
-                    moneycarteira -= 50
-                    tela.blit(saldoCarteira, (707, 39))
-                    tela.blit(aposta, (650, 250))
-                    dinheiro()
-                    apostar(moneyaposta)
-                elif xm > 840 and ym > 500 and xm < 895 and ym < 555:
-                    sommoeda.play()
-                    moneyaposta += 100
-                    moneycarteira -= 100
-                    tela.blit(saldoCarteira,(707, 39))
-                    tela.blit(aposta, (650, 250))
-                    dinheiro()
-                    apostar(moneyaposta)
+
 
 
         if v:
@@ -200,12 +169,7 @@ subir8 = False
 
 
 
-'''
-pygame.draw.rect(tela, preto,[260, 530, 125, 40])
-texto("Reiniciar(R)", branco, 22, 275, 535)
-pygame.draw.rect(tela, preto,[415, 530, 125, 40])
-texto("Parar(Espaço)", branco, 22, 420, 535)
-'''
+
 reiniciar()
 juiz = [0]
 while True:
@@ -213,34 +177,42 @@ while True:
         linha1, subir = linha(2, x, y)
         juiz[0] = len(linha1)
     if subir:
-        subirLinha.play()
-        linha2, subir2 = linha(4,x,396)
-        juiz.append(len(linha2))
+        if len(linha1) == 0:
+            loser = [1,2]
+            perdeu(loser)
+        else:
+            subirLinha.play()
+            linha2, subir2 = linha(2,x,396)
+            juiz.append(len(linha2))
         perdeu(juiz)
     if subir2 and len(linha1) == len(linha2):
-        linha3, subir3 = linha(6,x,347)
+        linha3, subir3 = linha(2,x,347)
         juiz.append(len(linha3))
         perdeu(juiz)
     if subir3 and len(linha2) == len(linha3):
-        linha4, subir4 = linha(8,x,298)
+        linha4, subir4 = linha(2,x,298)
         juiz.append(len(linha4))
         perdeu(juiz)
     if subir4 and len(linha3) == len(linha4):
-        linha5, subir5 = linha(10,x,249)
+        linha5, subir5 = linha(2,x,249)
         juiz.append(len(linha5))
         perdeu(juiz)
     if subir5 and len(linha4) == len(linha5):
-        linha6, subir6 = linha(12,x,200)
+        linha6, subir6 = linha(2,x,200)
         juiz.append(len(linha6))
         perdeu(juiz)
     if subir6 and len(linha5) == len(linha6):
-        linha7, subir7 = linha(14,x,151)
+        linha7, subir7 = linha(2,x,151)
         juiz.append(len(linha7))
         perdeu(juiz)
     if subir7 and len(linha6) == len(linha7):
-        linha8, subir8 = linha(20,x,102)
+        linha8, subir8 = linha(2,x,102)
         juiz.append(len(linha8))
         perdeu(juiz)
+
+    if subir8 and len(linha7) == len(linha8):
+        juiz.append(len(linha8))
+        ganhou()
     sair = True
     while sair:
         for evento in pygame.event.get():
@@ -298,7 +270,46 @@ while True:
                     reiniciar()
                     linha1, subir = linha(2, x, y)
                     juiz[0] = len(linha1)
+                elif xm > 600 and ym > 500 and xm < 655 and ym < 555:
+                    sommoeda.play()
+                    moneyaposta += 5
+                    moneycarteira -= 5
+                    tela.blit(saldoCarteira, (707, 39))
+                    tela.blit(aposta, (650, 250))
+                    dinheiro()
+                    apostar(moneyaposta)
+                elif xm > 660 and ym > 500 and xm < 715 and ym < 555:
+                    sommoeda.play()
+                    moneyaposta += 10
+                    moneycarteira -= 10
+                    tela.blit(saldoCarteira, (707, 39))
+                    tela.blit(aposta, (650, 250))
+                    dinheiro()
+                    apostar(moneyaposta)
+                elif xm > 720 and ym > 500 and xm < 775 and ym < 555:
+                    sommoeda.play()
+                    moneyaposta += 25
+                    moneycarteira -= 25
+                    tela.blit(saldoCarteira, (707, 39))
+                    tela.blit(aposta, (650, 250))
+                    dinheiro()
+                    apostar(moneyaposta)
+                elif xm > 780 and ym > 500 and xm < 835 and ym < 555:
+                    sommoeda.play()
+                    moneyaposta += 50
+                    moneycarteira -= 50
+                    tela.blit(saldoCarteira, (707, 39))
+                    tela.blit(aposta, (650, 250))
+                    dinheiro()
+                    apostar(moneyaposta)
+                elif xm > 840 and ym > 500 and xm < 895 and ym < 555:
+                    sommoeda.play()
+                    moneyaposta += 100
+                    moneycarteira -= 100
+                    tela.blit(saldoCarteira, (707, 39))
+                    tela.blit(aposta, (650, 250))
+                    dinheiro()
+                    apostar(moneyaposta)
 
-        quadrado(linha1)
 
 
