@@ -79,7 +79,7 @@ def reiniciar():
     mat = [[280, 102], [329, 102], [378, 102], [427, 102], [476, 102], [280, 151], [329, 151], [378, 151], [427, 151], [476, 151], [280, 200], [329, 200], [378, 200], [427, 200], [476, 200], [280, 249], [329, 249], [378, 249], [427, 249], [476, 249], [280, 298], [329, 298], [378, 298], [427, 298], [476, 298], [280, 347], [329, 347], [378, 347], [427, 347], [476, 347], [280, 396], [329, 396], [378, 396], [427, 396], [476, 396], [280, 445], [329, 445], [378, 445], [427, 445], [476, 445]]
     amarelo(mat)
 
-
+teste = 0
 
 x = 280
 y = 445
@@ -115,11 +115,11 @@ def variaveis():
     linha7 = []
     linha8 = []
     juiz = [0]
-    sair = False
+    sair = True
 def inicio():
     global subir, subir2, subir3, subir4, subir5, subir6, subir7, subir8
     global linha1, linha2, linha3, linha4, linha5, linha6, linha7, linha8, juiz, sair
-    global moneyaposta, moneycarteira
+    global moneyaposta, moneycarteira,teste
     tela.blit(btnOk,(575,375))
     pygame.display.update()
     while sair:
@@ -190,16 +190,22 @@ def inicio():
                         dinheiro()
                         apostar(moneyaposta)
                 elif xm > 575 and ym > 375 and xm < 635 and ym < 435:
-                    if moneyaposta > 0:
+                    if moneyaposta > 0 and teste != 1:
                         play(True)
                     else:
                         play(False)
+                    if teste > 0:
+                        teste = 0
+                        variaveis()
+                        reiniciar()
+                        inicio()
 
 def play(bool):
-    global subir, subir2, subir3, subir4, subir5, subir6, subir7, subir8
+    global subir, subir2, subir3, subir4, subir5, subir6, subir7, subir8,moneyaposta
     global linha1, linha2, linha3, linha4, linha5, linha6, linha7, linha8, juiz, sair
-    musicafundo.play()
+
     while bool:
+        musicafundo.play()
         if sair:
             linha1, subir = linha(2, x, y)
             juiz[0] = len(linha1)
@@ -240,12 +246,15 @@ def play(bool):
         if subir8 and len(linha7) == len(linha8):
             juiz.append(len(linha8))
             ganhou()
-        sair = True
+    moneyaposta = 0
+
+
 
 def apostar(valor):
     texto(str(valor), preto, 14, 700, 415)
 
 def perdeu(lista):
+    global teste, moneyaposta
     print(lista)
     vago = lista[0]
     if any(Elemento != vago for Elemento in lista):
@@ -253,6 +262,11 @@ def perdeu(lista):
         texto("Perdeu, aperte 'R' para reinciar!", branco, 30, 230, 5)
         musicafundo.stop()
         somperdeu.play()
+        moneyaposta = 0
+        teste = 1
+        print(teste)
+        play(False)
+        inicio()
     else:
         subirLinha.play()
 
@@ -282,7 +296,7 @@ def linha(velocidade,x,y):
     stop = True
     xx = x
     v = False
-    while stop:
+    while stop and moneyaposta > 0:
         frames.tick(velocidade)
         for evento in pygame.event.get():
             if evento.type == QUIT:
