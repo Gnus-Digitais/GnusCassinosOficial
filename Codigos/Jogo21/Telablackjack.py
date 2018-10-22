@@ -208,7 +208,7 @@ class Telablackjack:
         self.btnParar['bg'] = '#006400'
         self.btnParar['relief'] = FLAT
         self.btnParar['command'] = self.pararcarta
-        self.imgbtnP = PhotoImage(file=r"../Jogo21/image/btnP.png")
+        self.imgbtnP = PhotoImage(file=r"../Jogo21/image/btnP2.png")
         self.btnParar['image'] = self.imgbtnP
         # fim botao parar
 
@@ -217,7 +217,7 @@ class Telablackjack:
         self.btnDescer['bg'] = '#006400'
         self.btnDescer['command'] = self.puxarcarta
         self.btnDescer['relief'] = FLAT
-        self.imgbtnD = PhotoImage(file=r"../Jogo21/image/btnD.png")
+        self.imgbtnD = PhotoImage(file=r"../Jogo21/image/btnD2.png")
         self.btnDescer['image'] = self.imgbtnD
         # fim botao descer mais carta
 
@@ -485,8 +485,9 @@ class Telablackjack:
             # print("ativou")
             self.btnDescer['image'] = self.imgbtnD
             self.btnParar['image'] = self.imgbtnP
-            self.btnParar.place(x=550, y=500)
-            self.btnDescer.place(x=615, y=500)
+            self.btnParar.place(x=550, y=510)
+            #self.btnDescer.place(x=615, y=500)
+            self.btnDescer.place(x=655, y=510)
         else:
             # print("desativou")
             self.btnDescer['image'] = ''
