@@ -4,6 +4,8 @@ from tkinter import *
 from Codigos.classes_auxiliares.Ranking import Raking
 from functools import partial
 from tkinter import messagebox
+import time
+import threading
 
 # TODO 1 - LEMBRAR DE CONECTAR  TELA PRINCIPAL COM O MEGASTACKER - BRUNO
 
@@ -149,7 +151,7 @@ class Telablackjack:
         self.ranking['text'] = " "
         # fim quadro ranking
 
-        """algumas ns_slotmachine reservas em slots invisiveis que ficarão do lado direito do user: """
+        #algumas ns_slotmachine reservas em slots invisiveis que ficarão do lado direito do user..
 
         self.imag1 = Label(self.janela)
         self.imag1Carta = PhotoImage(file=r"../Jogo21/image/Baralho\Ao.png")
@@ -394,6 +396,30 @@ class Telablackjack:
         self.rank['image'] = self.imgrank
         self.ranking.place(x=25, y=43)
 
+        # lbAlerta(movimento invalido) inicio
+        self.lbAlerta_aposta = Label(self.janela,text="Efetue uma aposta!")#todo - fazer funcao pra mostrar cm som "pin"
+        self.lbAlerta_aposta['font'] = 'Arial', 12, "bold"
+        self.lbAlerta_aposta['bg'] = "#C8AB37"
+        self.lbAlerta_aposta.place(x=1000, y=450)
+        # lbAlerta(MOVIMENTO INVALIDO) FIM
+
+        #lbAlerta Quantia aposta invalida
+        self.lbAlerta_quantia = Label(self.janela,text="Você não possui essa quantia!")  # todo - fazer funcao pra mostrar cm som "pin"
+        self.lbAlerta_quantia['font'] = 'Arial', 12, "bold"
+        self.lbAlerta_quantia['bg'] = "#C8AB37"
+        self.lbAlerta_quantia.place(x=1000, y=450)
+        #fim lbAlerta Quantia aposta invalida
+
+
+    def trhead_temporizador(self,tempo,texto,xA,yA,xNovo,yNovo):
+        """mostra por um breve tempo na tela"""
+        texto.place(x=xNovo, y=yNovo)
+        time.sleep(tempo)
+        texto.place(x=xA, y=yA)
+
+    def mostra_temporizado(self,tempo,texto,xA,yA,xNovo,yNovo):
+        threading.Timer(0.1, partial(self.trhead_temporizador,tempo,texto,xA,yA,xNovo,yNovo)).start()
+
     #get e set do user
     @property
     def user(self):
@@ -453,6 +479,7 @@ class Telablackjack:
                 self.saldo_carteira_lb['text'] =   self.saldo_carteira
                 self.valor_aposta_lb['text'] =   self.valor_aposta
         else:
+            self.mostra_temporizado(0.5,self.lbAlerta_quantia,1000,400,640,450)
             print("não deixa apostar essa quantia ! :( ")
 
     def reiniciarCarteira(self):
@@ -466,6 +493,7 @@ class Telablackjack:
             self.aposta_status("fechado")
             self.play()
         else:
+            self.mostra_temporizado(0.5,self.lbAlerta_aposta,1000,400,680,450)
             print("Proibido iniciar partida sem antes efetuar uma aposta.")
 
     def novaPartida(self):
@@ -918,11 +946,18 @@ class Telablackjack:
         self.lbMaquina['text'] = maquina[0]
         self.lbJogador['text'] = self.valorJogador
 
-    def analisa_rank(self):
-        """Este metodo serve para analisar se nome/valor é superior ao ultimo valor do mesmo jogador no ranking."""
-        #TODO- AJUSTAR PLACAR DO RANKING POR NICKNAME- MATHEUS - IGOR
-        pass
+    #escrever functions aqui
 
 
 # TODO - já revisei depois de um teste com a tela principal.
 # TODO - REVISAR CÓDIGO TODO..!!!!!! - IGOR - MATHEUS - BRUNO(se quiser).
+
+'''
+ if tempo <1:
+            tempoM = tempo * 5
+            for i in range(int(tempoM)):
+                texto.place(x=xNovo, y=yNovo)
+                time.sleep(0.05)
+            texto.place(x=xA, y=yA)
+        else:
+'''

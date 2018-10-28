@@ -190,6 +190,36 @@ class TelaSlotMachine:
         self.rank['image'] = self.imgrank
         self.ranking.place(x=25, y=43)
 
+        # lbAlerta(movimento invalido) inicio
+        self.lbAlerta_aposta = Label(self.janela,text="Efetue uma aposta!")
+        self.lbAlerta_aposta['font'] = 'Arial', 12, "bold"
+        self.lbAlerta_aposta['bg'] = "#C8AB37"
+        self.lbAlerta_aposta.place(x=1000, y=450)
+        # lbAlerta(MOVIMENTO INVALIDO) FIM
+
+        # lbAlerta Quantia aposta invalida
+        self.lbAlerta_quantia = Label(self.janela,text="Você não possui essa quantia!")
+        self.lbAlerta_quantia['font'] = 'Arial', 12, "bold"
+        self.lbAlerta_quantia['bg'] = "#C8AB37"
+        self.lbAlerta_quantia.place(x=1000, y=450)
+        # fim lbAlerta Quantia aposta invalida
+
+        # lbAlerta Quantia aposta invalida
+        self.lbAlerta_sair = Label(self.janela,text="Espere finalizar a partida!")
+        self.lbAlerta_sair['font'] = 'Arial', 12, "bold"
+        self.lbAlerta_sair['bg'] = "#C8AB37"
+        self.lbAlerta_sair.place(x=1000, y=450)
+        # fim lbAlerta Quantia aposta invalida
+
+    def trhead_temporizador(self, tempo, texto, xA, yA, xNovo, yNovo):
+        """mostra por um breve tempo na tela"""
+        texto.place(x=xNovo, y=yNovo)
+        time.sleep(tempo)
+        texto.place(x=xA, y=yA)
+
+    def mostra_temporizado(self, tempo, texto, xA, yA, xNovo, yNovo):
+        threading.Timer(0.1, partial(self.trhead_temporizador, tempo, texto, xA, yA, xNovo, yNovo)).start()
+
     # get e set do user
     @property
     def user(self):
@@ -247,6 +277,7 @@ class TelaSlotMachine:
                 self.saldo_carteira_lb['text'] = self.saldo_carteira
                 self.valor_aposta_lb['text'] = self.valor_aposta
         else:
+            self.mostra_temporizado(0.5,self.lbAlerta_quantia,1000,400,640,450)
             print("não deixa apostar essa quantia ! :( ")
 
     def reseta(self):
@@ -259,6 +290,7 @@ class TelaSlotMachine:
         if self.girando==False:
             self.janela.destroy()
         else:
+            self.mostra_temporizado(0.5,self.lbAlerta_sair,1000,400,65,550)
             print("EM ANDAMENTO.espere finalizar ")
 
     def pin(self):
@@ -383,6 +415,7 @@ class TelaSlotMachine:
             self.muda_alavanca("baixo")
             threading.Timer(0.1, self.gira).start()
         else:
+            self.mostra_temporizado(0.5, self.lbAlerta_aposta, 1000, 400, 680, 450)
             print("Proibido iniciar partida sem antes efetuar uma aposta.")
 
     def muda_meio(self):
