@@ -1,6 +1,10 @@
-import pygame, sys
+import pygame, sys, time
+
 # tentar implementar cor gradativa
 from pygame.locals import *
+
+from Codigos.classes_auxiliares.Ranking import Raking
+
 pygame.init()
 #mudança de teste bitbucket
 #GNUS DIGITAIS> BRUNO, RODRIGO, MATHEUS E IGOR
@@ -9,10 +13,11 @@ am = (255,255,0)
 vermelho = (255,0,0)
 preto = (0,0,0)
 branco = (255,255,255)
+corrank = (200, 171, 55)
 tamanho = 43
 fundo = pygame.image.load('imagens/megaStacker.png')
 btnPare = pygame.image.load('imagens/spacebtn.png')
-btnReinicia = pygame.image.load('imagens/reiniciarbtn.png')
+btnReinicia = pygame.image.load('imagens/restart2.png')
 imgWin = pygame.image.load('imagens/ganhou2.png')
 largura = 910
 altura = 600
@@ -31,6 +36,7 @@ cinquenta = pygame.image.load('imagens/cinquenta.png')
 cem = pygame.image.load('imagens/cem.png')
 perdeuimagem = pygame.image.load('imagens/perdeu1.png')
 btnOk = pygame.image.load('imagens/btnOk.png')
+headrank = pygame.image.load('imagens/quadroRanking.png')
 somperdeu = pygame.mixer.Sound('sounds/perdeu.ogg')
 somwin = pygame.mixer.Sound('sounds/ganhou .ogg')
 musicafundo = pygame.mixer.Sound('sounds/musicafundo.ogg')
@@ -40,6 +46,10 @@ sommoeda = pygame.mixer.Sound('sounds/moeda2.wav')
 stop = True
 moneyaposta = 0
 moneycarteira = 250
+
+rank = Raking("megastacker","f")
+exibirRank = rank.retorna_ranking()
+
 
 def amarelo(lista):
     global relogio
@@ -65,7 +75,6 @@ def reiniciar():
     moneyaposta = 0
     tela.fill(verde)
     tela.blit(fundo, (260, 40))
-    tela.blit(btnReinicia, (320, 530))
     tela.blit(btnPare, (420, 530))
     tela.blit(carteira, (800, 15))
     tela.blit(saldoCarteira, (707, 39))
@@ -116,35 +125,27 @@ def variaveis():
     linha8 = []
     juiz = [0]
     sair = True
-def inicio():
+def inicio(botao):
     global subir, subir2, subir3, subir4, subir5, subir6, subir7, subir8
     global linha1, linha2, linha3, linha4, linha5, linha6, linha7, linha8, juiz, sair
     global moneyaposta, moneycarteira,teste
-    tela.blit(btnOk,(575,375))
+    tela.blit(botao,(575,375))
+    pygame.draw.rect(tela, corrank, [35, 43, 130, 270])
+    texto(exibirRank,preto,15,40,50)
+    tela.blit(headrank,(25,10))
     pygame.display.update()
     while sair:
         for evento in pygame.event.get():
             if evento.type == QUIT:
                 pygame.quit()
                 sys.exit()
-            if evento.type == pygame.KEYDOWN:
-                if evento.key == pygame.K_r:
-                    sombotao.play()
-                    variaveis()
-                    reiniciar()
-                    linha1, subir= linha(2,x,y)
-                    juiz[0] = len(linha1)
+
             if evento.type == pygame.MOUSEBUTTONDOWN: #TODO - Criar função para todos os botões
                 xm = pygame.mouse.get_pos()[0]
                 ym = pygame.mouse.get_pos()[1]
                 print(pygame.mouse.get_pos())
-                if xm > 320 and ym > 530 and xm < 375 and ym < 590:
-                    sombotao.play()
-                    variaveis()
-                    reiniciar()
-                    linha1, subir = linha(2, x, y)
-                    juiz[0] = len(linha1)
-                elif xm > 600 and ym > 500 and xm < 655 and ym < 555:
+
+                if xm > 600 and ym > 500 and xm < 655 and ym < 555 and botao == btnOk:
                     if moneycarteira >= 5:
                         sommoeda.play()
                         moneyaposta += 5
@@ -153,7 +154,7 @@ def inicio():
                         tela.blit(aposta, (657, 340))
                         dinheiro()
                         apostar(moneyaposta)
-                elif xm > 660 and ym > 500 and xm < 715 and ym < 555:
+                elif xm > 660 and ym > 500 and xm < 715 and ym < 555 and botao == btnOk:
                     if moneycarteira >= 10:
                         sommoeda.play()
                         moneyaposta += 10
@@ -162,7 +163,7 @@ def inicio():
                         tela.blit(aposta, (657, 340))
                         dinheiro()
                         apostar(moneyaposta)
-                elif xm > 720 and ym > 500 and xm < 775 and ym < 555:
+                elif xm > 720 and ym > 500 and xm < 775 and ym < 555 and botao == btnOk:
                     if moneycarteira >= 25:
                         sommoeda.play()
                         moneyaposta += 25
@@ -171,7 +172,7 @@ def inicio():
                         tela.blit(aposta, (657, 340))
                         dinheiro()
                         apostar(moneyaposta)
-                elif xm > 780 and ym > 500 and xm < 835 and ym < 555:
+                elif xm > 780 and ym > 500 and xm < 835 and ym < 555 and botao == btnOk:
                     if moneycarteira >= 50:
                         sommoeda.play()
                         moneyaposta += 50
@@ -180,7 +181,7 @@ def inicio():
                         tela.blit(aposta, (657, 340))
                         dinheiro()
                         apostar(moneyaposta)
-                elif xm > 840 and ym > 500 and xm < 895 and ym < 555:
+                elif xm > 840 and ym > 500 and xm < 895 and ym < 555 and botao == btnOk:
                     if moneycarteira >= 100:
                         sommoeda.play()
                         moneyaposta += 100
@@ -193,12 +194,20 @@ def inicio():
                     if moneyaposta > 0 and teste != 1:
                         play(True)
                     else:
+                        if botao == btnOk: #TODO Bug dedo nervoso
+                            controle = 1
+                            print('Entrou nesta merda')
+                            texto('Realize uma aposta!',branco,15,690,440)
+                            time.sleep(1)
+                            pygame.draw.rect(tela, verde, [690, 440, 150, 20])
+                            pygame.display.update()
+
                         play(False)
                     if teste > 0:
                         teste = 0
                         variaveis()
                         reiniciar()
-                        inicio()
+                        inicio(btnOk)
 
 def play(bool):
     global subir, subir2, subir3, subir4, subir5, subir6, subir7, subir8,moneyaposta
@@ -259,14 +268,13 @@ def perdeu(lista):
     vago = lista[0]
     if any(Elemento != vago for Elemento in lista):
         tela.blit(perdeuimagem,(300,100))
-        texto("Perdeu, aperte 'R' para reinciar!", branco, 30, 230, 5)
         musicafundo.stop()
         somperdeu.play()
         moneyaposta = 0
         teste = 1
         print(teste)
         play(False)
-        inicio()
+        inicio(btnReinicia)
     else:
         subirLinha.play()
 
@@ -323,7 +331,6 @@ def linha(velocidade,x,y):
         else:
 
             if stop and len(vet) < 5:
-                #quadrado(vet)
                 atual = [xx, y]
                 vet.append(atual)
                 quadrado2(atual[0], atual[1])
@@ -337,6 +344,6 @@ def linha(velocidade,x,y):
 
 
 
-inicio()
+inicio(btnOk)
 
 
