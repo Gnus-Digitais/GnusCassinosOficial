@@ -88,6 +88,16 @@ def reiniciar():
     mat = [[280, 102], [329, 102], [378, 102], [427, 102], [476, 102], [280, 151], [329, 151], [378, 151], [427, 151], [476, 151], [280, 200], [329, 200], [378, 200], [427, 200], [476, 200], [280, 249], [329, 249], [378, 249], [427, 249], [476, 249], [280, 298], [329, 298], [378, 298], [427, 298], [476, 298], [280, 347], [329, 347], [378, 347], [427, 347], [476, 347], [280, 396], [329, 396], [378, 396], [427, 396], [476, 396], [280, 445], [329, 445], [378, 445], [427, 445], [476, 445]]
     amarelo(mat)
 
+def rank(palavra):
+    vet = palavra.split('\n')
+    y = 50
+    for x in vet:
+        saida = x.split('\t')
+        texto(saida[0],preto,15,40,y)
+        texto(saida[1],preto,15,90,y)
+        y+=15
+
+
 teste = 0
 
 x = 280
@@ -131,7 +141,8 @@ def inicio(botao):
     global moneyaposta, moneycarteira,teste
     tela.blit(botao,(575,375))
     pygame.draw.rect(tela, corrank, [35, 43, 130, 270])
-    texto(exibirRank,preto,15,40,50)
+    #texto(exibirRank,preto,15,40,50)
+    rank(exibirRank)
     tela.blit(headrank,(25,10))
     pygame.display.update()
     while sair:
