@@ -182,31 +182,31 @@ while True:
             perdeu(loser)
         else:
             subirLinha.play()
-            linha2, subir2 = linha(2,x,396)
+            linha2, subir2 = linha(4,x,396)
             juiz.append(len(linha2))
         perdeu(juiz)
     if subir2 and len(linha1) == len(linha2):
-        linha3, subir3 = linha(2,x,347)
+        linha3, subir3 = linha(8,x,347)
         juiz.append(len(linha3))
         perdeu(juiz)
     if subir3 and len(linha2) == len(linha3):
-        linha4, subir4 = linha(2,x,298)
+        linha4, subir4 = linha(12,x,298)
         juiz.append(len(linha4))
         perdeu(juiz)
     if subir4 and len(linha3) == len(linha4):
-        linha5, subir5 = linha(2,x,249)
+        linha5, subir5 = linha(16,x,249)
         juiz.append(len(linha5))
         perdeu(juiz)
     if subir5 and len(linha4) == len(linha5):
-        linha6, subir6 = linha(2,x,200)
+        linha6, subir6 = linha(18,x,200)
         juiz.append(len(linha6))
         perdeu(juiz)
     if subir6 and len(linha5) == len(linha6):
-        linha7, subir7 = linha(2,x,151)
+        linha7, subir7 = linha(20,x,151)
         juiz.append(len(linha7))
         perdeu(juiz)
     if subir7 and len(linha6) == len(linha7):
-        linha8, subir8 = linha(2,x,102)
+        linha8, subir8 = linha(24,x,102)
         juiz.append(len(linha8))
         perdeu(juiz)
 
