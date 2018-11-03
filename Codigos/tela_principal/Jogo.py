@@ -111,7 +111,7 @@ class Jogo:
             print("sem texto no campo ou inválido! ")  # todo- bloqueio ao entrar em tela de jogo.
 
     def abre_megastacker(self):
-        usuario = self.cx_nome.get()  # todo - não ligado ainda-BRUNO...
+        usuario = self.cx_nome.get()  # todo - não ligado ainda-BRUNO(FAZER ESSA LIGAÇÃO URGENTE)...
 
 tela = Tk()
 tela['bg']="#000080"
