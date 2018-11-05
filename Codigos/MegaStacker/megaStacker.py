@@ -1,10 +1,9 @@
 import pygame, sys, time
-
+from tkinter import messagebox
 # tentar implementar cor gradativa
 from pygame.locals import *
 
 from Codigos.classes_auxiliares.Ranking import Raking
-
 pygame.init()
 #mudança de teste bitbucket
 #GNUS DIGITAIS> BRUNO, RODRIGO, MATHEUS E IGOR
@@ -46,7 +45,6 @@ sommoeda = pygame.mixer.Sound('sounds/moeda2.wav')
 stop = True
 moneyaposta = 0
 moneycarteira = 250
-
 rank = Raking("megastacker","f")
 exibirRank = rank.retorna_ranking()
 
@@ -57,8 +55,6 @@ def amarelo(lista):
     for i in range(len(lista)):
         pygame.draw.rect(tela, preto, [lista[i][0], lista[i][1], 46, 47])
     pygame.display.update()
-
-
 
 def texto(msg, cor, tam, x, y):
     font = pygame.font.SysFont("Arial", tam,"bold")
@@ -75,7 +71,7 @@ def reiniciar():
     moneyaposta = 0
     tela.fill(verde)
     tela.blit(fundo, (260, 40))
-    tela.blit(btnPare, (420, 530))
+    tela.blit(btnPare, (373, 530))
     tela.blit(carteira, (800, 15))
     tela.blit(saldoCarteira, (707, 39))
     tela.blit(aposta, (657, 340))
@@ -88,6 +84,14 @@ def reiniciar():
     mat = [[280, 102], [329, 102], [378, 102], [427, 102], [476, 102], [280, 151], [329, 151], [378, 151], [427, 151], [476, 151], [280, 200], [329, 200], [378, 200], [427, 200], [476, 200], [280, 249], [329, 249], [378, 249], [427, 249], [476, 249], [280, 298], [329, 298], [378, 298], [427, 298], [476, 298], [280, 347], [329, 347], [378, 347], [427, 347], [476, 347], [280, 396], [329, 396], [378, 396], [427, 396], [476, 396], [280, 445], [329, 445], [378, 445], [427, 445], [476, 445]]
     amarelo(mat)
 
+def showmensage(msg):
+    pygame.draw.rect(tela,corrank,[690,440,150,20])
+    pygame.display.update()
+    texto(msg, preto, 15, 690, 440)
+    time.sleep(1)
+    pygame.draw.rect(tela, verde, [690, 440, 150, 20])
+    pygame.display.update()
+
 def rank(palavra):
     vet = palavra.split('\n')
     y = 50
@@ -97,9 +101,7 @@ def rank(palavra):
         texto(saida[1],preto,15,90,y)
         y+=15
 
-
 teste = 0
-
 x = 280
 y = 445
 v = True
@@ -165,6 +167,8 @@ def inicio(botao):
                         tela.blit(aposta, (657, 340))
                         dinheiro()
                         apostar(moneyaposta)
+                    else:
+                        showmensage('Saldo insuficiente!')
                 elif xm > 660 and ym > 500 and xm < 715 and ym < 555 and botao == btnOk:
                     if moneycarteira >= 10:
                         sommoeda.play()
@@ -174,6 +178,8 @@ def inicio(botao):
                         tela.blit(aposta, (657, 340))
                         dinheiro()
                         apostar(moneyaposta)
+                    else:
+                        showmensage('Saldo insuficiente!')
                 elif xm > 720 and ym > 500 and xm < 775 and ym < 555 and botao == btnOk:
                     if moneycarteira >= 25:
                         sommoeda.play()
@@ -183,6 +189,8 @@ def inicio(botao):
                         tela.blit(aposta, (657, 340))
                         dinheiro()
                         apostar(moneyaposta)
+                    else:
+                        showmensage('Saldo insuficiente!')
                 elif xm > 780 and ym > 500 and xm < 835 and ym < 555 and botao == btnOk:
                     if moneycarteira >= 50:
                         sommoeda.play()
@@ -192,6 +200,8 @@ def inicio(botao):
                         tela.blit(aposta, (657, 340))
                         dinheiro()
                         apostar(moneyaposta)
+                    else:
+                        showmensage('Saldo insuficiente!')
                 elif xm > 840 and ym > 500 and xm < 895 and ym < 555 and botao == btnOk:
                     if moneycarteira >= 100:
                         sommoeda.play()
@@ -201,17 +211,14 @@ def inicio(botao):
                         tela.blit(aposta, (657, 340))
                         dinheiro()
                         apostar(moneyaposta)
+                    else:
+                        showmensage('Saldo insuficiente!')
                 elif xm > 575 and ym > 375 and xm < 635 and ym < 435:
                     if moneyaposta > 0 and teste != 1:
                         play(True)
                     else:
                         if botao == btnOk: #TODO Bug dedo nervoso
-                            controle = 1
-                            print('Entrou nesta merda')
-                            texto('Realize uma aposta!',branco,15,690,440)
-                            time.sleep(1)
-                            pygame.draw.rect(tela, verde, [690, 440, 150, 20])
-                            pygame.display.update()
+                            showmensage('Efetue uma aposta!')
 
                         play(False)
                     if teste > 0:
@@ -259,7 +266,7 @@ def play(bool):
             juiz.append(len(linha7))
             perdeu(juiz)
         if subir7 and len(linha6) == len(linha7):
-            linha8, subir8 = linha(20, x, 102)
+            linha8, subir8 = linha(10, x, 102)
             juiz.append(len(linha8))
             perdeu(juiz)
 
@@ -267,8 +274,6 @@ def play(bool):
             juiz.append(len(linha8))
             ganhou()
     moneyaposta = 0
-
-
 
 def apostar(valor):
     texto(str(valor), preto, 14, 700, 415)
@@ -290,13 +295,16 @@ def perdeu(lista):
         subirLinha.play()
 
 def ganhou():
+    global moneyaposta, moneycarteira,teste
     tela.blit(imgWin, (300, 100))
     pygame.display.update()
     musicafundo.stop()
     somwin.play()
-
-
-
+    moneycarteira+=moneyaposta*10
+    moneyaposta = 0
+    teste = 1
+    play(False)
+    inicio(btnReinicia)
 
 def quadrado(lista):
     for xy in lista:
@@ -330,12 +338,10 @@ def linha(velocidade,x,y):
                 xm = pygame.mouse.get_pos()[0]
                 ym = pygame.mouse.get_pos()[1]
                 print(pygame.mouse.get_pos())
-                if xm > 420 and ym > 530 and xm < 575 and ym < 590:
+                if xm > 373 and ym > 530 and xm < 428 and ym < 590:
                     v = True
                     stop = False
                     return vet, True
-
-
 
         if v:
             break
@@ -350,10 +356,6 @@ def linha(velocidade,x,y):
                 amarelo(vet)
                 vet.clear()
                 xx = x
-
-
-
-
 
 inicio(btnOk)
 
