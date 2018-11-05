@@ -2,7 +2,7 @@ class Raking:
     def __init__(self, jogo, dificuldade):
         self.__dificuldade = dificuldade
         self.__jogo = jogo
-    
+    '''
     @property
     def nickname(self):
         return self.__nickname
@@ -18,7 +18,7 @@ class Raking:
     @pontuacao.setter
     def pontuacao(self, valor):
         self.__pontuacao = valor
-
+'''
     @property
     def dificuldade(self):
         return self.__dificuldade

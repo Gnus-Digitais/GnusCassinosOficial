@@ -5,6 +5,7 @@ from tkinter import *
 class Jogo:
     """Classe principal JOGO, onde todos os jogos são abertos."""
     def __init__(self,tela):
+        self.__apelido=None
         self.principal=Frame(tela)
         self.principal['width']=910
         self.principal['height']=600
@@ -76,6 +77,14 @@ class Jogo:
         self.btnExit['bg']="#000080"
         self.btnExit.place(x=2,y=2)
 
+    @property
+    def apelido(self):
+        return self.__apelido
+
+    @apelido.setter
+    def apelido(self, valor):
+        self.__apelido = valor
+
     def trata_texto(self,texto):
         """Metodo que trata o nick do jogador e retorna o nick já tratado."""
         textoR = texto.strip()
@@ -95,18 +104,18 @@ class Jogo:
     def abre_blackjack(self):
         """Metodo que abre a tela BlackJack, passando como parametro o nome do jogador, tela mãe e tela atual"""
         usuario=self.cx_nome.get()
-        nome=self.trata_texto(usuario)
-        if nome !=False:
-            Telablackjack(nome,tela)
+        self.apelido=self.trata_texto(usuario)
+        if self.apelido !=False:
+            Telablackjack(self.apelido,tela)
         else:
             print("sem texto no campo ou inválido!")#todo- bloqueio ao entrar em tela de jogo.
 
     def abre_slotmachine(self):
         """Metodo que abre a tela SLOTMACHINE, passando como parametro o nome do jogador, tela mãe e tela atual"""
         usuario = self.cx_nome.get()
-        nome = self.trata_texto(usuario)
-        if nome != False:
-            TelaSlotMachine(nome, tela)
+        self.apelido = self.trata_texto(usuario)
+        if self.apelido != False:
+            TelaSlotMachine(self.apelido, tela)
         else:
             print("sem texto no campo ou inválido! ")  # todo- bloqueio ao entrar em tela de jogo.
 
@@ -117,7 +126,7 @@ tela = Tk()
 tela['bg']="#000080"
 tela.title("G'nus Cassinos")
 tela.resizable(0, 0)
-tela.iconbitmap("imagem\iconelogo8.ico")
+tela.iconbitmap("imagem\logoicone3.ico")
 x = (tela.winfo_screenwidth() // 2) - (910 // 2)
 y = (tela.winfo_screenheight() // 2) - (600 // 2)
 tela.geometry("910x600+{}+{}".format(x, y))  # largura x altura + esquerda + topo
