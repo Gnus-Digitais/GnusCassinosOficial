@@ -95,7 +95,7 @@ class TelaSlotMachine:
         #fim seta botao
 
         self.btnExit = Button(self.janela)
-        self.imgExit = PhotoImage(file="../slotmachine/imagens/exit.png")
+        self.imgExit = PhotoImage(file="../slotmachine/imagens/voltar2.png")
         self.btnExit['image'] = self.imgExit
         self.btnExit['relief'] = FLAT
         self.btnExit['command'] = self.sair
@@ -199,7 +199,7 @@ class TelaSlotMachine:
         # lbAlerta(MOVIMENTO INVALIDO) FIM
 
         # lbAlerta Quantia aposta invalida
-        self.lbAlerta_quantia = Label(self.janela,text="Você não possui essa quantia!")
+        self.lbAlerta_quantia = Label(self.janela,text="Saldo insuficiente!")
         self.lbAlerta_quantia['font'] = 'Arial', 12, "bold"
         self.lbAlerta_quantia['bg'] = "#C8AB37"
         self.lbAlerta_quantia.place(x=1000, y=450)
@@ -278,7 +278,7 @@ class TelaSlotMachine:
                 self.saldo_carteira_lb['text'] = self.saldo_carteira
                 self.valor_aposta_lb['text'] = self.valor_aposta
         else:
-            self.mostra_temporizado(0.5,self.lbAlerta_quantia,1000,400,640,450)
+            self.mostra_temporizado(0.5,self.lbAlerta_quantia,1000,400,690,450)
             print("não deixa apostar essa quantia ! :( ")
 
     def reseta(self):
