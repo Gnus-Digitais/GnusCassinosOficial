@@ -266,7 +266,7 @@ def play(bool):
             juiz.append(len(linha7))
             perdeu(juiz)
         if subir7 and len(linha6) == len(linha7):
-            linha8, subir8 = linha(10, x, 102)
+            linha8, subir8 = linha(20, x, 102)
             juiz.append(len(linha8))
             perdeu(juiz)
 
