@@ -1,6 +1,7 @@
 import threading
 from tkinter import *
 from pygame import mixer
+import ctypes
 import time
 from functools import partial
 from tkinter import messagebox
@@ -94,7 +95,7 @@ class TelaSlotMachine:
         #fim seta botao
 
         self.btnExit = Button(self.janela)
-        self.imgExit = PhotoImage(file="../slotmachine/imagens/exit.png")
+        self.imgExit = PhotoImage(file="../slotmachine/imagens/voltar2.png")
         self.btnExit['image'] = self.imgExit
         self.btnExit['relief'] = FLAT
         self.btnExit['command'] = self.sair
@@ -198,7 +199,7 @@ class TelaSlotMachine:
         # lbAlerta(MOVIMENTO INVALIDO) FIM
 
         # lbAlerta Quantia aposta invalida
-        self.lbAlerta_quantia = Label(self.janela,text="Você não possui essa quantia!")
+        self.lbAlerta_quantia = Label(self.janela,text="Saldo insuficiente!")
         self.lbAlerta_quantia['font'] = 'Arial', 12, "bold"
         self.lbAlerta_quantia['bg'] = "#C8AB37"
         self.lbAlerta_quantia.place(x=1000, y=450)
@@ -210,7 +211,7 @@ class TelaSlotMachine:
         self.lbAlerta_sair['bg'] = "#C8AB37"
         self.lbAlerta_sair.place(x=1000, y=450)
         # fim lbAlerta Quantia aposta invalida
-
+    #temporizador
     def trhead_temporizador(self, tempo, texto, xA, yA, xNovo, yNovo):
         """mostra por um breve tempo na tela"""
         texto.place(x=xNovo, y=yNovo)
@@ -277,7 +278,7 @@ class TelaSlotMachine:
                 self.saldo_carteira_lb['text'] = self.saldo_carteira
                 self.valor_aposta_lb['text'] = self.valor_aposta
         else:
-            self.mostra_temporizado(0.5,self.lbAlerta_quantia,1000,400,640,450)
+            self.mostra_temporizado(0.5,self.lbAlerta_quantia,1000,400,690,450)
             print("não deixa apostar essa quantia ! :( ")
 
     def reseta(self):
@@ -328,7 +329,7 @@ class TelaSlotMachine:
             self.b.place(x=503,y=390)
             self.seta.place(x=1000, y=195)
 
-    def gira(self):
+    def iniciar(self):
         self.girando=True
         vet_auxiliar=[]
         resposta=False
@@ -413,7 +414,7 @@ class TelaSlotMachine:
             self.aposta_status("fechado")
             # muda_alavanca("meio")
             self.muda_alavanca("baixo")
-            threading.Timer(0.1, self.gira).start()
+            threading.Timer(0.1, self.iniciar).start()
         else:
             self.mostra_temporizado(0.5, self.lbAlerta_aposta, 1000, 400, 680, 450)
             print("Proibido iniciar partida sem antes efetuar uma aposta.")

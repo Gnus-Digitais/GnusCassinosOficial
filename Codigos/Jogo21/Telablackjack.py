@@ -224,18 +224,20 @@ class Telablackjack:
         # fim botao descer mais carta
 
         # inicio  botao sair sistema
+        '''
         self.sa = Label(self.janela, text="Sair")
         self.sa['bg'] = '#006400'
         self.sa['font'] = 'Arial', 12, "bold"
         self.sa['bg'] = "#C8AB37"
         self.sa.place(x=15, y=570)
+        '''
         self.btnExit = Button(self.janela)
         self.btnExit['bg'] = '#006400'
         self.btnExit['command'] = self.sair
         self.btnExit['relief'] = FLAT
-        self.imgbtnExit = PhotoImage(file=r"../Jogo21/image/exit.png")
+        self.imgbtnExit = PhotoImage(file=r"../Jogo21/image/voltar2.png")
         self.btnExit['image'] = self.imgbtnExit
-        self.btnExit.place(x=0, y=505)
+        self.btnExit.place(x=2, y=530)
         # FIM BTN SAIR SISTEMA
         # monte label img, m_principal do monte de cartas no lado direito>>>
         self.m5 = Label(self.janela)
@@ -404,7 +406,7 @@ class Telablackjack:
         # lbAlerta(MOVIMENTO INVALIDO) FIM
 
         #lbAlerta Quantia aposta invalida
-        self.lbAlerta_quantia = Label(self.janela,text="Você não possui essa quantia!")  # todo - fazer funcao pra mostrar cm som "pin"
+        self.lbAlerta_quantia = Label(self.janela,text="Saldo insuficiente!")  # todo - fazer funcao pra mostrar cm som "pin"
         self.lbAlerta_quantia['font'] = 'Arial', 12, "bold"
         self.lbAlerta_quantia['bg'] = "#C8AB37"
         self.lbAlerta_quantia.place(x=1000, y=450)
@@ -479,7 +481,8 @@ class Telablackjack:
                 self.saldo_carteira_lb['text'] =   self.saldo_carteira
                 self.valor_aposta_lb['text'] =   self.valor_aposta
         else:
-            self.mostra_temporizado(0.5,self.lbAlerta_quantia,1000,400,640,450)
+            self.mostra_temporizado(0.5,self.lbAlerta_quantia,1000,400,690,450)
+
             print("não deixa apostar essa quantia ! :( ")
 
     def reiniciarCarteira(self):

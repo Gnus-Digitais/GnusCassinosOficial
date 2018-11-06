@@ -8,8 +8,15 @@ class SlotMachine:
         self.slot3 = None
         #self.imgs = ['arcanaine','corphish','electabuz','groundon','pikachu']
         #self.imgs = ['ewert', 'kaio', 'mat', 'gnu']
-        self.imgs=['android','apple','gnuu','tux','ubuntu','wind']
+        self.__imgs=['android','apple','gnuu','tux','ubuntu','wind']
 
+    @property
+    def imgs(self):
+        return self.__imgs
+
+    @imgs.setter
+    def imgs(self, valor):
+        self.__imgs = valor
 
     def spin(self):
         c = self.fisher_yates_shuffle(self.imgs)
