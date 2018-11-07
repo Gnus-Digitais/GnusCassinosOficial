@@ -54,7 +54,7 @@ class Jogo:
         self.imgM=PhotoImage(file="imagem/playMegastacker.png")
         self.btnM['image']=self.imgM
         self.btnM['bg'] = "#000080"
-        self.btnM.place(x=2, y=380)
+        self.btnM.place(x=1, y=380)
 
         self.btnB=Button(self.principal)
         self.btnB['relief']=FLAT
@@ -62,7 +62,7 @@ class Jogo:
         self.btnB['image']=self.imgB
         self.btnB['bg'] = "#000080"
         self.btnB['command']=self.abre_blackjack
-        self.btnB.place(x=296, y=380)
+        self.btnB.place(x=304, y=380)
 
         self.btnS=Button(self.principal)
         self.btnS['relief']=FLAT
@@ -70,7 +70,7 @@ class Jogo:
         self.btnS['image']=self.imgS
         self.btnS['bg'] = "#000080"
         self.btnS['command'] = self.abre_slotmachine
-        self.btnS.place(x=602,y=380)
+        self.btnS.place(x=608,y=380)
 
         self.btnExit=Button(self.principal)
         self.imgExit=PhotoImage(file="imagem/exit.png")

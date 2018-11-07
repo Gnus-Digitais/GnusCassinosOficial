@@ -13,7 +13,7 @@ vermelho = (255,0,0)
 preto = (0,0,0)
 branco = (255,255,255)
 corrank = (200, 171, 55)
-tamanho = 43
+
 fundo = pygame.image.load('imagens/megaStacker.png')
 btnPare = pygame.image.load('imagens/spacebtn.png')
 btnReinicia = pygame.image.load('imagens/restart2.png')
@@ -266,7 +266,7 @@ def play(bool):
             juiz.append(len(linha7))
             perdeu(juiz)
         if subir7 and len(linha6) == len(linha7):
-            linha8, subir8 = linha(10, x, 102)
+            linha8, subir8 = linha(20, x, 102)
             juiz.append(len(linha8))
             perdeu(juiz)
 
