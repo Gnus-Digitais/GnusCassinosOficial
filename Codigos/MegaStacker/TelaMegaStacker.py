@@ -349,7 +349,7 @@ class TelaMegaStacker:
             else:
 
                 if self.stop and len(self.vet) < 5:
-                    atual = [self.xx, y]
+                    self.atual = [self.xx, y]
                     self.vet.append(self.atual)
                     self.quadrado2(self.atual[0], self.atual[1])
                     self.xx += 49
