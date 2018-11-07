@@ -13,7 +13,7 @@ vermelho = (255,0,0)
 preto = (0,0,0)
 branco = (255,255,255)
 corrank = (200, 171, 55)
-tamanho = 43
+
 fundo = pygame.image.load('imagens/megaStacker.png')
 btnPare = pygame.image.load('imagens/spacebtn.png')
 btnReinicia = pygame.image.load('imagens/restart2.png')
