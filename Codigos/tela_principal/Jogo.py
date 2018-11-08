@@ -9,8 +9,9 @@ from functools import partial
 class Jogo:
     """Classe principal JOGO, onde todos os jogos são abertos."""
     def __init__(self,tela):
+        self.tela=tela
         self.__apelido=None
-        self.principal=Frame(tela)
+        self.principal=Frame(self.tela)
         self.principal['width']=910
         self.principal['height']=600
         self.principal['bg']="#000080"
@@ -122,14 +123,14 @@ class Jogo:
 
     def sair(self):
         """metodo que fecha a tela principal do jogo."""
-        tela.destroy()
+        self.tela.destroy()
 
     def abre_blackjack(self):
         """Metodo que abre a tela BlackJack, passando como parametro o nome do jogador, tela mãe e tela atual"""
         usuario=self.cx_nome.get()
         self.apelido=self.trata_texto(usuario)
         if self.apelido !=False:
-            Telablackjack(self.apelido,tela)
+            Telablackjack(self.apelido,self.tela)
         else:
             #print("sem texto no campo ou inválido!")
             self.mostra_temporizado(0.5,self.lbAlerta_apelido,1000,271,385,310)
@@ -140,7 +141,7 @@ class Jogo:
         usuario = self.cx_nome.get()
         self.apelido = self.trata_texto(usuario)
         if self.apelido != False:
-            TelaSlotMachine(self.apelido, tela)
+            TelaSlotMachine(self.apelido, self.tela)
         else:
             #print("sem texto no campo ou inválido! ")
             self.mostra_temporizado(0.5, self.lbAlerta_apelido, 1000, 271, 385, 310)
@@ -148,10 +149,11 @@ class Jogo:
         usuario = self.cx_nome.get()  # todo - não ligado ainda-BRUNO(FAZER ESSA LIGAÇÃO URGENTE)...
         self.apelido = self.trata_texto(usuario)
         if self.apelido != False:
-            TelaMegaStacker(self.apelido, tela)
+            TelaMegaStacker(self.apelido, self.tela)
         else:
             # print("sem texto no campo ou inválido! ")
             self.mostra_temporizado(0.5, self.lbAlerta_apelido, 1000, 271, 385, 310)
+'''
 tela = Tk()
 tela['bg']="#000080"
 tela.title("G'nus Cassinos")
@@ -163,5 +165,6 @@ tela.geometry("910x600+{}+{}".format(x, y))  # largura x altura + esquerda + top
 # telaprincipal.overrideredirect(True)#retira bordas
 Jogo(tela)
 tela.mainloop()
+'''
 
 # TODO - REVISAR CÓDIGO TODO..!!!!!! - IGOR - MATHEUS - BRUNO(se quiser).

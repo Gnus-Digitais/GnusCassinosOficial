@@ -3,12 +3,18 @@ from tkinter import *
 from tkinter import messagebox
 from pygame.locals import *
 from Codigos.classes_auxiliares.Ranking import Raking
+#from Codigos.tela_principal.Jogo import Jogo
 import os
 
 class TelaMegaStacker:
     def __init__(self,user,janela):
         self.janela=janela
-        self.janela.destroy()
+        self.x = (self.janela.winfo_screenwidth() // 2) - (910 // 2)
+        self.y = (self.janela.winfo_screenheight() // 2) - (600 // 2)
+        self.janela.geometry("0x0+{}+{}".format(0, 0))  # largura x altura + esquerda + topo
+        self.janela.overrideredirect(True)  # retira bordas
+
+        #self.janela.destroy()
         self.__user = user
         pygame.init()
 
@@ -106,9 +112,6 @@ class TelaMegaStacker:
         self.tela.blit(texto1, [x, y])
         pygame.display.update()
 
-    def imprimir_ranking(self):
-        """este metodo serve para retornar uma string com os nomes e pontuação que aparecerão no ranking"""
-        return self.rank.retorna_ranking()
 
     def inserir_no_ranking(self, score):
         """este metodo adiciona o usuario do game ao ranking"""
@@ -323,10 +326,15 @@ class TelaMegaStacker:
             self.moneyaposta = 0
             if self.moneycarteira <  1:
 
-                messagebox.showinfo("Que pena!", "Perdeu tudo!")
-                print("perdeu tud")
-                print(os.path.dirname(os.path.realpath(__file__)))
-                os.system("python ")
+                #messagebox.showinfo("Que pena!", "Perdeu tudo!")
+                print("perdeu tudo!")
+                #print(os.path.dirname(os.path.realpath(__file__)))
+                #os.system("python ")
+
+                self.janela.geometry("910x600+{}+{}".format(self.x, self.y))  # largura x altura + esquerda + topo
+                self.janela.overrideredirect(False)#coloca bordas
+                pygame.quit()
+
 
             self.teste = 1
             self.play(False)
