@@ -1,5 +1,6 @@
 from Codigos.Jogo21.Telablackjack import Telablackjack
 from Codigos.slotmachine.telaSlotMachine import TelaSlotMachine
+from Codigos.MegaStacker.TelaMegaStacker import TelaMegaStacker
 from tkinter import *
 import time
 import threading
@@ -54,6 +55,7 @@ class Jogo:
         self.imgM=PhotoImage(file="imagem/playMegastacker.png")
         self.btnM['image']=self.imgM
         self.btnM['bg'] = "#000080"
+        self.btnM['command']=self.abre_megastacker
         self.btnM.place(x=1, y=380)
 
         self.btnB=Button(self.principal)
@@ -144,7 +146,12 @@ class Jogo:
             self.mostra_temporizado(0.5, self.lbAlerta_apelido, 1000, 271, 385, 310)
     def abre_megastacker(self):
         usuario = self.cx_nome.get()  # todo - não ligado ainda-BRUNO(FAZER ESSA LIGAÇÃO URGENTE)...
-
+        self.apelido = self.trata_texto(usuario)
+        if self.apelido != False:
+            TelaMegaStacker(self.apelido, tela)
+        else:
+            # print("sem texto no campo ou inválido! ")
+            self.mostra_temporizado(0.5, self.lbAlerta_apelido, 1000, 271, 385, 310)
 tela = Tk()
 tela['bg']="#000080"
 tela.title("G'nus Cassinos")

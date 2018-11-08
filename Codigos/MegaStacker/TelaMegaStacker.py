@@ -1,10 +1,15 @@
 import pygame, sys, time
 from tkinter import *
+from tkinter import messagebox
 from pygame.locals import *
 from Codigos.classes_auxiliares.Ranking import Raking
+import os
 
 class TelaMegaStacker:
-    def __init__(self):
+    def __init__(self,user,janela):
+        self.janela=janela
+        self.janela.destroy()
+        self.__user = user
         pygame.init()
 
         # GNUS DIGITAIS> BRUNO, RODRIGO, MATHEUS E IGOR
@@ -21,33 +26,33 @@ class TelaMegaStacker:
         #definição da tela
         self.tela = pygame.display.set_mode((self.largura, self.altura))
         pygame.display.set_caption("MegaStacker")
-        pygame.display.set_icon(pygame.image.load("imagens/logoSistema.ico"))
+        pygame.display.set_icon(pygame.image.load("imagem/logoicone3.ico"))
         #definição do relógico FPS
         self.relogio = pygame.time.Clock()
         #carregar as imagens do jogo
-        self.fundo = pygame.image.load('imagens/megaStacker.png')
-        self.btnPare = pygame.image.load('imagens/spacebtn.png')
-        self.btnReinicia = pygame.image.load('imagens/restart2.png')
-        self.imgWin = pygame.image.load('imagens/ganhou2.png')
-        self.carteira = pygame.image.load('imagens/carteira2.png')
-        self.saldoCarteira = pygame.image.load("imagens/qtdcarteira.png")
-        self.soma = pygame.image.load('imagens/SOMA.png')
-        self.aposta = pygame.image.load('imagens/aposta3.png')
-        self.cinco = pygame.image.load('imagens/cinco.png')
-        self.dez = pygame.image.load('imagens/dez.png')
-        self.vinteCinco = pygame.image.load('imagens/vintecinco.png')
-        self.cinquenta = pygame.image.load('imagens/cinquenta.png')
-        self.cem = pygame.image.load('imagens/cem.png')
-        self.perdeuimagem = pygame.image.load('imagens/perdeu1.png')
-        self.btnOk = pygame.image.load('imagens/btnOk.png')
-        self.headrank = pygame.image.load('imagens/quadroRanking.png')
+        self.fundo = pygame.image.load('../MegaStacker/imagens/megaStacker.png')
+        self.btnPare = pygame.image.load('../MegaStacker/imagens/spacebtn.png')
+        self.btnReinicia = pygame.image.load('../MegaStacker/imagens/restart2.png')
+        self.imgWin = pygame.image.load('../MegaStacker/imagens/ganhou2.png')
+        self.carteira = pygame.image.load('../MegaStacker/imagens/carteira2.png')
+        self.saldoCarteira = pygame.image.load("../MegaStacker/imagens/qtdcarteira.png")
+        self.soma = pygame.image.load('../MegaStacker/imagens/SOMA.png')
+        self.aposta = pygame.image.load('../MegaStacker/imagens/aposta3.png')
+        self.cinco = pygame.image.load('../MegaStacker/imagens/cinco.png')
+        self.dez = pygame.image.load('../MegaStacker/imagens/dez.png')
+        self.vinteCinco = pygame.image.load('../MegaStacker/imagens/vintecinco.png')
+        self.cinquenta = pygame.image.load('../MegaStacker/imagens/cinquenta.png')
+        self.cem = pygame.image.load('../MegaStacker/imagens/cem.png')
+        self.perdeuimagem = pygame.image.load('../MegaStacker/imagens/perdeu1.png')
+        self.btnOk = pygame.image.load('../MegaStacker/imagens/btnOk.png')
+        self.headrank = pygame.image.load('../MegaStacker/imagens/quadroRanking.png')
         #carregar os sons do jogo
-        self.somperdeu = pygame.mixer.Sound('sounds/perdeu.ogg')
-        self.somwin = pygame.mixer.Sound('sounds/ganhou .ogg')
-        self.musicafundo = pygame.mixer.Sound('sounds/musicafundo.ogg')
-        self.subirLinha = pygame.mixer.Sound('sounds/subir.wav')
-        self.sombotao = pygame.mixer.Sound('sounds/teste.wav')
-        self.sommoeda = pygame.mixer.Sound('sounds/moeda2.wav')
+        self.somperdeu = pygame.mixer.Sound('../MegaStacker/sounds/perdeu.ogg')
+        self.somwin = pygame.mixer.Sound('../MegaStacker/sounds/ganhou .ogg')
+        self.musicafundo = pygame.mixer.Sound('../MegaStacker/sounds/musicafundo.ogg')
+        self.subirLinha = pygame.mixer.Sound('../MegaStacker/sounds/subir.wav')
+        self.sombotao = pygame.mixer.Sound('../MegaStacker/sounds/teste.wav')
+        self.sommoeda = pygame.mixer.Sound('../MegaStacker/sounds/moeda2.wav')
 
         # Something
         self.stop = True
@@ -59,7 +64,6 @@ class TelaMegaStacker:
         self.x = 280
         self.y = 445
         self.v = True
-        self.sair = True
         self.subir = False
         self.subir2 = False
         self.subir3 = False
@@ -68,9 +72,27 @@ class TelaMegaStacker:
         self.subir6 = False
         self.subir7 = False
         self.subir8 = False
+        self.linha1 = []
+        self.linha2 = []
+        self.linha3 = []
+        self.linha4 = []
+        self.linha5 = []
+        self.linha6 = []
+        self.linha7 = []
+        self.linha8 = []
+        self.juiz = [0]
+        self.sair = True
         self.reiniciar()
         self.juiz = [0]
         self.inicio(self.btnOk)
+
+    @property
+    def user(self):
+        return self.__user
+
+    @user.setter
+    def user(self, valor):
+        self.__user = valor
 
     def amarelo(self, lista):
         self.relogio.tick(60)
@@ -84,6 +106,13 @@ class TelaMegaStacker:
         self.tela.blit(texto1, [x, y])
         pygame.display.update()
 
+    def imprimir_ranking(self):
+        """este metodo serve para retornar uma string com os nomes e pontuação que aparecerão no ranking"""
+        return self.rank.retorna_ranking()
+
+    def inserir_no_ranking(self, score):
+        """este metodo adiciona o usuario do game ao ranking"""
+        self.rank.addRecord(self.user, int(score))
     def dinheiro(self):
         self.texto(str(self.moneycarteira),self.preto, 14, 715, 44)
 
@@ -199,7 +228,7 @@ class TelaMegaStacker:
                             self.apostar(self.moneyaposta)
                         else:
                             self.showmensage('Saldo insuficiente!')
-                    elif xm > 780 and ym > 500 and xm < 835 and ym < 555 and botao == btnOk:
+                    elif xm > 780 and ym > 500 and xm < 835 and ym < 555 and botao == self.btnOk:
                         if self.moneycarteira >= 50:
                             self.sommoeda.play()
                             self.moneyaposta += 50
@@ -207,14 +236,14 @@ class TelaMegaStacker:
                             self.tela.blit(self.saldoCarteira, (707, 39))
                             self.tela.blit(self.aposta, (657, 340))
                             self.dinheiro()
-                            self.apostar(self.mself.oneyaposta)
+                            self.apostar(self.moneyaposta)
                         else:
                             self.showmensage('Saldo insuficiente!')
                     elif xm > 840 and ym > 500 and xm < 895 and ym < 555 and botao == self.btnOk:
                         if self.moneycarteira >= 100:
                             self.sommoeda.play()
                             self.moneyaposta += 100
-                            self.self.moneycarteira -= 100
+                            self.moneycarteira -= 100
                             self.tela.blit(self.saldoCarteira, (707, 39))
                             self.tela.blit(self.aposta, (657, 340))
                             self.dinheiro()
@@ -230,7 +259,7 @@ class TelaMegaStacker:
 
                             self.play(False)
                         if self.teste > 0:
-                            teste = 0
+                            self.teste = 0
                             self.variaveis()
                             self.reiniciar()
                             self.inicio(self.btnOk)
@@ -239,15 +268,15 @@ class TelaMegaStacker:
         while bool:
             self.musicafundo.play()
             if self.sair:
-                linha1, self.subir = self.linha(2, self.x, self.y)
-                self.juiz[0] = len(linha1)
+                self.linha1, self.subir = self.linha(2, self.x, self.y)
+                self.juiz[0] = len(self.linha1)
             if self.subir:
                 if len(self.linha1) == 0:
                     self.loser = [1, 2]
                     self.perdeu(self.loser)
                 else:
                     self.subirLinha.play()
-                    linha2, subir2 = self.linha(4, self.x, 396)
+                    self.linha2, self.subir2 = self.linha(4, self.x, 396)
                     self.juiz.append(len(self.linha2))
                 self.perdeu(self.juiz)
             if self.subir2 and len(self.linha1) == len(self.linha2):
@@ -284,6 +313,7 @@ class TelaMegaStacker:
         self.texto(str(valor), self.preto, 14, 700, 415)
 
     def perdeu(self, lista):
+
         print(lista)
         self.vago = lista[0]
         if any(Elemento != self.vago for Elemento in lista):
@@ -291,10 +321,17 @@ class TelaMegaStacker:
             self.musicafundo.stop()
             self.somperdeu.play()
             self.moneyaposta = 0
-            teste = 1
-            print(teste)
+            if self.moneycarteira <  1:
+
+                messagebox.showinfo("Que pena!", "Perdeu tudo!")
+                print("perdeu tud")
+                print(os.path.dirname(os.path.realpath(__file__)))
+                os.system("python ")
+
+            self.teste = 1
             self.play(False)
             self.inicio(self.btnReinicia)
+
         else:
             self.subirLinha.play()
 
@@ -306,6 +343,7 @@ class TelaMegaStacker:
         self.moneycarteira += self.moneyaposta * 10
         self.moneyaposta = 0
         self.teste = 1
+        self.inserir_no_ranking(self.moneycarteira)
         self.play(False)
         self.inicio(self.btnReinicia)
 
@@ -359,4 +397,4 @@ class TelaMegaStacker:
                     self.xx = x
 
 
-jogo = TelaMegaStacker()
+#jogo = TelaMegaStacker("Igor")
