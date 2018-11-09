@@ -194,21 +194,24 @@ class TelaSlotMachine:
         # lbAlerta(movimento invalido) inicio
         self.lbAlerta_aposta = Label(self.janela,text="Efetue uma aposta!")
         self.lbAlerta_aposta['font'] = 'Arial', 12, "bold"
-        self.lbAlerta_aposta['bg'] = "#C8AB37"
+        self.lbAlerta_aposta['bg'] = "#ff0000" #cor anterior: #C8AB37
+        self.lbAlerta_aposta['fg']="#fff"
         self.lbAlerta_aposta.place(x=1000, y=450)
         # lbAlerta(MOVIMENTO INVALIDO) FIM
 
         # lbAlerta Quantia aposta invalida
         self.lbAlerta_quantia = Label(self.janela,text="Saldo insuficiente!")
         self.lbAlerta_quantia['font'] = 'Arial', 12, "bold"
-        self.lbAlerta_quantia['bg'] = "#C8AB37"
+        self.lbAlerta_quantia['bg'] = "#ff0000"
+        self.lbAlerta_quantia['fg']='#fff'
         self.lbAlerta_quantia.place(x=1000, y=450)
         # fim lbAlerta Quantia aposta invalida
 
         # lbAlerta Quantia aposta invalida
         self.lbAlerta_sair = Label(self.janela,text="Espere finalizar a partida!")
         self.lbAlerta_sair['font'] = 'Arial', 12, "bold"
-        self.lbAlerta_sair['bg'] = "#C8AB37"
+        self.lbAlerta_sair['fg']='#fff'
+        self.lbAlerta_sair['bg'] = "#ff0000"
         self.lbAlerta_sair.place(x=1000, y=450)
         # fim lbAlerta Quantia aposta invalida
     #temporizador
