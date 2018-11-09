@@ -9,13 +9,13 @@ import os
 class TelaMegaStacker:
     def __init__(self,user,janela):
         self.janela=janela
-        self.x = (self.janela.winfo_screenwidth() // 2) - (910 // 2)
-        self.y = (self.janela.winfo_screenheight() // 2) - (600 // 2)
+        self.x_telaPrincipal = (self.janela.winfo_screenwidth() // 2) - (910 // 2)
+        self.y_telaPrincipal = (self.janela.winfo_screenheight() // 2) - (600 // 2)
         self.janela.geometry("0x0+{}+{}".format(0, 0))  # largura x altura + esquerda + topo
         self.janela.overrideredirect(True)  # retira bordas
-
-        #self.janela.destroy()
         self.__user = user
+        #command para centralizar a tela
+        os.environ['SDL_VIDEO_CENTERED'] = '1'
         pygame.init()
 
         # GNUS DIGITAIS> BRUNO, RODRIGO, MATHEUS E IGOR
@@ -52,6 +52,7 @@ class TelaMegaStacker:
         self.perdeuimagem = pygame.image.load('../MegaStacker/imagens/perdeu1.png')
         self.btnOk = pygame.image.load('../MegaStacker/imagens/btnOk.png')
         self.headrank = pygame.image.load('../MegaStacker/imagens/quadroRanking.png')
+        self.btnRetornar = pygame.image.load('../MegaStacker/imagens/voltar2.png')
         #carregar os sons do jogo
         self.somperdeu = pygame.mixer.Sound('../MegaStacker/sounds/perdeu.ogg')
         self.somwin = pygame.mixer.Sound('../MegaStacker/sounds/ganhou .ogg')
@@ -133,6 +134,7 @@ class TelaMegaStacker:
         self.tela.blit(self.vinteCinco, (720, 500))
         self.tela.blit(self.cinquenta, (780, 500))
         self.tela.blit(self.cem, (840, 500))
+        self.tela.blit(self.btnRetornar,(15,530))
         self.dinheiro()
         mat = [[280, 102], [329, 102], [378, 102], [427, 102], [476, 102], [280, 151], [329, 151], [378, 151],
                [427, 151], [476, 151], [280, 200], [329, 200], [378, 200], [427, 200], [476, 200], [280, 249],
@@ -182,7 +184,7 @@ class TelaMegaStacker:
 
     def inicio(self, botao):
         self.tela.blit(botao, (575, 375))
-        pygame.draw.rect(self.tela, self.corrank, [35, 43, 130, 270])
+        pygame.draw.rect(self.tela, self.corrank, [35, 43, 130, 170])
         # texto(exibirRank,preto,15,40,50)
         self.rank2(self.exibirRank)
         self.tela.blit(self.headrank, (25, 10))
@@ -253,13 +255,21 @@ class TelaMegaStacker:
                             self.apostar(self.moneyaposta)
                         else:
                             self.showmensage('Saldo insuficiente!')
+                    #Botão retornar
+                    elif xm > 15 and ym > 530 and xm < 75 and ym < 590:
+                        self.janela.geometry("910x600+{}+{}".format(self.x_telaPrincipal, self.y_telaPrincipal))  # largura x altura + esquerda + topo
+                        self.janela.overrideredirect(False)  # coloca bordas
+                        self.teste = 1
+                        self.play(False)
+                        self.sair = False
+                        self.v = True
+                        pygame.quit()
                     elif xm > 575 and ym > 375 and xm < 635 and ym < 435:
                         if self.moneyaposta > 0 and self.teste != 1:
                             self.play(True)
                         else:
                             if botao == self.btnOk:  # TODO Bug dedo nervoso
                                 self.showmensage('Efetue uma aposta!')
-
                             self.play(False)
                         if self.teste > 0:
                             self.teste = 0
@@ -306,17 +316,16 @@ class TelaMegaStacker:
                 self.linha8, self.subir8 = self.linha(20, self.x, 102)
                 self.juiz.append(len(self.linha8))
                 self.perdeu(self.juiz)
-
             if self.subir8 and len(self.linha7) == len(self.linha8):
                 self.juiz.append(len(self.linha8))
                 self.ganhou()
         self.moneyaposta = 0
 
+
     def apostar(self, valor):
         self.texto(str(valor), self.preto, 14, 700, 415)
 
     def perdeu(self, lista):
-
         print(lista)
         self.vago = lista[0]
         if any(Elemento != self.vago for Elemento in lista):
@@ -331,9 +340,13 @@ class TelaMegaStacker:
                 #print(os.path.dirname(os.path.realpath(__file__)))
                 #os.system("python ")
 
-                self.janela.geometry("910x600+{}+{}".format(self.x, self.y))  # largura x altura + esquerda + topo
+                self.janela.geometry("910x600+{}+{}".format(self.x_telaPrincipal, self.y_telaPrincipal))  # largura x altura + esquerda + topo
                 self.janela.overrideredirect(False)#coloca bordas
-                pygame.quit()
+                self.teste = 1
+               #self.play(False)
+                self.sair = False
+                self.v = True
+                #pygame.quit()
 
 
             self.teste = 1
@@ -378,16 +391,16 @@ class TelaMegaStacker:
                     sys.exit()
                 if evento.type == pygame.KEYDOWN:
                     if evento.key == pygame.K_SPACE:
-                        v = True
-                        stop = False
+                        self.v = True
+                        self.stop = False
                         return self.vet, True
                 if evento.type == pygame.MOUSEBUTTONDOWN:  # TODO - Criar função para todos os botões
                     xm = pygame.mouse.get_pos()[0]
                     ym = pygame.mouse.get_pos()[1]
                     print(pygame.mouse.get_pos())
                     if xm > 373 and ym > 530 and xm < 428 and ym < 590:
-                        v = True
-                        stop = False
+                        self.v = True
+                        self.stop = False
                         return self.vet, True
 
             if self.v:
@@ -405,4 +418,4 @@ class TelaMegaStacker:
                     self.xx = x
 
 
-#jogo = TelaMegaStacker("Igor")
+
