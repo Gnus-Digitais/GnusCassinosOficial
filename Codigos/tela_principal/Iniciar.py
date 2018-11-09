@@ -13,4 +13,3 @@ tela.geometry("910x600+{}+{}".format(x, y))  # largura x altura + esquerda + top
 # telaprincipal.overrideredirect(True)#retira bordas
 Jogo(tela)
 tela.mainloop()
-
