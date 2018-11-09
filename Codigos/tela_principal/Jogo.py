@@ -5,7 +5,7 @@ from tkinter import *
 import time
 import threading
 from functools import partial
-
+import pygame
 class Jogo:
     """Classe principal JOGO, onde todos os jogos são abertos."""
     def __init__(self,tela):
@@ -146,13 +146,16 @@ class Jogo:
             #print("sem texto no campo ou inválido! ")
             self.mostra_temporizado(0.5, self.lbAlerta_apelido, 1000, 271, 385, 310)
     def abre_megastacker(self):
-        usuario = self.cx_nome.get()  # todo - não ligado ainda-BRUNO(FAZER ESSA LIGAÇÃO URGENTE)...
-        self.apelido = self.trata_texto(usuario)
-        if self.apelido != False:
-            TelaMegaStacker(self.apelido, self.tela)
-        else:
-            # print("sem texto no campo ou inválido! ")
-            self.mostra_temporizado(0.5, self.lbAlerta_apelido, 1000, 271, 385, 310)
+        try:
+            usuario = self.cx_nome.get()  # todo - não ligado ainda-BRUNO(FAZER ESSA LIGAÇÃO URGENTE)...
+            self.apelido = self.trata_texto(usuario)
+            if self.apelido != False:
+                TelaMegaStacker(self.apelido, self.tela)
+            else:
+                # print("sem texto no campo ou inválido! ")
+                self.mostra_temporizado(0.5, self.lbAlerta_apelido, 1000, 271, 385, 310)
+        except:
+             pygame.quit()
 '''
 tela = Tk()
 tela['bg']="#000080"
