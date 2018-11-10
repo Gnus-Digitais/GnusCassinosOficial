@@ -86,7 +86,8 @@ class Jogo:
         # lbAlerta_apelido(apelido invalido) inicio
         self.lbAlerta_apelido = Label(self.principal,text="Apelido inválido!")
         self.lbAlerta_apelido['font'] = 'Arial', 12, "bold"
-        self.lbAlerta_apelido['bg'] = "#C8AB37"
+        self.lbAlerta_apelido['bg'] = "#ff0000"#c8ab37
+        self.lbAlerta_apelido['fg'] = "#ffffff"
         self.lbAlerta_apelido.place(x=1000, y=271)
         # lbAlerta_apelido invalido FIM
 
