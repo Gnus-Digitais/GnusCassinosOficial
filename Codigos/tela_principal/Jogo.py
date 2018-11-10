@@ -125,6 +125,7 @@ class Jogo:
     def sair(self):
         """metodo que fecha a tela principal do jogo."""
         self.tela.destroy()
+        quit()#resolvendo BUG SINISTRO
 
     def abre_blackjack(self):
         """Metodo que abre a tela BlackJack, passando como parametro o nome do jogador, tela mãe e tela atual"""
