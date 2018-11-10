@@ -94,13 +94,13 @@ class TelaSlotMachine:
         self.seta.place(x=543,y=195)
         #fim seta botao
 
-        self.btnExit = Button(self.janela)
-        self.imgExit = PhotoImage(file="../slotmachine/imagens/voltar2.png")
-        self.btnExit['image'] = self.imgExit
-        self.btnExit['relief'] = FLAT
-        self.btnExit['command'] = self.sair
-        self.btnExit['bg'] = "#006400"
-        self.btnExit.place(x=2, y=530)
+        self.btnVoltar = Button(self.janela)
+        self.imgVoltar = PhotoImage(file="../slotmachine/imagens/voltar2.png")
+        self.btnVoltar['image'] = self.imgVoltar
+        self.btnVoltar['relief'] = FLAT
+        self.btnVoltar['command'] = self.voltar
+        self.btnVoltar['bg'] = "#006400"
+        self.btnVoltar.place(x=2, y=530)
 
         # carteira
         self.carteira = Label(self.janela)
@@ -290,7 +290,7 @@ class TelaSlotMachine:
         self.valor_aposta_lb['text'] =self.valor_aposta
         self.aposta_status("aberto")
 
-    def sair(self):
+    def voltar(self):
         if self.girando==False:
             self.janela.destroy()
         else:
@@ -390,7 +390,7 @@ class TelaSlotMachine:
             print("perdeu") #todo- perdeu, verifica se a carteira possui dinheiro, caso contrário sai do jogo.
             if self.saldo_carteira < 1:
                 messagebox.showinfo("Que pena!", "Perdeu tudo!")
-                self.sair()
+                self.voltar()
 
     def igual(self,vet):
         anterior=vet[0]

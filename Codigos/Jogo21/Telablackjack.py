@@ -224,20 +224,14 @@ class Telablackjack:
         # fim botao descer mais carta
 
         # inicio  botao sair sistema
-        '''
-        self.sa = Label(self.janela, text="Sair")
-        self.sa['bg'] = '#006400'
-        self.sa['font'] = 'Arial', 12, "bold"
-        self.sa['bg'] = "#C8AB37"
-        self.sa.place(x=15, y=570)
-        '''
-        self.btnExit = Button(self.janela)
-        self.btnExit['bg'] = '#006400'
-        self.btnExit['command'] = self.sair
-        self.btnExit['relief'] = FLAT
-        self.imgbtnExit = PhotoImage(file=r"../Jogo21/image/voltar2.png")
-        self.btnExit['image'] = self.imgbtnExit
-        self.btnExit.place(x=2, y=530)
+
+        self.btnVoltar = Button(self.janela)
+        self.btnVoltar['bg'] = '#006400'
+        self.btnVoltar['command'] = self.voltar
+        self.btnVoltar['relief'] = FLAT
+        self.imgbtnVoltar = PhotoImage(file=r"../Jogo21/image/voltar2.png")
+        self.btnVoltar['image'] = self.imgbtnVoltar
+        self.btnVoltar.place(x=2, y=530)
         # FIM BTN SAIR SISTEMA
         # monte label img, m_principal do monte de cartas no lado direito>>>
         self.m5 = Label(self.janela)
@@ -795,7 +789,7 @@ class Telablackjack:
                 self.lbMaquina['text'] = ''
                 if self.saldo_carteira < 1:
                     messagebox.showinfo("Que pena!" ,"Perdeu tudo!")
-                    self.sair()
+                    self.voltar()
 
     def pararcarta(self):
         """Este metodo serve para a maquina decidir se compra ou não mais cartas, se ela decidir comprar então esta ação é feita."""
@@ -811,7 +805,7 @@ class Telablackjack:
             self.zerarPartida()
             if self.saldo_carteira < 1:
                 messagebox.showinfo("Que pena!", "Perdeu tudo!")
-                self.sair()
+                self.voltar()
 
         elif self.valorMaquina > 21:
             self.ganhou()
@@ -825,7 +819,7 @@ class Telablackjack:
             self.zerarPartida()
             if self.saldo_carteira < 1:
                 messagebox.showinfo("Que pena!", "Perdeu tudo!")
-                self.sair()
+                self.voltar()
 
         else:
             # maquina joga!@@@
@@ -851,7 +845,7 @@ class Telablackjack:
                 self.zerarPartida()
                 if self.saldo_carteira < 1:
                     messagebox.showinfo("Que pena!" ,"Perdeu tudo!")
-                    self.sair()
+                    self.voltar()
 
             else:
                 self.perdeu()
@@ -859,9 +853,9 @@ class Telablackjack:
                 self.zerarPartida()
                 if self.saldo_carteira < 1:
                     messagebox.showinfo("Que pena!" ,"Perdeu tudo!")
-                    self.sair()
+                    self.voltar()
 
-    def sair(self):
+    def voltar(self):
         """Este metodo serve para fechar a janela do jogo blackjack"""
         self.janela.destroy()
 
