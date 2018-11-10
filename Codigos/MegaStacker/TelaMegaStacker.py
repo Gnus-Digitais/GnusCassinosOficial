@@ -61,8 +61,7 @@ class TelaMegaStacker:
         self.sombotao = pygame.mixer.Sound('../MegaStacker/sounds/teste.wav')
         self.sommoeda = pygame.mixer.Sound('../MegaStacker/sounds/moeda2.wav')
 
-        # Something
-        self.ligado = False
+        #Something
         self.stop = True
         self.moneyaposta = 0
         self.moneycarteira = 250
@@ -120,10 +119,9 @@ class TelaMegaStacker:
         """este metodo adiciona o usuario do game ao ranking"""
         self.rank.addRecord(self.user, int(score))
     def dinheiro(self):
-        self.texto(str(self.moneycarteira),self.preto, 14, 715, 44)
+        self.texto(str(self.moneycarteira),self.preto, 16, 715, 44)
 
     def reiniciar(self):
-
         self.moneyaposta = 0
         self.tela.fill(self.verde)
         self.tela.blit(self.fundo, (260, 40))
@@ -145,16 +143,14 @@ class TelaMegaStacker:
                [378, 396], [427, 396], [476, 396], [280, 445], [329, 445], [378, 445], [427, 445], [476, 445]]
         self.amarelo(mat)
 
-    def showmensage(self, msg):
-        if not self.ligado:
-            pygame.draw.rect(self.tela, self.corrank, [690, 440, 150, 20])
-            pygame.display.update()
-            self.texto(msg, self.preto, 15, 690, 440)
-            self.ligado = True
-            time.sleep(1)
-            pygame.draw.rect(self.tela, self.verde, [690, 440, 150, 20])
-            pygame.display.update()
-            self.ligado = False
+    def showmensage(self, msg,x,y):
+        pygame.draw.rect(self.tela, self.vermelho, [x, y, 150, 20])
+        pygame.display.update()
+        self.texto(msg, self.branco, 16, x, y)
+        self.ligado = True
+        time.sleep(1)
+        pygame.draw.rect(self.tela, self.verde, [x, y, 150, 20])
+        pygame.display.update()
 
     def rank2(self, palavra):
         vet = palavra.split('\n')
@@ -164,8 +160,6 @@ class TelaMegaStacker:
             self.texto(saida[0], self.preto, 15, 40, y)
             self.texto(saida[1], self.preto, 15, 90, y)
             y += 15
-
-
 
     def variaveis(self):
         self.subir = False
@@ -190,7 +184,6 @@ class TelaMegaStacker:
     def inicio(self, botao):
         self.tela.blit(botao, (575, 375))
         pygame.draw.rect(self.tela, self.corrank, [35, 43, 130, 170])
-        # texto(exibirRank,preto,15,40,50)
         self.rank2(self.exibirRank)
         self.tela.blit(self.headrank, (25, 10))
         pygame.display.update()
@@ -200,7 +193,6 @@ class TelaMegaStacker:
                     pygame.quit()
                     self.janela.destroy()
                     sys.exit()
-
                 if evento.type == pygame.MOUSEBUTTONDOWN:  # TODO - Criar função para todos os botões
                     xm = pygame.mouse.get_pos()[0]
                     ym = pygame.mouse.get_pos()[1]
@@ -216,7 +208,7 @@ class TelaMegaStacker:
                             self.dinheiro()
                             self.apostar(self.moneyaposta)
                         else:
-                            self.showmensage('Saldo insuficiente!')
+                            self.showmensage('Saldo insuficiente!',690,440)
                     elif xm > 660 and ym > 500 and xm < 715 and ym < 555 and botao == self.btnOk:
                         if self.moneycarteira >= 10:
                             self.sommoeda.play()
@@ -227,7 +219,7 @@ class TelaMegaStacker:
                             self.dinheiro()
                             self.apostar(self.moneyaposta)
                         else:
-                            self.showmensage('Saldo insuficiente!')
+                            self.showmensage('Saldo insuficiente!',690,440)
                     elif xm > 720 and ym > 500 and xm < 775 and ym < 555 and botao == self.btnOk:
                         if self.moneycarteira >= 25:
                             self.sommoeda.play()
@@ -238,7 +230,7 @@ class TelaMegaStacker:
                             self.dinheiro()
                             self.apostar(self.moneyaposta)
                         else:
-                            self.showmensage('Saldo insuficiente!')
+                            self.showmensage('Saldo insuficiente!',690,440)
                     elif xm > 780 and ym > 500 and xm < 835 and ym < 555 and botao == self.btnOk:
                         if self.moneycarteira >= 50:
                             self.sommoeda.play()
@@ -249,7 +241,7 @@ class TelaMegaStacker:
                             self.dinheiro()
                             self.apostar(self.moneyaposta)
                         else:
-                            self.showmensage('Saldo insuficiente!')
+                            self.showmensage('Saldo insuficiente!',690,440)
                     elif xm > 840 and ym > 500 and xm < 895 and ym < 555 and botao == self.btnOk:
                         if self.moneycarteira >= 100:
                             self.sommoeda.play()
@@ -260,7 +252,7 @@ class TelaMegaStacker:
                             self.dinheiro()
                             self.apostar(self.moneyaposta)
                         else:
-                            self.showmensage('Saldo insuficiente!')
+                            self.showmensage('Saldo insuficiente!',690,440)
                     #Botão retornar
                     elif xm > 15 and ym > 530 and xm < 75 and ym < 590:
                         self.janela.geometry("910x600+{}+{}".format(self.x_telaPrincipal, self.y_telaPrincipal))  # largura x altura + esquerda + topo
@@ -278,7 +270,7 @@ class TelaMegaStacker:
                             self.play(True)
                         else:
                             if botao == self.btnOk:  # TODO Bug dedo nervoso
-                                self.showmensage('Efetue uma aposta!')
+                                self.showmensage('Efetue uma aposta!',690,440)
                             self.play(False)
                         if self.teste > 0:
                             self.teste = 0
@@ -332,7 +324,7 @@ class TelaMegaStacker:
 
 
     def apostar(self, valor):
-        self.texto(str(valor), self.preto, 14, 700, 415)
+        self.texto(str(valor), self.preto, 16, 700, 415)
 
     def perdeu(self, lista):
         print(lista)
@@ -368,9 +360,9 @@ class TelaMegaStacker:
         self.musicafundo.stop()
         self.somwin.play()
         self.moneycarteira += self.moneyaposta * 10
+        self.inserir_no_ranking(self.moneycarteira)
         self.moneyaposta = 0
         self.teste = 1
-        self.inserir_no_ranking(self.moneycarteira)
         self.play(False)
         self.inicio(self.btnReinicia)
 
@@ -394,6 +386,7 @@ class TelaMegaStacker:
             for evento in pygame.event.get():
                 if evento.type == QUIT:
                     pygame.quit()
+                    self.janela.destroy()
                     sys.exit()
                 if evento.type == pygame.KEYDOWN:
                     if evento.key == pygame.K_SPACE:
@@ -408,11 +401,12 @@ class TelaMegaStacker:
                         self.v = True
                         self.stop = False
                         return self.vet, True
+                    elif xm > 15 and ym > 530 and xm < 75 and ym < 590:
+                        self.showmensage('Finalize o jogo!',78,550)
 
             if self.v:
                 break
             else:
-
                 if self.stop and len(self.vet) < 5:
                     self.atual = [self.xx, y]
                     self.vet.append(self.atual)
