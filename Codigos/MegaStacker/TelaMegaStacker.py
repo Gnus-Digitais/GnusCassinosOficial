@@ -32,7 +32,7 @@ class TelaMegaStacker:
         #definição da tela
         self.tela = pygame.display.set_mode((self.largura, self.altura))
         pygame.display.set_caption("MegaStacker")
-        pygame.display.set_icon(pygame.image.load("imagem/logoicone3.ico"))
+        pygame.display.set_icon(pygame.image.load("imagem/icone2.png"))
         #definição do relógico FPS
         self.relogio = pygame.time.Clock()
         #carregar as imagens do jogo
@@ -66,7 +66,7 @@ class TelaMegaStacker:
         self.moneyaposta = 0
         self.moneycarteira = 250
         self.rank = Raking("megastacker", "f")
-        self.exibirRank = self.rank.retorna_ranking()
+
         self.teste = 0
         self.x = 280
         self.y = 445
@@ -102,7 +102,10 @@ class TelaMegaStacker:
     def user(self, valor):
         self.__user = valor
 
-    def amarelo(self, lista):
+    def desenha_varios_quadrados(self, lista):
+        """Função para desenhar vários quadrados na tela
+        a partir de uma lista que em canda posição contém uma
+        coordeanda x e y"""
         self.relogio.tick(60)
         for i in range(len(lista)):
             pygame.draw.rect(self.tela, self.preto, [lista[i][0], lista[i][1], 46, 47])
@@ -134,14 +137,14 @@ class TelaMegaStacker:
         self.tela.blit(self.vinteCinco, (720, 500))
         self.tela.blit(self.cinquenta, (780, 500))
         self.tela.blit(self.cem, (840, 500))
-        self.tela.blit(self.btnRetornar,(15,530))
+        self.tela.blit(self.btnRetornar,(2,530))
         self.dinheiro()
         mat = [[280, 102], [329, 102], [378, 102], [427, 102], [476, 102], [280, 151], [329, 151], [378, 151],
                [427, 151], [476, 151], [280, 200], [329, 200], [378, 200], [427, 200], [476, 200], [280, 249],
                [329, 249], [378, 249], [427, 249], [476, 249], [280, 298], [329, 298], [378, 298], [427, 298],
                [476, 298], [280, 347], [329, 347], [378, 347], [427, 347], [476, 347], [280, 396], [329, 396],
                [378, 396], [427, 396], [476, 396], [280, 445], [329, 445], [378, 445], [427, 445], [476, 445]]
-        self.amarelo(mat)
+        self.desenha_varios_quadrados(mat)
 
     def showmensage(self, msg,x,y):
         pygame.draw.rect(self.tela, self.vermelho, [x, y, 150, 20])
@@ -184,6 +187,7 @@ class TelaMegaStacker:
     def inicio(self, botao):
         self.tela.blit(botao, (575, 375))
         pygame.draw.rect(self.tela, self.corrank, [35, 43, 130, 170])
+        self.exibirRank = self.rank.retorna_ranking()
         self.rank2(self.exibirRank)
         self.tela.blit(self.headrank, (25, 10))
         pygame.display.update()
@@ -196,7 +200,6 @@ class TelaMegaStacker:
                 if evento.type == pygame.MOUSEBUTTONDOWN:  # TODO - Criar função para todos os botões
                     xm = pygame.mouse.get_pos()[0]
                     ym = pygame.mouse.get_pos()[1]
-                    print(pygame.mouse.get_pos())
 
                     if xm > 600 and ym > 500 and xm < 655 and ym < 555 and botao == self.btnOk:
                         if self.moneycarteira >= 5:
@@ -254,7 +257,7 @@ class TelaMegaStacker:
                         else:
                             self.showmensage('Saldo insuficiente!',690,440)
                     #Botão retornar
-                    elif xm > 15 and ym > 530 and xm < 75 and ym < 590:
+                    elif xm > 2 and ym > 530 and xm < 62 and ym < 590:
                         self.janela.geometry("910x600+{}+{}".format(self.x_telaPrincipal, self.y_telaPrincipal))  # largura x altura + esquerda + topo
                         self.janela.overrideredirect(False)  # coloca bordas
                         self.teste = 1
@@ -327,7 +330,6 @@ class TelaMegaStacker:
         self.texto(str(valor), self.preto, 16, 700, 415)
 
     def perdeu(self, lista):
-        print(lista)
         self.vago = lista[0]
         if any(Elemento != self.vago for Elemento in lista):
             self.tela.blit(self.perdeuimagem, (300, 100))
@@ -337,7 +339,6 @@ class TelaMegaStacker:
             if self.moneycarteira <  1:
                 Tk().withdraw()
                 messagebox.showinfo("Que pena!", "Perdeu tudo!")
-                print("perdeu tudo!")
                 self.janela.geometry("910x600+{}+{}".format(self.x_telaPrincipal, self.y_telaPrincipal))  # largura x altura + esquerda + topo
                 self.janela.overrideredirect(False)#coloca bordas
                 self.teste = 1
@@ -366,11 +367,10 @@ class TelaMegaStacker:
         self.play(False)
         self.inicio(self.btnReinicia)
 
-    def quadrado(self, lista):
-        for xy in lista:
-            pygame.draw.rect(self.tela, self.vermelho, [xy[0], xy[1], 46, 47])
 
-    def quadrado2(self, x, y):
+    def desenha_quadrado(self, x, y):
+        """Função para desenhar um quadrado na tela, a partir das
+        coordenadas x e y"""
         if self.stop:
             pygame.draw.rect(self.tela, self.vermelho, [x, y, 46, 47])
             pygame.display.update()
@@ -396,7 +396,6 @@ class TelaMegaStacker:
                 if evento.type == pygame.MOUSEBUTTONDOWN:  # TODO - Criar função para todos os botões
                     xm = pygame.mouse.get_pos()[0]
                     ym = pygame.mouse.get_pos()[1]
-                    print(pygame.mouse.get_pos())
                     if xm > 373 and ym > 530 and xm < 428 and ym < 590:
                         self.v = True
                         self.stop = False
@@ -410,10 +409,10 @@ class TelaMegaStacker:
                 if self.stop and len(self.vet) < 5:
                     self.atual = [self.xx, y]
                     self.vet.append(self.atual)
-                    self.quadrado2(self.atual[0], self.atual[1])
+                    self.desenha_quadrado(self.atual[0], self.atual[1])
                     self.xx += 49
                 else:
-                    self.amarelo(self.vet)
+                    self.desenha_varios_quadrados(self.vet)
                     self.vet.clear()
                     self.xx = x
 

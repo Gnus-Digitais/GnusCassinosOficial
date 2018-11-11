@@ -2,9 +2,9 @@ igor|21600|f
 igor214|18800|f
 igor|12915|f
 igor|7200|f
+Bruno|6650|f
 igor|5700|f
 deuxx|5100|f
 igor|4400|f
 trolado|4370|f
 igor|4305|f
-1000oC|3975|f
