@@ -6,6 +6,7 @@ from functools import partial
 from tkinter import messagebox
 import time
 import threading
+import pygame
 
 # TODO 1 - LEMBRAR DE CONECTAR  TELA PRINCIPAL COM O MEGASTACKER - BRUNO
 
@@ -14,6 +15,7 @@ class Telablackjack:
     # def __init__(self, user,janela):
     def __init__(self, user,janela):
         self.__user = user
+        pygame.init()
         #criando frame desta janela e posicionando.
         self.janela = Frame(janela)
         self.janela['width'] = 910

@@ -1,6 +1,7 @@
 import threading
 from tkinter import *
 from pygame import mixer
+import pygame
 import ctypes
 import time
 from functools import partial
@@ -13,7 +14,7 @@ from Codigos.classes_auxiliares.Ranking import Raking
 class TelaSlotMachine:
     def __init__(self,user,janela):
         self.__user = user
-
+        pygame.init()
         # criando frame desta janela e posicionando.
         self.janela = Frame(janela)
         self.janela['width'] = 910
@@ -333,6 +334,7 @@ class TelaSlotMachine:
             self.seta.place(x=1000, y=195)
 
     def iniciar(self):
+
         self.girando=True
         vet_auxiliar=[]
         resposta=False
