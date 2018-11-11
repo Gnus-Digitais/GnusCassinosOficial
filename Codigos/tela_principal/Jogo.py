@@ -125,6 +125,8 @@ class Jogo:
     def sair(self):
         """metodo que fecha a tela principal do jogo."""
         self.tela.destroy()
+        pygame.quit()
+        sys.exit()
         quit()#resolvendo BUG SINISTRO
 
     def abre_blackjack(self):

@@ -293,6 +293,7 @@ class TelaSlotMachine:
 
     def voltar(self):
         if self.girando==False:
+            pygame.quit()
             self.janela.destroy()
         else:
             self.mostra_temporizado(0.5,self.lbAlerta_sair,1000,400,65,550)

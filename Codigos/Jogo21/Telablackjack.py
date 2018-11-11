@@ -859,6 +859,7 @@ class Telablackjack:
 
     def voltar(self):
         """Este metodo serve para fechar a janela do jogo blackjack"""
+        pygame.quit()
         self.janela.destroy()
 
     def placarMaquina(self,v):
