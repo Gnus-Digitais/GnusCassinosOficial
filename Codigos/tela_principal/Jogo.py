@@ -1,6 +1,7 @@
 from Codigos.Jogo21.Telablackjack import Telablackjack
 from Codigos.slotmachine.telaSlotMachine import TelaSlotMachine
 from Codigos.MegaStacker.TelaMegaStacker import TelaMegaStacker
+from Codigos.tela_principal.Howtoplay import Howtoplay
 from tkinter import *
 import time
 import threading
@@ -91,6 +92,14 @@ class Jogo:
         self.lbAlerta_apelido.place(x=1000, y=271)
         # lbAlerta_apelido invalido FIM
 
+        self.btn_how_to_play=Button(self.principal)
+        self.imgbtn_how_to_play=PhotoImage(file="imagem/howtoplaybutton.png")
+        self.btn_how_to_play['image']=self.imgbtn_how_to_play
+        self.btn_how_to_play['relief']=FLAT
+        self.btn_how_to_play['command']=self.abre_how_to_play
+        self.btn_how_to_play['bg']="#000080"
+        self.btn_how_to_play.place(x=2,y=68)
+
     @property
     def apelido(self):
         return self.__apelido
@@ -160,6 +169,11 @@ class Jogo:
                 self.mostra_temporizado(0.5, self.lbAlerta_apelido, 1000, 271, 385, 310)
         except:
              pygame.quit()
+
+    def abre_how_to_play(self):
+        Howtoplay(self.tela,"tela_principal")
+
+
 '''
 tela = Tk()
 tela['bg']="#000080"

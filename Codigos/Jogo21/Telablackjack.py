@@ -1,4 +1,5 @@
 from Codigos.Jogo21.baralho import Baralho
+from Codigos.tela_principal.Howtoplay import Howtoplay
 from pygame import mixer
 from tkinter import *
 from Codigos.classes_auxiliares.Ranking import Raking
@@ -410,6 +411,14 @@ class Telablackjack:
         self.lbAlerta_quantia.place(x=1000, y=450)
         #fim lbAlerta Quantia aposta invalida
 
+        self.btn_how_to_play = Button(self.janela)
+        self.imgbtn_how_to_play = PhotoImage(file="imagem/howtoplaybutton.png")
+        self.btn_how_to_play['image'] = self.imgbtn_how_to_play
+        self.btn_how_to_play['relief'] = FLAT
+        self.btn_how_to_play['command'] = self.abre_how_to_play
+        self.btn_how_to_play['bg'] = "#006400"
+        self.btn_how_to_play.place(x=2, y=465)
+
 
     def trhead_temporizador(self,tempo,texto,xA,yA,xNovo,yNovo):
         """mostra por um breve tempo na tela"""
@@ -428,6 +437,9 @@ class Telablackjack:
     @user.setter
     def user(self, valor):
         self.__user = valor
+
+    def abre_how_to_play(self):
+        Howtoplay(self.janela, "blackjack")
 
     # fodasticamente by:grupomaisfodadoBrasil <"G'NUS DIGITAIS"> não ouse tocar nesta linha!>>risco de morte
     # melhor team: "G'NUS DIGITAIS"> Matheus Dias, Bruno Felipe, Rodrigo Rocca e Igor Ramos(6998121-0671)..

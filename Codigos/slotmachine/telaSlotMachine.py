@@ -8,6 +8,7 @@ from functools import partial
 from tkinter import messagebox
 from Codigos.slotmachine.SlotMachine import SlotMachine
 from Codigos.classes_auxiliares.Ranking import Raking
+from Codigos.tela_principal.Howtoplay import Howtoplay
 
 #TODO- VERIFICAR NO RANKING SE FOI TRATADO O NOME SLOTMACHINE E SE EXISTE PASTA COM RANKING DESTE JOGO NESTE PACKAGE.
 
@@ -215,6 +216,16 @@ class TelaSlotMachine:
         self.lbAlerta_sair['bg'] = "#ff0000"
         self.lbAlerta_sair.place(x=1000, y=450)
         # fim lbAlerta Quantia aposta invalida
+
+        self.btn_how_to_play = Button(self.janela)
+        self.imgbtn_how_to_play = PhotoImage(file="imagem/howtoplaybutton.png")
+        self.btn_how_to_play['image'] = self.imgbtn_how_to_play
+        self.btn_how_to_play['relief'] = FLAT
+        self.btn_how_to_play['command'] = self.abre_how_to_play
+        self.btn_how_to_play['bg'] = "#006400"
+        self.btn_how_to_play.place(x=2, y=465)
+
+
     #temporizador
     def trhead_temporizador(self, tempo, texto, xA, yA, xNovo, yNovo):
         """mostra por um breve tempo na tela"""
@@ -233,6 +244,9 @@ class TelaSlotMachine:
     @user.setter
     def user(self, valor):
         self.__user = valor
+
+    def abre_how_to_play(self):
+        Howtoplay(self.janela, "slotmachine")
 
     def aposta_status(self, stat):
         """Este método serve para esconder as fichas(botões), do jogador no momento em que esses botões não são necessários"""
