@@ -2,8 +2,8 @@ from tkinter import *
 from Codigos.tela_principal.Jogo import Jogo
 import sys
 
-def win_deleted():
-    print("closed")
+def finalizar_programa():
+    print("Aplicação encerrada com sucesso!")
     tela.destroy()
     sys.exit()
 
@@ -15,7 +15,6 @@ tela.iconbitmap("imagem\logoicone3.ico")
 x = (tela.winfo_screenwidth() // 2) - (910 // 2)
 y = (tela.winfo_screenheight() // 2) - (600 // 2)
 tela.geometry("910x600+{}+{}".format(x, y))  # largura x altura + esquerda + topo
-# telaprincipal.overrideredirect(True)#retira bordas
 Jogo(tela)
-tela.protocol("WM_DELETE_WINDOW", win_deleted)
+tela.protocol("WM_DELETE_WINDOW", finalizar_programa)
 tela.mainloop()
