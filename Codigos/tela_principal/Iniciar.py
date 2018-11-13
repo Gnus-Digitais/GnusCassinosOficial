@@ -1,6 +1,11 @@
 from tkinter import *
 from Codigos.tela_principal.Jogo import Jogo
+import sys
 
+def win_deleted():
+    print("closed")
+    tela.destroy()
+    sys.exit()
 
 tela = Tk()
 tela['bg']="#000080"
@@ -12,4 +17,5 @@ y = (tela.winfo_screenheight() // 2) - (600 // 2)
 tela.geometry("910x600+{}+{}".format(x, y))  # largura x altura + esquerda + topo
 # telaprincipal.overrideredirect(True)#retira bordas
 Jogo(tela)
+tela.protocol("WM_DELETE_WINDOW", win_deleted)
 tela.mainloop()

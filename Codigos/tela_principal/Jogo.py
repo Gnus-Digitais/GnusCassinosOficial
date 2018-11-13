@@ -137,6 +137,7 @@ class Jogo:
         pygame.quit()
         sys.exit()
         quit()#resolvendo BUG SINISTRO
+        exit()
 
     def abre_blackjack(self):
         """Metodo que abre a tela BlackJack, passando como parametro o nome do jogador, tela mãe e tela atual"""
