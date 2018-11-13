@@ -20,6 +20,7 @@ class TelaMegaStacker:
 
         # GNUS DIGITAIS> BRUNO, RODRIGO, MATHEUS E IGOR
         # Cores
+        self.azul = (0,0,128)
         self.verde = (0, 100, 0)
         self.am = (255, 255, 0)
         self.vermelho = (255, 0, 0)
@@ -53,6 +54,8 @@ class TelaMegaStacker:
         self.btnOk = pygame.image.load('../MegaStacker/imagens/btnOk.png')
         self.headrank = pygame.image.load('../MegaStacker/imagens/quadroRanking.png')
         self.btnRetornar = pygame.image.load('../MegaStacker/imagens/voltar2.png')
+        self.btnHowToPlay = pygame.image.load('imagem/howtoplaybutton.png')
+        self.howToPlay = pygame.image.load('imagem/howtoplaymegastacker.png')
         #carregar os sons do jogo
         self.somperdeu = pygame.mixer.Sound('../MegaStacker/sounds/perdeu.ogg')
         self.somwin = pygame.mixer.Sound('../MegaStacker/sounds/ganhou .ogg')
@@ -87,6 +90,7 @@ class TelaMegaStacker:
         self.linha6 = []
         self.linha7 = []
         self.linha8 = []
+        self.controle_howtoplay = False
         self.juiz = [0]
         self.sair = True
         self.reiniciar()
@@ -138,6 +142,7 @@ class TelaMegaStacker:
         self.tela.blit(self.cinquenta, (780, 500))
         self.tela.blit(self.cem, (840, 500))
         self.tela.blit(self.btnRetornar,(2,530))
+        self.tela.blit(self.btnHowToPlay,(2,465))
         self.dinheiro()
         mat = [[280, 102], [329, 102], [378, 102], [427, 102], [476, 102], [280, 151], [329, 151], [378, 151],
                [427, 151], [476, 151], [280, 200], [329, 200], [378, 200], [427, 200], [476, 200], [280, 249],
@@ -183,7 +188,7 @@ class TelaMegaStacker:
         self.linha8 = []
         self.juiz = [0]
         self.sair = True
-
+        self.controle_howtoplay = False
     def inicio(self, botao):
         self.tela.blit(botao, (575, 375))
         pygame.draw.rect(self.tela, self.corrank, [35, 43, 130, 170])
@@ -256,8 +261,16 @@ class TelaMegaStacker:
                             self.apostar(self.moneyaposta)
                         else:
                             self.showmensage('Saldo insuficiente!',690,440)
-                    #Botão retornar
-                    elif xm > 2 and ym > 530 and xm < 62 and ym < 590:
+
+                    #Botão howtoplay
+                    elif xm > 2 and ym > 465 and xm < 62 and ym < 525:
+                        self.tela.fill(self.azul)
+                        self.tela.blit(self.howToPlay, (90, 20))
+                        self.tela.blit(self.btnRetornar,(2,530))
+                        pygame.display.update()
+                        self.controle_howtoplay = True
+                    #Botão retornar fora do howtoplay
+                    elif xm > 2 and ym > 530 and xm < 62 and ym < 590 and self.controle_howtoplay == False:
                         self.janela.geometry("910x600+{}+{}".format(self.x_telaPrincipal, self.y_telaPrincipal))  # largura x altura + esquerda + topo
                         self.janela.overrideredirect(False)  # coloca bordas
                         self.teste = 1
@@ -266,8 +279,11 @@ class TelaMegaStacker:
                         #self.play(True)
                         print('Qualquer coisa'+1)
                         break
-
-
+                    #Botão retornar dentro do howtoplay
+                    elif xm > 2 and ym > 530 and xm < 62 and ym < 590 and self.controle_howtoplay == True:
+                        self.reiniciar()
+                        self.variaveis()
+                        self.inicio(self.btnOk)
                     elif xm > 575 and ym > 375 and xm < 635 and ym < 435:
                         if self.moneyaposta > 0 and self.teste != 1:
                             self.play(True)
