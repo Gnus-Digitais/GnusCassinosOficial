@@ -167,7 +167,7 @@ class TelaMegaStacker:
             saida = x.split('\t')
             self.texto(saida[0], self.preto, 15, 40, y)
             self.texto(saida[1], self.preto, 15, 90, y)
-            y += 15
+            y += 17
 
     def variaveis(self):
         self.subir = False
@@ -191,7 +191,7 @@ class TelaMegaStacker:
         self.controle_howtoplay = False
     def inicio(self, botao):
         self.tela.blit(botao, (575, 375))
-        pygame.draw.rect(self.tela, self.corrank, [35, 43, 130, 170])
+        pygame.draw.rect(self.tela, self.corrank, [35, 43, 130, 190])
         self.exibirRank = self.rank.retorna_ranking()
         self.rank2(self.exibirRank)
         self.tela.blit(self.headrank, (25, 10))
