@@ -270,6 +270,7 @@ class TelaSlotMachine:
     def aposta_ficha(self, ficha):
         """Este método serve para configurar apostas feitas pelo jogador, e também mudar o valor da carteira do jogador"""
         if self.saldo_carteira - ficha >= 0:
+            self.cliqueMoeda()
             if ficha == 5:
                 self.valor_aposta = self.valor_aposta + 5
                 self.saldo_carteira = self.saldo_carteira - 5
@@ -328,6 +329,10 @@ class TelaSlotMachine:
         mixer.music.load(r'../slotmachine/sounds/ganhou.mp3')  # ganhou
         mixer.music.play()
 
+    def cliqueMoeda(self):
+        """Este método serve para tocar o som de - clique ao pressionar uma ficha de aposta"""
+        mixer.music.load(r"../slotmachine/sounds/moeda2.wav") # clique
+        mixer.music.play()
     def muda_alavanca(self,status):
         if status=="cima":
             #status e cima

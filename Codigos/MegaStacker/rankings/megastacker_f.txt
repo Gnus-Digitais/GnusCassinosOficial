@@ -3,8 +3,8 @@ igor|2500|f
 igor|2050|f
 Bruno|2050|f
 fafa|2025|f
+valt|1225|f
 testeig|1000|f
 teste|700|f
 Cabra|700|f
 teste|650|f
-teste|600|f

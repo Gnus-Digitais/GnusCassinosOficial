@@ -465,6 +465,7 @@ class Telablackjack:
     def aposta_ficha(self,ficha):
         """Este método serve para configurar apostas feitas pelo jogador, e também mudar o valor da carteira do jogador"""
         if self.saldo_carteira - ficha >= 0:
+            self.cliqueMoeda()
             if ficha == 5:
                 self.valor_aposta = self.valor_aposta + 5
                 self.saldo_carteira = self.saldo_carteira - 5
@@ -723,6 +724,11 @@ class Telablackjack:
     def puxacartaSom(self):
         """Este metodo serve para tocar o som de - compra de carta"""
         mixer.music.load(r'../Jogo21/sounds/DEAL1.wav')  # puxando carta
+        mixer.music.play()
+
+    def cliqueMoeda(self):
+        """Este método serve para tocar o som de - clique ao pressionar uma ficha de aposta"""
+        mixer.music.load(r"../Jogo21/sounds/moeda2.wav") # clique
         mixer.music.play()
 
     def adicionaCartaSlot(self,jogador, url):
