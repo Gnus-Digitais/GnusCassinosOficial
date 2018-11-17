@@ -284,8 +284,11 @@ class TelaMegaStacker:
                         self.reiniciar()
                         self.variaveis()
                         self.inicio(self.btnOk)
+                    #Botão Play
                     elif xm > 575 and ym > 375 and xm < 635 and ym < 435:
                         if self.moneyaposta > 0 and self.teste != 1:
+                            pygame.draw.rect(self.tela, self.verde, [570, 370, 70, 70])
+                            pygame.draw.rect(self.tela, self.verde, [590, 500, 310, 70])
                             self.play(True)
                         else:
                             if botao == self.btnOk:  # TODO Bug dedo nervoso
@@ -311,7 +314,7 @@ class TelaMegaStacker:
                     self.subirLinha.play()
                     self.linha2, self.subir2 = self.linha(4, self.x, 396)
                     self.juiz.append(len(self.linha2))
-                self.perdeu(self.juiz)
+                    self.perdeu(self.juiz)
             if self.subir2 and len(self.linha1) == len(self.linha2):
                 self.linha3, self.subir3 = self.linha(6, self.x, 347)
                 self.juiz.append(len(self.linha3))
