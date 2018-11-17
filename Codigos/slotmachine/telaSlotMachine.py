@@ -2,7 +2,6 @@ import threading
 from tkinter import *
 from pygame import mixer
 import pygame
-import ctypes
 import time
 from functools import partial
 from tkinter import messagebox
@@ -10,9 +9,8 @@ from Codigos.slotmachine.SlotMachine import SlotMachine
 from Codigos.classes_auxiliares.Ranking import Raking
 from Codigos.tela_principal.Howtoplay import Howtoplay
 
-#TODO- VERIFICAR NO RANKING SE FOI TRATADO O NOME SLOTMACHINE E SE EXISTE PASTA COM RANKING DESTE JOGO NESTE PACKAGE.
-
 class TelaSlotMachine:
+    """Esta é a classe que possui as funcionalidades do jogo SlotMachine"""
     def __init__(self,user,janela):
         self.__user = user
         pygame.init()
@@ -234,6 +232,7 @@ class TelaSlotMachine:
         texto.place(x=xA, y=yA)
 
     def mostra_temporizado(self, tempo, texto, xA, yA, xNovo, yNovo):
+        """Este metodo serve para mostrar um componente na tela por um tempo pré-determinado."""
         threading.Timer(0.1, partial(self.trhead_temporizador, tempo, texto, xA, yA, xNovo, yNovo)).start()
 
     # get e set do user
@@ -246,6 +245,7 @@ class TelaSlotMachine:
         self.__user = valor
 
     def abre_how_to_play(self):
+        """Este método serve para abrir o how to play da tela slotmachine."""
         Howtoplay(self.janela, "slotmachine")
 
     def aposta_status(self, stat):
@@ -270,7 +270,7 @@ class TelaSlotMachine:
     def aposta_ficha(self, ficha):
         """Este método serve para configurar apostas feitas pelo jogador, e também mudar o valor da carteira do jogador"""
         if self.saldo_carteira - ficha >= 0:
-            self.cliqueMoeda()
+            self.cliqueMoeda() # esta linha adiciona o som ao clique nas fichas.
             if ficha == 5:
                 self.valor_aposta = self.valor_aposta + 5
                 self.saldo_carteira = self.saldo_carteira - 5
@@ -298,7 +298,6 @@ class TelaSlotMachine:
                 self.valor_aposta_lb['text'] = self.valor_aposta
         else:
             self.mostra_temporizado(0.5,self.lbAlerta_quantia,1000,400,690,450)
-            print("não deixa apostar essa quantia ! :( ")
 
     def reseta(self):
         """Este metodo serve para Configurar uma nova partida limpando a tela sem alterar o valor da carteira."""
@@ -307,12 +306,12 @@ class TelaSlotMachine:
         self.aposta_status("aberto")
 
     def voltar(self):
+        """este metodo serve para retornar a tela principal do jogo"""
         if self.girando==False:
             pygame.quit()
             self.janela.destroy()
         else:
-            self.mostra_temporizado(0.5,self.lbAlerta_sair,1000,400,65,550)
-            print("EM ANDAMENTO.espere finalizar ")
+            self.mostra_temporizado(0.5,self.lbAlerta_sair,1000,400,65,550)#mensagem se alerta.
 
     def pin(self):
         """este metodo serve para tocar o som mp3 que inicia assim que o slot termina de girar."""
@@ -334,6 +333,7 @@ class TelaSlotMachine:
         mixer.music.load(r"../slotmachine/sounds/moeda2.wav") # clique
         mixer.music.play()
     def muda_alavanca(self,status):
+        """Este metodo serve para mudar a alavanca para 'cima' ou 'baixo'. """
         if status=="cima":
             #status e cima
             self.imgSpin.place(x=480, y=200)
@@ -344,7 +344,7 @@ class TelaSlotMachine:
             self.b.place(x=0,y=0)
             self.seta.place(x=543, y=195)
         else:
-            #status e baixo
+            #status está baixo
             self.imgSpin.place(x=480, y=291)
             self.imgSP['file'] = r"../slotmachine/imagens/bracoBaixo.png"
             self.btnSpin.place(x=0,y=0)
@@ -354,7 +354,7 @@ class TelaSlotMachine:
             self.seta.place(x=1000, y=195)
 
     def iniciar(self):
-
+        """Este método serve para iniciar o sorteio do SlotMachine.(inicia máquina)."""
         self.girando=True
         vet_auxiliar=[]
         resposta=False
@@ -392,14 +392,13 @@ class TelaSlotMachine:
             time.sleep(0.09)
         vet_auxiliar.append(nome3)
         self.status = 1
-        print("gotcha parou")
         self.muda_alavanca("cima")
-        resposta = self.igual(vet_auxiliar)
+        resposta = self.igual(vet_auxiliar)#chama método que compara valores do vetor auxiliar que contém as imagens sorteadas.
         self.girando = False
         if resposta == True:
             # ganhou
             self.ganhouSom()
-            print("ganhou")  # todo- ganhou. multiplica por 10 o valor da aposta
+            # multiplica por 10 o valor da aposta
             self.saldo_carteira = self.saldo_carteira + (self.valor_aposta * 10)
             self.saldo_carteira_lb['text'] = self.saldo_carteira
             self.inserir_no_ranking(self.saldo_carteira)
@@ -409,12 +408,13 @@ class TelaSlotMachine:
             self.reseta()
             self.perdeuSom()
             # perdeu
-            print("perdeu") #todo- perdeu, verifica se a carteira possui dinheiro, caso contrário sai do jogo.
+            # verifica se a carteira possui dinheiro, caso contrário sai do jogo.
             if self.saldo_carteira < 1:
                 messagebox.showinfo("Que pena!", "Perdeu tudo!")
                 self.voltar()
 
     def igual(self,vet):
+        """Este é o metodo que comparar as imagens sorteadas pela maquina SLOTMACHINE. este metodo retorna true ou false."""
         anterior=vet[0]
         contador=1
         for i in range(2):
@@ -435,20 +435,19 @@ class TelaSlotMachine:
         self.r.addRecord(self.user, int(score))
 
     def sorteia(self):
+        """Este metodo serve para inicializar a maquina slotmachine chamando a threading responsável."""
         if self.valor_aposta > 0:
             self.aposta_status("fechado")
             # muda_alavanca("meio")
             self.muda_alavanca("baixo")
             threading.Timer(0.1, self.iniciar).start()
         else:
-            self.mostra_temporizado(0.5, self.lbAlerta_aposta, 1000, 400, 680, 450)
-            print("Proibido iniciar partida sem antes efetuar uma aposta.")
+            self.mostra_temporizado(0.5, self.lbAlerta_aposta, 1000, 400, 680, 450)#alerta proibido iniciar antes de apostar.
 
     def muda_meio(self):
+        """Este metodo serve para piscar lampadas da maquina slotmachine constantemente."""
         while self.status!=1:
             self.cNiquel['image']=self.imgcNiquel
             time.sleep(0.2)
             self.cNiquel['image']=self.imglpdLigada
             time.sleep(0.2)
-
-#TODO - FIM DO CÓDIGO-igor, Matheus, por favor revisar tudo.

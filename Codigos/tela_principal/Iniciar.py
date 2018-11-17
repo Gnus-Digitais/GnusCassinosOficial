@@ -3,7 +3,6 @@ from Codigos.tela_principal.Jogo import Jogo
 import sys
 
 def finalizar_programa():
-    print("Aplicação encerrada com sucesso!")
     tela.destroy()
     sys.exit()
 

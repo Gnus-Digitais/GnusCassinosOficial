@@ -1,5 +1,6 @@
 catarin|3100|f
 fff|2500|f
+igor|2455|f
 Koala|1050|f
 sr.gnu|1000|f
 fabio|1500|f
@@ -7,4 +8,3 @@ julia|1400|f
 guga|1200|f
 marco|1100|f
 josé|1050|f
-monik|1000|f

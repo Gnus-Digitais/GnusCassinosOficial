@@ -108,7 +108,7 @@ class Jogo:
     def apelido(self, valor):
         self.__apelido = valor
 
-        # temporizador
+    # temporizador
 
     def trhead_temporizador(self, tempo, texto, xA, yA, xNovo, yNovo):
         """mostra por um breve tempo na tela"""
@@ -117,6 +117,7 @@ class Jogo:
         texto.place(x=xA, y=yA)
 
     def mostra_temporizado(self, tempo, texto, xA, yA, xNovo, yNovo):
+        """Método para ser usado quando precisar mostrar um componente por um breve tempo na tela"""
         threading.Timer(0.1, partial(self.trhead_temporizador, tempo, texto, xA, yA, xNovo, yNovo)).start()
 
     def trata_texto(self,texto):
@@ -136,57 +137,39 @@ class Jogo:
         self.tela.destroy()
         pygame.quit()
         sys.exit()
-        quit()#resolvendo BUG SINISTRO
-        exit()
+        quit() #resolvendo BUG SINISTRO
+        exit()# caso não tenha sido finalizado, esta linha encerra de vez o programa.
 
     def abre_blackjack(self):
-        """Metodo que abre a tela BlackJack, passando como parametro o nome do jogador, tela mãe e tela atual"""
+        """Metodo que abre a tela BlackJack, passando como parametro o nome do jogador e a tela atual"""
         usuario=self.cx_nome.get()
         self.apelido=self.trata_texto(usuario)
         if self.apelido !=False:
             Telablackjack(self.apelido,self.tela)
         else:
-            #print("sem texto no campo ou inválido!")
             self.mostra_temporizado(0.5,self.lbAlerta_apelido,1000,271,385,310)
 
 
     def abre_slotmachine(self):
-        """Metodo que abre a tela SLOTMACHINE, passando como parametro o nome do jogador, tela mãe e tela atual"""
+        """Metodo que abre a tela SLOTMACHINE, passando como parametro o nome do jogador e a tela atual"""
         usuario = self.cx_nome.get()
         self.apelido = self.trata_texto(usuario)
         if self.apelido != False:
             TelaSlotMachine(self.apelido, self.tela)
         else:
-            #print("sem texto no campo ou inválido! ")
             self.mostra_temporizado(0.5, self.lbAlerta_apelido, 1000, 271, 385, 310)
     def abre_megastacker(self):
+        """Metodo que abre a tela Megastacker, passando como parametro o nome do jogador e a tela atual"""
         try:
             usuario = self.cx_nome.get()  # todo - não ligado ainda-BRUNO(FAZER ESSA LIGAÇÃO URGENTE)...
             self.apelido = self.trata_texto(usuario)
             if self.apelido != False:
                 TelaMegaStacker(self.apelido, self.tela)
             else:
-                # print("sem texto no campo ou inválido! ")
                 self.mostra_temporizado(0.5, self.lbAlerta_apelido, 1000, 271, 385, 310)
         except:
              pygame.quit()
 
     def abre_how_to_play(self):
+        """Este método abre o how to play"""
         Howtoplay(self.tela,"tela_principal")
-
-
-'''
-tela = Tk()
-tela['bg']="#000080"
-tela.title("G'nus Cassinos")
-tela.resizable(0, 0)
-tela.iconbitmap("imagem\logoicone3.ico")
-x = (tela.winfo_screenwidth() // 2) - (910 // 2)
-y = (tela.winfo_screenheight() // 2) - (600 // 2)
-tela.geometry("910x600+{}+{}".format(x, y))  # largura x altura + esquerda + topo
-# telaprincipal.overrideredirect(True)#retira bordas
-Jogo(tela)
-tela.mainloop()
-'''
-
-# TODO - REVISAR CÓDIGO TODO..!!!!!! - IGOR - MATHEUS - BRUNO(se quiser).

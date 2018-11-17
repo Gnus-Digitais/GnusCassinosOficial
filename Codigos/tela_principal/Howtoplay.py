@@ -22,17 +22,16 @@ class Howtoplay:
         self.howtoplay['bg'] = "#000080"
         self.howtoplay.place(x=0,y=0)
 
+        #esta parte do código verifica se o atributo self.jogo é o nome de uma das outras telas.
+        #caso seja, ele abre o how-to-play da tela selecionada.
+
         if self.jogo=="tela_principal":
             self.howtoplay['image']=self.tela_principal
             self.howtoplay.place(x=90,y=20)
-        elif self.jogo=="megastacker":
-            self.howtoplay['image']=self.megastacker
-            self.howtoplay.place(x=90, y=20)
 
         elif self.jogo=="blackjack":
             self.howtoplay['image']=self.blackjack
             self.howtoplay.place(x=90, y=20)
-
         else:
             self.howtoplay['image']=self.slotmachine
             self.howtoplay.place(x=90, y=20)
