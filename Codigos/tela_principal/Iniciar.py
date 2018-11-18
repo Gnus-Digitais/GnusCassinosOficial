@@ -3,6 +3,7 @@ from Codigos.tela_principal.Jogo import Jogo
 import sys
 
 def finalizar_programa():
+    """Este procedimento serve para finalizar o jogo."""
     tela.destroy()
     sys.exit()
 
