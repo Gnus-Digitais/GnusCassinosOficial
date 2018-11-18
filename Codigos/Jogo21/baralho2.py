@@ -55,5 +55,5 @@ class Baralho2:
 
     def topo_da_pilha(self):
         """Retira o topo da pilha e o retorna"""
-        self.embalharada.pop() #só para ficar igual a pilha de estrutura de dados...
+        self.embalharada.pop()  # só para ficar igual a pilha de estrutura de dados...
         return self.pilha.desempilha()

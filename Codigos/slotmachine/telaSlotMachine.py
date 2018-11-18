@@ -6,7 +6,7 @@ import time
 from functools import partial
 from tkinter import messagebox
 from Codigos.slotmachine.SlotMachine import SlotMachine
-from Codigos.classes_auxiliares.Ranking import Raking
+from Codigos.classes_auxiliares.Ranking import Ranking
 from Codigos.tela_principal.Howtoplay import Howtoplay
 
 class TelaSlotMachine:
@@ -28,7 +28,7 @@ class TelaSlotMachine:
         self.status = 0
         self.sm = SlotMachine()
         self.sm.spin()
-        self.r = Raking("slotmachine", "f")
+        self.r = Ranking("slotmachine", "f")
         mixer.init()
 
         self.imglpdLigada = PhotoImage(file="../slotmachine/imagens/cacaniquel4.png")

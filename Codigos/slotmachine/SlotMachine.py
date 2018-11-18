@@ -18,8 +18,7 @@ class SlotMachine:
 
     def spin(self):
         c = self.fisher_yates_shuffle(self.imgs)
-        return random.choice(c) #todo - random choice está sendo usado da classe RANDOM.
-
+        return random.choice(c)
 
     def fisher_yates_shuffle(self, vet_ordenado):
         """Implementa o algoritmo avançado Fisher Yates Shuffle. Esse algoritmo embaralha os itens
@@ -28,9 +27,8 @@ class SlotMachine:
         a = len(vetor_ordenado)
         b = a - 1
         for d in range(b, 0, -1):
-            rand=RandInt()
+            rand = RandInt()
             e = rand.numero_aleatorio(d)
-            #e = random.randint(0, d)
             if e == d:
                 continue
             vetor_ordenado[d], vetor_ordenado[e] = vetor_ordenado[e], vetor_ordenado[d]

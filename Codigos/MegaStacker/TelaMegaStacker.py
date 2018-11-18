@@ -2,7 +2,7 @@ import pygame, sys, time
 from tkinter import *
 from tkinter import messagebox
 from pygame.locals import *
-from Codigos.classes_auxiliares.Ranking import Raking
+from Codigos.classes_auxiliares.Ranking import Ranking
 #from Codigos.tela_principal.Jogo import Jogo
 import os
 
@@ -68,7 +68,7 @@ class TelaMegaStacker:
         self.stop = True
         self.moneyaposta = 0
         self.moneycarteira = 250
-        self.rank = Raking("megastacker", "f")
+        self.rank = Ranking("megastacker", "f")
 
         self.teste = 0
         self.x = 280

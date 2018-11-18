@@ -3,7 +3,7 @@ from tkinter import messagebox
 # tentar implementar cor gradativa
 from pygame.locals import *
 
-from Codigos.classes_auxiliares.Ranking import Raking
+from Codigos.classes_auxiliares.Ranking import Ranking
 pygame.init()
 #mudança de teste bitbucket
 #GNUS DIGITAIS> BRUNO, RODRIGO, MATHEUS E IGOR
@@ -45,7 +45,7 @@ sommoeda = pygame.mixer.Sound('sounds/moeda2.wav')
 stop = True
 moneyaposta = 0
 moneycarteira = 250
-rank = Raking("megastacker","f")
+rank = Ranking("megastacker","f")
 exibirRank = rank.retorna_ranking()
 
 

@@ -7,12 +7,12 @@ class Nodo:
     def __repr__(self):
         return '%s -> %s' % (self.dado, self.anterior)
 
+
 class Pilha:
     """Esta classe representa uma pilha usando uma estrutura encadeada."""
 
     def __init__(self):
         self.topo = None
-
 
     def __repr__(self):
         return "[" + str(self.topo) + "]"
@@ -31,6 +31,6 @@ class Pilha:
 
     def desempilha(self):
         """Remove o elemento que está no topo da pilha."""
-        anterior=self.topo.dado # guarda o valor do topo numa variavel
-        self.topo = self.topo.anterior # muda o topo da pilha para o valor que está antrás do topo.
-        return anterior #retorna a variavel que contém o valor que foi perdido após a substituição do topo da pilha.
+        anterior=self.topo.dado  # guarda o valor do topo numa variavel
+        self.topo = self.topo.anterior  # muda o topo da pilha para o valor que está antrás do topo.
+        return anterior  # retorna a variavel que contém o valor que foi perdido após a substituição do topo da pilha.

@@ -1,4 +1,6 @@
 import time
+
+
 class RandInt:
     """Classe que gera numeros pseudo aleatorios"""
     def __init__(self):

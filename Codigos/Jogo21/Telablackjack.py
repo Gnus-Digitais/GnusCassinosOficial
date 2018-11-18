@@ -2,12 +2,13 @@ from Codigos.Jogo21.baralho import Baralho
 from Codigos.tela_principal.Howtoplay import Howtoplay
 from pygame import mixer
 from tkinter import *
-from Codigos.classes_auxiliares.Ranking import Raking
+from Codigos.classes_auxiliares.Ranking import Ranking
 from functools import partial
 from tkinter import messagebox
 import time
 import threading
 import pygame
+
 
 class Telablackjack:
     """Esta é a classe TelablackJack que serve que é usada para criar a tela do jogo blackjack e todas as funcionalidades da mesma."""
@@ -23,7 +24,7 @@ class Telablackjack:
         #fim do frame tela principal do jogo.
         mixer.init()
         self.bara = Baralho()
-        self.r = Raking("blackjack","f")
+        self.r = Ranking("blackjack","f")
         self.cartasMaquina = []
         self.cartasJogador = []
         self.valorJogador = 0
