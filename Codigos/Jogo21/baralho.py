@@ -1,4 +1,5 @@
 from Codigos.classes_auxiliares.RandInt import RandInt
+from Codigos.Jogo21.Pilha import Pilha
 
 #melhor team: "G'NUS DIGITAIS"> Matheus Dias, Bruno Felipe, Rodrigo Rocca e Igor Ramos..
 class Baralho:
@@ -8,6 +9,7 @@ class Baralho:
         self.baralho = []
         self.naipes = ['copas', 'espadas', 'ouros', 'paus']
         self.embalharada = None
+        self.pilha=Pilha()
 
     def gerar_baralho(self):
         """Gera um baralho de 52 cartas, divididas em 4 naipes. as cartas são representadas por
@@ -47,8 +49,11 @@ class Baralho:
     def pilha_embaralhar(self):
         """Embaralha a pilha de cartas"""
         self.fisher_yates_shuffle(self.baralho)
-        return self.embalharada
+        for j in range(len(self.embalharada)):
+            self.pilha.empilha(self.embalharada[j]) # Empinhando o baralho dentro da pilha.
+        return self.pilha
 
     def topo_da_pilha(self):
         """Retira o topo da pilha e o retorna"""
-        return self.embalharada.pop()
+        self.embalharada.pop()  # só para ficar igual a pilha de estrutura de dados...
+        return self.pilha.desempilha() # retira o topo da pilha, usando função desempilha() da classe Pilha.

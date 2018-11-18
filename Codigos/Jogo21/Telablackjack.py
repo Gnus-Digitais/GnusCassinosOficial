@@ -558,6 +558,7 @@ class Telablackjack:
         self.valorMaquina = 0
         self.valorJogador = 0
         self.bara.baralho = []
+        self.bara.pilha.topo = None
         self.cartasJogador = []
         self.cartasMaquina = []
         self.qtdCartasJogador = 2
@@ -881,10 +882,10 @@ class Telablackjack:
         self.valorJogador = 0
         self.valorMaquina = 0
 
-        self.bara.gerar_baralho()
-        self.bara.pilha_embaralhar()
+        self.bara.gerar_baralho() # gerando baralho
+        self.bara.pilha_embaralhar() #Embaralhando as cartas.
 
-        self.cartasMaquina.append(self.bara.topo_da_pilha())
+        self.cartasMaquina.append(self.bara.topo_da_pilha())#apendando na lista cartasMaquina o topo da Pilha
         url1 = self.criaString(self.descobreCarta(self.cartasMaquina))
 
         self.cartasJogador.append(self.bara.topo_da_pilha())
@@ -895,17 +896,17 @@ class Telablackjack:
         self.urlDesvira = self.criaString(self.descobreCarta(self.cartasMaquina))
         # a url foi criada para desvirar esta carta no futuro. e fica salva numa global.
 
-        self.cartasJogador.append(self.bara.topo_da_pilha())
+        self.cartasJogador.append(self.bara.topo_da_pilha()) # Appendando na lista cartasJogador o topo da Pilha.
         url4 = self.criaString(self.descobreCarta(self.cartasJogador))
         self.img1['file'] = url1
         self.img2['file'] = urlFechada
         self.img3['file'] = url3
         self.img4['file'] = url4
 
-        maquina = self.Trata(self.cartasMaquina)
-        jogador = self.Trata(self.cartasJogador)
+        maquina = self.Trata(self.cartasMaquina) #TRATANDO OS VALORES DA MAQUINA
+        jogador = self.Trata(self.cartasJogador) #TRANADO OS VALORES DO JOGADOR
 
-        self.valorMaquina = self.placarGeral(maquina)
+        self.valorMaquina = self.placarGeral(maquina) #DESCOBRINDO O VALOR DA PONTUAÇÃO.
         self.valorJogador = self.placarGeral(jogador)
         self.lbMaquina['text'] = maquina[0]
         self.lbJogador['text'] = self.valorJogador
