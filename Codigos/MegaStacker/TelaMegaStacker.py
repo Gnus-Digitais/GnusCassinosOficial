@@ -7,6 +7,8 @@ from Codigos.classes_auxiliares.Ranking import Ranking
 import os
 
 class TelaMegaStacker:
+    '''Está é a Classe TelaMegaStacker
+    usada para criar a tela do jogo MegaStacker'''
     def __init__(self,user,janela):
         self.janela=janela
         self.x_telaPrincipal = (self.janela.winfo_screenwidth() // 2) - (910 // 2)
@@ -93,7 +95,7 @@ class TelaMegaStacker:
         self.controle_howtoplay = False
         self.juiz = [0]
         self.sair = True
-        self.reiniciar()
+        self.loadImagens()
         self.juiz = [0]
         self.inicio(self.btnOk)
 
@@ -116,6 +118,7 @@ class TelaMegaStacker:
         pygame.display.update()
 
     def texto(self, msg, cor, tam, x, y):
+        """Função para inserir um texto na tela do jogo"""
         font = pygame.font.SysFont("Arial", tam, "bold")
         texto1 = font.render(msg, True, cor)
         self.tela.blit(texto1, [x, y])
@@ -123,12 +126,14 @@ class TelaMegaStacker:
 
 
     def inserir_no_ranking(self, score):
-        """este metodo adiciona o usuario do game ao ranking"""
+        """Este metodo adiciona o usuario do game ao ranking"""
         self.rank.addRecord(self.user, int(score))
     def dinheiro(self):
+        '''Função para exibir o dinheiro da carteira'''
         self.texto(str(self.moneycarteira),self.preto, 16, 715, 44)
 
-    def reiniciar(self):
+    def loadImagens(self):
+        '''Está função insere as imagens na tela'''
         self.moneyaposta = 0
         self.tela.fill(self.verde)
         self.tela.blit(self.fundo, (260, 40))
@@ -152,6 +157,8 @@ class TelaMegaStacker:
         self.desenha_varios_quadrados(mat)
 
     def showmensage(self, msg,x,y):
+        '''Está função mostra uma mensagem na tela,
+        a partir do parametros: mensagem e posição x e y'''
         pygame.draw.rect(self.tela, self.vermelho, [x, y, 150, 20])
         pygame.display.update()
         self.texto(msg, self.branco, 16, x, y)
@@ -161,6 +168,8 @@ class TelaMegaStacker:
         pygame.display.update()
 
     def rank2(self, palavra):
+        '''Está função insere o arquivo de texto gerado pelo a Classe
+        Ranking na tela'''
         vet = palavra.split('\n')
         y = 50
         for x in vet:
@@ -170,6 +179,7 @@ class TelaMegaStacker:
             y += 17
 
     def variaveis(self):
+        '''Está função reinicia os valores das variáveis'''
         self.subir = False
         self.subir2 = False
         self.subir3 = False
@@ -190,6 +200,8 @@ class TelaMegaStacker:
         self.sair = True
         self.controle_howtoplay = False
     def inicio(self, botao):
+        '''Está função controla a tela incial do jogo
+        e recebe como parametro o botão que pode ser o de inicio ou reinicio do jogo'''
         self.tela.blit(botao, (575, 375))
         pygame.draw.rect(self.tela, self.corrank, [35, 43, 130, 190])
         self.exibirRank = self.rank.retorna_ranking()
@@ -281,7 +293,7 @@ class TelaMegaStacker:
                         break
                     #Botão retornar dentro do howtoplay
                     elif xm > 2 and ym > 530 and xm < 62 and ym < 590 and self.controle_howtoplay == True:
-                        self.reiniciar()
+                        self.loadImagens()
                         self.variaveis()
                         self.inicio(self.btnOk)
                     #Botão Play
@@ -297,10 +309,11 @@ class TelaMegaStacker:
                         if self.teste > 0:
                             self.teste = 0
                             self.variaveis()
-                            self.reiniciar()
+                            self.loadImagens()
                             self.inicio(self.btnOk)
 
     def play(self, bool):
+        '''Função que controla cada linha de blocos do jogo'''
         while bool:
             self.musicafundo.play()
             if self.sair:
@@ -346,9 +359,11 @@ class TelaMegaStacker:
 
 
     def apostar(self, valor):
+        '''Esta função insere o valor da aposta na tela'''
         self.texto(str(valor), self.preto, 16, 700, 415)
 
     def perdeu(self, lista):
+        '''Função analisa se o jogador perdeu ou não'''
         self.vago = lista[0]
         if any(Elemento != self.vago for Elemento in lista):
             self.tela.blit(self.perdeuimagem, (300, 100))
@@ -361,11 +376,8 @@ class TelaMegaStacker:
                 self.janela.geometry("910x600+{}+{}".format(self.x_telaPrincipal, self.y_telaPrincipal))  # largura x altura + esquerda + topo
                 self.janela.overrideredirect(False)#coloca bordas
                 self.teste = 1
-               #self.play(False)
                 self.sair = False
                 self.v = True
-                #pygame.quit()
-
 
             self.teste = 1
             self.play(False)
@@ -375,6 +387,8 @@ class TelaMegaStacker:
             self.subirLinha.play()
 
     def ganhou(self):
+        '''Está função insere a imagem, reproduz o som e
+        calcula a bonificação quando o jogador vence'''
         self.tela.blit(self.imgWin, (300, 100))
         pygame.display.update()
         self.musicafundo.stop()
@@ -395,6 +409,8 @@ class TelaMegaStacker:
             pygame.display.update()
 
     def linha(self, velocidade, x, y):
+        '''Função responsável pra controlar o movimento de cada linha de blocos
+        tem como parametros a velocidade da linha e a posição x e y'''
         self.frames = pygame.time.Clock()
         self.vet = []
         self.stop = True
@@ -434,6 +450,3 @@ class TelaMegaStacker:
                     self.desenha_varios_quadrados(self.vet)
                     self.vet.clear()
                     self.xx = x
-
-
-
