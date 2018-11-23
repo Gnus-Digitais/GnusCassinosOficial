@@ -129,15 +129,16 @@ def verifica_igualdade(x,y):
 
 def testeArvore():
 
+	'''
 	arvore=ArvoreBinaria()
 	arvore.insere(arvore.raiz,21)
-	arvore.insere(arvore.raiz, 51)
-	arvore.insere(arvore.raiz, 17)
 	arvore.insere(arvore.raiz, 30)
+	arvore.insere(arvore.raiz, 17)
+	arvore.insere(arvore.raiz, 51)
 	arvore.insere(arvore.raiz, 50)
 	arvore.insere(arvore.raiz, 7)
 	arvore.insere(arvore.raiz, 1)
-	'''
+
 	arvore.insere(arvore.raiz,10)
 	arvore.insere(arvore.raiz,13)
 	arvore.insere(arvore.raiz,12)
@@ -178,13 +179,16 @@ def testeArvore():
 	arvore2.insere(arvore2.raiz, 10)
 	arvore2.insere(arvore2.raiz,2)
 	print(arvore2)
-	print(arvore2.altura())
-	print(arvore2.busca(arvore2.raiz, 35))
-	print(arvore2.maximo())  # sem nodo partida(raiz)
-	print(arvore2.minimo())  # sem nodo partida(raiz)
-	print(verifica_igualdade(arvore.raiz,arvore2.raiz))
-	arvore.caminhamento_ordem(arvore.raiz)
-	arvore.caminhamento_pre_ordem(arvore.raiz)
-	arvore.caminhamento_pos_ordem(arvore.raiz)
-
+	#print(arvore.altura())
+	#print(arvore.busca(arvore.raiz, 35))
+	#print(arvore.maximo())  # sem nodo partida(raiz)
+	#print(arvore.minimo())  # sem nodo partida(raiz)
+	#sprint(verifica_igualdade(arvore.raiz,arvore2.raiz))
+	print(" - ")
+	arvore2.caminhamento_ordem(arvore2.raiz)
+	print(" - ")
+	arvore2.caminhamento_pre_ordem(arvore2.raiz)
+	print(" - ")
+	arvore2.caminhamento_pos_ordem(arvore2.raiz)
+	print(" - ")
 testeArvore()
