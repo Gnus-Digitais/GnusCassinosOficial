@@ -209,16 +209,16 @@ class TelaMegaStacker:
         self.tela.blit(self.headrank, (25, 10))
         pygame.display.update()
         while self.sair:
-            for evento in pygame.event.get():
-                if evento.type == QUIT:
+            for evento in pygame.event.get():  # Este FOR captura os eventos de entrada do usuário
+                if evento.type == QUIT:  # Se for igual o QUIT encerra o programa
                     pygame.quit()
                     self.janela.destroy()
                     sys.exit()
-                if evento.type == pygame.MOUSEBUTTONDOWN:  # TODO - Criar função para todos os botões
-                    xm = pygame.mouse.get_pos()[0]
-                    ym = pygame.mouse.get_pos()[1]
+                if evento.type == pygame.MOUSEBUTTONDOWN:  # Captura as posições dos clicks do mouse
+                    xm = pygame.mouse.get_pos()[0]  # captura a posição no eixo x
+                    ym = pygame.mouse.get_pos()[1]  # captura a posição no eixo y
 
-                    if xm > 600 and ym > 500 and xm < 655 and ym < 555 and botao == self.btnOk:
+                    if xm > 600 and ym > 500 and xm < 655 and ym < 555 and botao == self.btnOk:  # moeda "cinco"
                         if self.moneycarteira >= 5:
                             self.sommoeda.play()
                             self.moneyaposta += 5
@@ -229,7 +229,7 @@ class TelaMegaStacker:
                             self.apostar(self.moneyaposta)
                         else:
                             self.showmensage('Saldo insuficiente!',690,440)
-                    elif xm > 660 and ym > 500 and xm < 715 and ym < 555 and botao == self.btnOk:
+                    elif xm > 660 and ym > 500 and xm < 715 and ym < 555 and botao == self.btnOk:  # moeda "dez"
                         if self.moneycarteira >= 10:
                             self.sommoeda.play()
                             self.moneyaposta += 10

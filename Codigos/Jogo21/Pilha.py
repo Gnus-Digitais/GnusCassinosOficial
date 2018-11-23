@@ -1,4 +1,4 @@
-class Nodo:
++class Nodo:
     """Esta classe representa um nodo de uma estrutura encadeada."""
     def __init__(self, dado=0, nodo_anterior=None):
         self.dado = dado

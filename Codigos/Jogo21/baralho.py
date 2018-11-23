@@ -3,7 +3,7 @@ from Codigos.Jogo21.Pilha import Pilha
 
 #melhor team: "G'NUS DIGITAIS"> Matheus Dias, Bruno Felipe, Rodrigo Rocca e Igor Ramos..
 class Baralho:
-    """Classe que manipula um baralho comum de 52 cartas"""
+    """Classe que manipula um baralho francês de 52 cartas"""
 
     def __init__(self):
         self.baralho = []
@@ -50,7 +50,7 @@ class Baralho:
         """Embaralha a pilha de cartas"""
         self.fisher_yates_shuffle(self.baralho)
         for j in range(len(self.embalharada)):
-            self.pilha.empilha(self.embalharada[j]) # Empinhando o baralho dentro da pilha.
+            self.pilha.empilha(self.embalharada[j]) # Empilhando o baralho dentro da pilha.
         return self.pilha
 
     def topo_da_pilha(self):
