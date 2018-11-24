@@ -118,7 +118,9 @@ class TelaMegaStacker:
         pygame.display.update()
 
     def texto(self, msg, cor, tam, x, y):
-        """Função para inserir um texto na tela do jogo"""
+        """Função para inserir um texto na tela do jogo
+        recebe como parametros a mensagem que será exibida
+        a cor e o tamanho da letra e as posições x e y"""
         font = pygame.font.SysFont("Arial", tam, "bold")
         texto1 = font.render(msg, True, cor)
         self.tela.blit(texto1, [x, y])
@@ -126,7 +128,8 @@ class TelaMegaStacker:
 
 
     def inserir_no_ranking(self, score):
-        """Este metodo adiciona o usuario do game ao ranking"""
+        """Este metodo adiciona o usuario do game ao ranking
+        recebe como parametro o score"""
         self.rank.addRecord(self.user, int(score))
     def dinheiro(self):
         '''Função para exibir o dinheiro da carteira'''
@@ -240,7 +243,7 @@ class TelaMegaStacker:
                             self.apostar(self.moneyaposta)
                         else:
                             self.showmensage('Saldo insuficiente!',690,440)
-                    elif xm > 720 and ym > 500 and xm < 775 and ym < 555 and botao == self.btnOk:
+                    elif xm > 720 and ym > 500 and xm < 775 and ym < 555 and botao == self.btnOk:  # moeda "vinte e cinco"
                         if self.moneycarteira >= 25:
                             self.sommoeda.play()
                             self.moneyaposta += 25
@@ -251,7 +254,7 @@ class TelaMegaStacker:
                             self.apostar(self.moneyaposta)
                         else:
                             self.showmensage('Saldo insuficiente!',690,440)
-                    elif xm > 780 and ym > 500 and xm < 835 and ym < 555 and botao == self.btnOk:
+                    elif xm > 780 and ym > 500 and xm < 835 and ym < 555 and botao == self.btnOk:  # moeda "cinquenta"
                         if self.moneycarteira >= 50:
                             self.sommoeda.play()
                             self.moneyaposta += 50
@@ -262,7 +265,7 @@ class TelaMegaStacker:
                             self.apostar(self.moneyaposta)
                         else:
                             self.showmensage('Saldo insuficiente!',690,440)
-                    elif xm > 840 and ym > 500 and xm < 895 and ym < 555 and botao == self.btnOk:
+                    elif xm > 840 and ym > 500 and xm < 895 and ym < 555 and botao == self.btnOk:  # moeda "cem"
                         if self.moneycarteira >= 100:
                             self.sommoeda.play()
                             self.moneyaposta += 100
@@ -301,6 +304,7 @@ class TelaMegaStacker:
                         if self.moneyaposta > 0 and self.teste != 1:
                             pygame.draw.rect(self.tela, self.verde, [570, 370, 70, 70])
                             pygame.draw.rect(self.tela, self.verde, [590, 500, 310, 70])
+                            pygame.draw.rect(self.tela,self.verde, [2, 460, 70, 150])
                             self.play(True)
                         else:
                             if botao == self.btnOk:  # TODO Bug dedo nervoso
@@ -313,9 +317,9 @@ class TelaMegaStacker:
                             self.inicio(self.btnOk)
 
     def play(self, bool):
-        '''Função que controla cada linha de blocos do jogo'''
+        '''Função que controla cada linha de blocos do jogo, recebe como parâmetro a variável de controle bool'''
         while bool:
-            self.musicafundo.play()
+            self.musicafundo.play()  # inicia a música de fundo
             if self.sair:
                 self.linha1, self.subir = self.linha(2, self.x, self.y)
                 self.juiz[0] = len(self.linha1)
@@ -359,20 +363,21 @@ class TelaMegaStacker:
 
 
     def apostar(self, valor):
-        '''Esta função insere o valor da aposta na tela'''
+        '''Esta função insere o valor da aposta na tela, recebe como parâmetro a variável valor'''
         self.texto(str(valor), self.preto, 16, 700, 415)
 
     def perdeu(self, lista):
-        '''Função analisa se o jogador perdeu ou não'''
-        self.vago = lista[0]
-        if any(Elemento != self.vago for Elemento in lista):
+        '''Função analisa se o jogador perdeu ou não,
+        recebe como parâmetro uma lista que contem os tamanhos de cada linha de blocos'''
+        self.primeria_posicao = lista[0]
+        if any(Elemento != self.primeria_posicao for Elemento in lista):  # se algum elemento em lista for diferente da primeira posição,
             self.tela.blit(self.perdeuimagem, (300, 100))
             self.musicafundo.stop()
             self.somperdeu.play()
             self.moneyaposta = 0
-            if self.moneycarteira <  1:
+            if self.moneycarteira <  1:  # Toda vez que o jogador perde é verificado se o ssldo da carteira está zerado
                 Tk().withdraw()
-                messagebox.showinfo("Que pena!", "Perdeu tudo!")
+                messagebox.showinfo("Que pena!", "Perdeu tudo!")  # Tela de Mensagem de alerta
                 self.janela.geometry("910x600+{}+{}".format(self.x_telaPrincipal, self.y_telaPrincipal))  # largura x altura + esquerda + topo
                 self.janela.overrideredirect(False)#coloca bordas
                 self.teste = 1
@@ -428,15 +433,13 @@ class TelaMegaStacker:
                         self.v = True
                         self.stop = False
                         return self.vet, True
-                if evento.type == pygame.MOUSEBUTTONDOWN:  # TODO - Criar função para todos os botões
+                if evento.type == pygame.MOUSEBUTTONDOWN:
                     xm = pygame.mouse.get_pos()[0]
                     ym = pygame.mouse.get_pos()[1]
                     if xm > 373 and ym > 530 and xm < 428 and ym < 590:
                         self.v = True
                         self.stop = False
                         return self.vet, True
-                    elif xm > 15 and ym > 530 and xm < 75 and ym < 590:
-                        self.showmensage('Finalize o jogo!',78,550)
 
             if self.v:
                 break
