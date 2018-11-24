@@ -1,10 +1,10 @@
+BFS|20400|f
 igor|19500|f
 igor|2500|f
+BFS|2400|f
 igor|2050|f
 Bruno|2050|f
 fafa|2025|f
 valt|1225|f
 testeig|1000|f
 teste|700|f
-Cabra|700|f
-teste|650|f
