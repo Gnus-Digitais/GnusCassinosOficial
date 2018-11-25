@@ -78,13 +78,12 @@ class TelaSlotMachine:
         self.imgbtnSpin = PhotoImage(file=r"../slotmachine/imagens\btnSpin.png")
         self.btnSpin['image'] = self.imgbtnSpin
         self.btnSpin.place(x=503, y=190)
-        # fim botao spin
+
         # bolinha inicio
         self.b = Label(self.janela)
         self.b['bg'] = '#006400'
         self.bImg = PhotoImage(file=r"../slotmachine/imagens\Bolinha.png")
         self.b['image'] = self.bImg
-        # bolinha fim
 
         #seta botao
         self.seta=Label(self.janela)
@@ -92,7 +91,6 @@ class TelaSlotMachine:
         self.setaimg=PhotoImage(file="../slotmachine/imagens/seta.png")
         self.seta['image']=self.setaimg
         self.seta.place(x=543,y=195)
-        #fim seta botao
 
         self.btnVoltar = Button(self.janela)
         self.imgVoltar = PhotoImage(file="../slotmachine/imagens/voltar2.png")
@@ -101,6 +99,15 @@ class TelaSlotMachine:
         self.btnVoltar['command'] = self.voltar
         self.btnVoltar['bg'] = "#006400"
         self.btnVoltar.place(x=2, y=530)
+
+        #btnapagarvaloraposta - este botão cancela o que foi apostado.
+        self.btn_apagar_aposta = Button(self.janela)
+        self.imgbtn_apagar_aposta = PhotoImage(file="../slotmachine/imagens/btnApagar.png")
+        self.btn_apagar_aposta['image'] = self.imgbtn_apagar_aposta
+        self.btn_apagar_aposta['relief'] = FLAT
+        self.btn_apagar_aposta['command'] = self.cancelar_aposta
+        self.btn_apagar_aposta['bg'] = "#006400"
+        self.btn_apagar_aposta.place(x=1000, y=450)
 
         # carteira
         self.carteira = Label(self.janela)
@@ -251,6 +258,7 @@ class TelaSlotMachine:
     def aposta_status(self, stat):
         """Este método serve para esconder as fichas(botões), do jogador no momento em que esses botões não são necessários"""
         if stat == "aberto":
+            self.btn_apagar_aposta.place(x=859, y=377)
             self.ficha5.place(x=597, y=520)
             self.ficha10.place(x=657, y=520)
             self.ficha25.place(x=717, y=520)
@@ -260,6 +268,7 @@ class TelaSlotMachine:
             self.btnSpin.place(x=503, y=190)
             self.valor_aposta_lb.place(x=740, y=415)
         else:
+            self.btn_apagar_aposta.place(x=1000, y=450)
             self.ficha5.place(x=1000, y=500)
             self.ficha10.place(x=1070, y=500)
             self.ficha25.place(x=1140, y=500)
@@ -299,10 +308,17 @@ class TelaSlotMachine:
         else:
             self.mostra_temporizado(0.5,self.lbAlerta_quantia,1000,400,690,450)
 
+    def cancelar_aposta(self):
+        """Este método serve para cancelar uma aposta que foi efetuada.Este método devolve o valor da aposta para a carteira."""
+        self.saldo_carteira = self.saldo_carteira + self.valor_aposta
+        self.saldo_carteira_lb['text'] = self.saldo_carteira
+        self.valor_aposta = 00
+        self.valor_aposta_lb['text'] = self.valor_aposta
+
     def reseta(self):
         """Este metodo serve para Configurar uma nova partida limpando a tela sem alterar o valor da carteira."""
         self.valor_aposta = 00
-        self.valor_aposta_lb['text'] =self.valor_aposta
+        self.valor_aposta_lb['text'] = self.valor_aposta
         self.aposta_status("aberto")
 
     def voltar(self):
@@ -347,7 +363,7 @@ class TelaSlotMachine:
             #status está baixo
             self.imgSpin.place(x=480, y=291)
             self.imgSP['file'] = r"../slotmachine/imagens/bracoBaixo.png"
-            self.btnSpin.place(x=0,y=0)
+            self.btnSpin.place(x=1000,y=0)
             self.btnSpin['image']=""
             self.b['image']=self.bImg
             self.b.place(x=503,y=390)

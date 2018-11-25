@@ -305,6 +305,15 @@ class Telablackjack:
         self.lbPontuacaoJogador['bg'] = "#C8AB37"
         self.lbPontuacaoJogador.place(x=1000, y=415)
 
+        # btnapagarvaloraposta - este botão cancela o que foi apostado.
+        self.btn_apagar_aposta = Button(self.janela)
+        self.imgbtn_apagar_aposta = PhotoImage(file="../Jogo21/image/btnApagar.png")
+        self.btn_apagar_aposta['image'] = self.imgbtn_apagar_aposta
+        self.btn_apagar_aposta['relief'] = FLAT
+        self.btn_apagar_aposta['command'] = self.cancelar_aposta
+        self.btn_apagar_aposta['bg'] = "#006400"
+        self.btn_apagar_aposta.place(x=1000, y=450)
+
         # fichas na tela 5,10,25,50,100
         self.ficha5 = Button(self.janela)
         self.fimg5 = PhotoImage(file=r"../Jogo21/image/ficha/cinco.png")
@@ -371,14 +380,14 @@ class Telablackjack:
         self.ranking.place(x=25, y=43)
 
         # lbAlerta(movimento invalido) inicio
-        self.lbAlerta_aposta = Label(self.janela,text="Efetue uma aposta!")#todo - fazer funcao pra mostrar cm som "pin"
+        self.lbAlerta_aposta = Label(self.janela,text="Efetue uma aposta!")
         self.lbAlerta_aposta['font'] = 'Arial', 12, "bold"
         self.lbAlerta_aposta['bg'] = "#ff0000"
         self.lbAlerta_aposta['fg']="#fff"
         self.lbAlerta_aposta.place(x=1000, y=450)
 
         #lbAlerta Quantia aposta invalida
-        self.lbAlerta_quantia = Label(self.janela,text="Saldo insuficiente!")  # todo - fazer funcao pra mostrar cm som "pin"
+        self.lbAlerta_quantia = Label(self.janela,text="Saldo insuficiente!")
         self.lbAlerta_quantia['font'] = 'Arial', 12, "bold"
         self.lbAlerta_quantia['bg'] = "#ff0000"#COR Do BG da mensagem ANTIGA:C8AB37
         self.lbAlerta_quantia['fg']="#fff"
@@ -419,6 +428,7 @@ class Telablackjack:
     def aposta_status(self,stat):
         """Este método serve para esconder as fichas(botões), do jogador no momento em que esses botões não são necessários"""
         if stat == "aberto":
+            self.btn_apagar_aposta.place(x=859, y=377)
             self.ficha5.place(x=597, y=520)
             self.ficha10.place(x=657, y=520)
             self.ficha25.place(x=717, y=520)
@@ -428,6 +438,7 @@ class Telablackjack:
             self.btnOk.place(x=575, y=375)
             self.valor_aposta_lb.place(x=740, y=415)
         else:
+            self.btn_apagar_aposta.place(x=1000, y=377)
             self.ficha5.place(x=1000, y=500)
             self.ficha10.place(x=1070, y=500)
             self.ficha25.place(x=1140, y=500)
@@ -503,6 +514,13 @@ class Telablackjack:
             self.btnParar['image'] = ''
             self.btnParar.place(x=1000, y=200)
             self.btnDescer.place(x=1000, y=200)
+
+    def cancelar_aposta(self):
+        """Este método serve para cancelar uma aposta que foi efetuada.Este método devolve o valor da aposta para a carteira."""
+        self.saldo_carteira = self.saldo_carteira + self.valor_aposta
+        self.saldo_carteira_lb['text'] = self.saldo_carteira
+        self.valor_aposta = 00
+        self.valor_aposta_lb['text'] = self.valor_aposta
 
     def tiralogo(self):
         """este metodo retira a logo do centro da tela"""
