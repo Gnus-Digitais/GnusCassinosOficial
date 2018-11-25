@@ -1,0 +1,10 @@
+catarin|3100
+fff|2500
+igor|2455
+Koala|1050
+sr.gnu|1000
+fabio|1500
+julia|1400
+guga|1200
+marco|1100
+josé|1050

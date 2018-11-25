@@ -28,7 +28,7 @@ class TelaSlotMachine:
         self.status = 0
         self.sm = SlotMachine()
         self.sm.spin()
-        self.r = Ranking("slotmachine", "f")
+        self.r = Ranking("slotmachine")
         mixer.init()
 
         self.imglpdLigada = PhotoImage(file="../slotmachine/imagens/cacaniquel4.png")
@@ -432,7 +432,7 @@ class TelaSlotMachine:
 
     def inserir_no_ranking(self, score):
         """este metodo adiciona o usuario do game ao ranking"""
-        self.r.addRecord(self.user, int(score))
+        self.r.add_record(self.user, int(score))
 
     def sorteia(self):
         """Este metodo serve para inicializar a maquina slotmachine chamando a threading responsável."""

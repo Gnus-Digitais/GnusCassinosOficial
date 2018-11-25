@@ -70,7 +70,7 @@ class TelaMegaStacker:
         self.stop = True
         self.moneyaposta = 0
         self.moneycarteira = 250
-        self.rank = Ranking("megastacker", "f")
+        self.rank = Ranking("megastacker")
 
         self.teste = 0
         self.x = 280
@@ -130,7 +130,7 @@ class TelaMegaStacker:
     def inserir_no_ranking(self, score):
         """Este metodo adiciona o usuario do game ao ranking
         recebe como parametro o score"""
-        self.rank.addRecord(self.user, int(score))
+        self.rank.add_record(self.user, int(score))
     def dinheiro(self):
         '''Função para exibir o dinheiro da carteira'''
         self.texto(str(self.moneycarteira),self.preto, 16, 715, 44)

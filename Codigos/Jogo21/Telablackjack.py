@@ -24,7 +24,7 @@ class Telablackjack:
         #fim do frame tela principal do jogo.
         mixer.init()
         self.bara = Baralho()
-        self.r = Ranking("blackjack","f")
+        self.r = Ranking("blackjack")
         self.cartasMaquina = []
         self.cartasJogador = []
         self.valorJogador = 0
@@ -589,7 +589,7 @@ class Telablackjack:
 
     def inserir_no_ranking(self,score):
         """este metodo adiciona o usuario do game ao ranking"""
-        self.r.addRecord(self.user, int(score))
+        self.r.add_record(self.user, int(score))
 
     def empatou(self):
         """Este metodo serve para mostrar a mensagem de - empate."""
