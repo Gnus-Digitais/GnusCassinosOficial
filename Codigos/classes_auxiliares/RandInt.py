@@ -29,5 +29,7 @@ class RandInt:
 
         # Seleciona um item do vetor
         xi = ((self.A * x0) + self.B) % self.M
-        Yi = 1 + (xi % len(seq))
-        return seq[Yi]
+        yi = 1 + (xi % len(seq))
+
+        # Retorna a posição yi do vetor seq
+        return seq[yi]

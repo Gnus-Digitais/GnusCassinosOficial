@@ -1,0 +1,10 @@
+BFS|20400
+igor|19500
+igor|2500
+BFS|2400
+igor|2050
+Bruno|2050
+fafa|2025
+valt|1225
+testeig|1000
+teste|700
