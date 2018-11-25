@@ -191,8 +191,6 @@ class TelaSlotMachine:
         self.ranking['text'] = " "
         # fim quadro ranking
 
-        self.aposta_status("aberto")
-
         self.texto_ranking = self.imprimir_ranking()
         self.ranking['text'] = self.texto_ranking
         self.rank['image'] = self.imgrank
@@ -230,6 +228,7 @@ class TelaSlotMachine:
         self.btn_how_to_play['bg'] = "#006400"
         self.btn_how_to_play.place(x=2, y=465)
 
+        self.aposta_status("aberto")
 
     #temporizador
     def trhead_temporizador(self, tempo, texto, xA, yA, xNovo, yNovo):
@@ -267,6 +266,8 @@ class TelaSlotMachine:
             self.aposta.place(x=657, y=345)
             self.btnSpin.place(x=503, y=190)
             self.valor_aposta_lb.place(x=740, y=415)
+            self.btn_how_to_play.place(x=2, y=465)
+            self.btnVoltar.place(x=2, y=530)
         else:
             self.btn_apagar_aposta.place(x=1000, y=450)
             self.ficha5.place(x=1000, y=500)
@@ -275,6 +276,8 @@ class TelaSlotMachine:
             self.ficha50.place(x=1130, y=500)
             self.ficha100.place(x=1100, y=500)
             self.btnSpin.place(x=503, y=190)
+            self.btn_how_to_play.place(x=1000, y=465)
+            self.btnVoltar.place(x=1010, y=530)
 
     def aposta_ficha(self, ficha):
         """Este método serve para configurar apostas feitas pelo jogador, e também mudar o valor da carteira do jogador"""

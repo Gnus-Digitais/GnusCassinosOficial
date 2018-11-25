@@ -12,6 +12,9 @@ class Jogo:
     def __init__(self,tela):
         self.tela=tela
         self.__apelido=None
+
+        self.vcmd = self.tela.register(func=self.limitar_tamanho)
+
         self.principal=Frame(self.tela)
         self.principal['width']=910
         self.principal['height']=600
@@ -42,7 +45,7 @@ class Jogo:
         self.lb_caixa['bg']="#000080"
         self.lb_caixa.place(x=300,y=265)
 
-        self.cx_nome=Entry(self.principal)
+        self.cx_nome=Entry(self.principal,validate='key', validatecommand=(self.vcmd, '%P'))
         self.cx_nome['font'] = 'Courier New', 18, "bold" #sans
         self.cx_nome['fg']="#000080"
         self.cx_nome['bg'] = "#C8AB37"
@@ -161,7 +164,7 @@ class Jogo:
     def abre_megastacker(self):
         """Metodo que abre a tela Megastacker, passando como parametro o nome do jogador e a tela atual"""
         try:
-            usuario = self.cx_nome.get()  # todo - não ligado ainda-BRUNO(FAZER ESSA LIGAÇÃO URGENTE)...
+            usuario = self.cx_nome.get()
             self.apelido = self.trata_texto(usuario)
             if self.apelido != False:
                 TelaMegaStacker(self.apelido, self.tela)
@@ -173,3 +176,9 @@ class Jogo:
     def abre_how_to_play(self):
         """Este método abre o how to play"""
         Howtoplay(self.tela,"tela_principal")
+
+    def limitar_tamanho(self,p):
+        """este metodo valida o tamanho do apelido que esta sendo escrito no entry:apelido"""
+        if len(p) > 7:
+            return False
+        return True
