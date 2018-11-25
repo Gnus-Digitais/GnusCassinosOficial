@@ -17,8 +17,8 @@ class TelaMegaStacker:
         self.janela.overrideredirect(True)  # retira bordas
         self.__user = user
         #command para centralizar a tela
-        os.environ['SDL_VIDEO_CENTERED'] = '1'
-        pygame.init()
+        os.environ['SDL_VIDEO_CENTERED'] = '1'  # Centraliza a tela
+        pygame.init()  # inicia o pygame
 
         # GNUS DIGITAIS> BRUNO, RODRIGO, MATHEUS E IGOR
         # Cores
@@ -152,6 +152,7 @@ class TelaMegaStacker:
         self.tela.blit(self.btnRetornar,(2,530))
         self.tela.blit(self.btnHowToPlay,(2,465))
         self.dinheiro()
+        # Matriz com todas as posições dos blocos do jojo, usada para preencher todos de uma vez com a cor preta
         mat = [[280, 102], [329, 102], [378, 102], [427, 102], [476, 102], [280, 151], [329, 151], [378, 151],
                [427, 151], [476, 151], [280, 200], [329, 200], [378, 200], [427, 200], [476, 200], [280, 249],
                [329, 249], [378, 249], [427, 249], [476, 249], [280, 298], [329, 298], [378, 298], [427, 298],
@@ -172,7 +173,7 @@ class TelaMegaStacker:
 
     def rank2(self, palavra):
         '''Está função insere o arquivo de texto gerado pelo a Classe
-        Ranking na tela'''
+        Ranking na tela, recebe como paramêtro palavra'''
         vet = palavra.split('\n')
         y = 50
         for x in vet:
@@ -307,7 +308,7 @@ class TelaMegaStacker:
                             pygame.draw.rect(self.tela,self.verde, [2, 460, 70, 150])
                             self.play(True)
                         else:
-                            if botao == self.btnOk:  # TODO Bug dedo nervoso
+                            if botao == self.btnOk:
                                 self.showmensage('Efetue uma aposta!',690,440)
                             self.play(False)
                         if self.teste > 0:
@@ -324,7 +325,7 @@ class TelaMegaStacker:
                 self.linha1, self.subir = self.linha(2, self.x, self.y)
                 self.juiz[0] = len(self.linha1)
             if self.subir:
-                if len(self.linha1) == 0:
+                if len(self.linha1) == 0:  # Se o jogador não
                     self.loser = [1, 2]
                     self.perdeu(self.loser)
                 else:
