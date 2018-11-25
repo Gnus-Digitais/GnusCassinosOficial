@@ -1,6 +1,5 @@
 from tkinter import *
 from Codigos.tela_principal.Jogo import Jogo
-
 import sys
 
 def finalizar_programa():
