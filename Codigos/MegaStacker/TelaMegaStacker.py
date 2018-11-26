@@ -58,6 +58,7 @@ class TelaMegaStacker:
         self.btnRetornar = pygame.image.load('../MegaStacker/imagens/voltar2.png')
         self.btnHowToPlay = pygame.image.load('imagem/howtoplaybutton.png')
         self.howToPlay = pygame.image.load('imagem/howtoplaymegastacker.png')
+        self.desapostar = pygame.image.load('../MegaStacker/imagens/btnApagar.png')
         #carregar os sons do jogo
         self.somperdeu = pygame.mixer.Sound('../MegaStacker/sounds/perdeu.ogg')
         self.somwin = pygame.mixer.Sound('../MegaStacker/sounds/ganhou .ogg')
@@ -110,7 +111,7 @@ class TelaMegaStacker:
 
     def desenha_varios_quadrados(self, lista):
         """Função para desenhar vários quadrados na tela
-        a partir de uma lista que em canda posição contém uma
+        a partir de uma lista que em cada posição contém uma
         coordeanda x e y"""
         self.relogio.tick(60)
         for i in range(len(lista)):
@@ -151,6 +152,7 @@ class TelaMegaStacker:
         self.tela.blit(self.cem, (840, 500))
         self.tela.blit(self.btnRetornar,(2,530))
         self.tela.blit(self.btnHowToPlay,(2,465))
+        self.tela.blit(self.desapostar,(860,377))
         self.dinheiro()
         # Matriz com todas as posições dos blocos do jojo, usada para preencher todos de uma vez com a cor preta
         mat = [[280, 102], [329, 102], [378, 102], [427, 102], [476, 102], [280, 151], [329, 151], [378, 151],
@@ -277,6 +279,14 @@ class TelaMegaStacker:
                             self.apostar(self.moneyaposta)
                         else:
                             self.showmensage('Saldo insuficiente!',690,440)
+                    #Botão desapostar, desfaz a aposta
+                    elif xm > 860 and ym > 377 and xm < 906 and ym < 434:
+                        self.moneycarteira += self.moneyaposta
+                        self.moneyaposta = 0
+                        self.tela.blit(self.saldoCarteira, (707, 39))
+                        self.tela.blit(self.aposta, (657, 340))
+                        self.dinheiro()
+                        self.apostar(self.moneyaposta)
 
                     #Botão howtoplay
                     elif xm > 2 and ym > 465 and xm < 62 and ym < 525:
@@ -305,7 +315,8 @@ class TelaMegaStacker:
                         if self.moneyaposta > 0 and self.teste != 1:
                             pygame.draw.rect(self.tela, self.verde, [570, 370, 70, 70])
                             pygame.draw.rect(self.tela, self.verde, [590, 500, 310, 70])
-                            pygame.draw.rect(self.tela,self.verde, [2, 460, 70, 150])
+                            pygame.draw.rect(self.tela, self.verde, [2, 460, 70, 150])
+                            pygame.draw.rect(self.tela, self.verde, [860, 377, 48, 60])
                             self.play(True)
                         else:
                             if botao == self.btnOk:
