@@ -2,7 +2,7 @@ class Ranking:
     """Classe responsavel por gerenciar as buscas e registros no ranking dos jogos.
     Recebe por parâmetro o nome do jogo a se buscar o ranking."""
     def __init__(self, jogo):
-        self.__jogo = jogo
+        self.__jogo = jogo  # Nome do Jogo
 
     # GET jogo
     @property
@@ -13,6 +13,21 @@ class Ranking:
     @jogo.setter
     def jogo(self, valor):
         self.__jogo = valor
+
+    def __insertion_sort_matriz(self, matriz_entrada):
+        """Método que implementa o algoritmo Insertion Sort. Resposável por ordenar a matriz de ranking.
+        Recebe uma matriz_entrada contendo o ranking quase ordenado e retorna uma matriz totalmente ordenada.
+        OBS: Foi realizada uma modificação para que a ordenação seja decrescente"""
+
+        lista = [[int(i[1]), i[0]] for i in matriz_entrada]  # Inverte as posições dos itens de cada linha da matriz
+        for i in range(1, len(lista)):  # Loop que vai de 1 ao tamanho do vetor menos 1
+            chave = lista[i]  # Atribui o item da matriz lista na posição i a variável chave
+            k = i  # Varável K recebe índice i.
+            while k > 0 and chave > lista[k - 1]:  # Enquanto k for maior 0 e chave maior que matriz na posição k-1
+                lista[k] = lista[k - 1]  # A posição k da lista recebe lista na posição k - 1
+                k -= 1  # Decresce o valor de k
+            lista[k] = chave  # A posição k da lista recebe o valor de chave
+        return [i[::-1] for i in lista]  # Inverte as posições dos itens de cada linha da matriz e retorna
 
     def __ler_ranking(self):
         """Metodo privado que faz a leitura do arquivo de Ranking"""
@@ -33,7 +48,7 @@ class Ranking:
             if result != []:
                 return result
             else:
-                return [['0', 0, '0']]*10
+                return [['0', 0]]*10
         except FileNotFoundError:  # Caso o arquivo não exista
             # Cria arquivo de ranking
             arquivo = open("rankings/"+self.__jogo + '.txt', 'w+')
@@ -53,7 +68,7 @@ class Ranking:
             arq = open("../MegaStacker/rankings/" + self.__jogo + '.txt', "w", encoding="UTF-8")
         txt = ""
         for vetor in vetor_ranking:
-            txt += vetor[0]+'|'+str(vetor[1])+'|'+vetor[2]+'\n'
+            txt += vetor[0]+'|'+str(vetor[1])+'\n'
         arq.write(txt)  # Escreve no arquivo os as informações sobre o ranking
         arq.close()
 
@@ -62,15 +77,21 @@ class Ranking:
         Recebe os parâmetros apelido e pontuacao."""
 
         lista = self.__ler_ranking()  # Recebe uma matriz contendo as informações do ranking
-        index_ranking = 0  # Váriavel de controle
-        for i in lista:
-            if pontuacao > int(i[1]):  # Caso a pontuação seja maior que o valor da linha i da matriz na posição 1
-                lista.insert(index_ranking, [apelido, pontuacao])  # Insere dados do jogador como linha da matriz
-                if len(lista) > 10:  # Se o tamanho da matriz for maior que 10
-                    lista.pop()  # Apaga a ultima linha
-                self.__gravar_ranking(lista)  # Chama o método __gravar_ranking() para salvar as alterações feitas
-
-            index_ranking += 1  # incrementa váriavel de controle
+        lista.append([apelido, str(pontuacao)])
+        print('addd:', lista)
+        ordenado = self.__insertion_sort_matriz(lista)
+        print('ordenado:', ordenado)
+        ordenado.pop()
+        self.__gravar_ranking(ordenado)
+        # index_ranking = 0  # Váriavel de controle
+        # for i in lista:
+        #     if pontuacao > int(i[1]):  # Caso a pontuação seja maior que o valor da linha i da matriz na posição 1
+        #         lista.insert(index_ranking, [apelido, pontuacao])  # Insere dados do jogador como linha da matriz
+        #         if len(lista) > 10:  # Se o tamanho da matriz for maior que 10
+        #             lista.pop()  # Apaga a ultima linha
+        #         self.__gravar_ranking(lista)  # Chama o método __gravar_ranking() para salvar as alterações feitas
+        #
+        #     index_ranking += 1  # incrementa váriavel de controle
 
     def retorna_ranking(self):
         """Metodo que retorna uma string contendo os 10 primeiros colocados no Ranking do jogo"""
@@ -78,5 +99,9 @@ class Ranking:
         string = ""
         matriz_rank = self.__ler_ranking()  # Recebe uma matriz contendo as informações do ranking
         for i in range(len(matriz_rank)):
-            string += matriz_rank[i][0] + "\t" + matriz_rank[i][1] + "\n"  # Adiciona dados da  da matriz em uma string
+            string += matriz_rank[i][0] + "\t" +str(matriz_rank[i][1]) + "\n"  # Adiciona dados da  da matriz em uma string
         return string.strip()  # retorna a string contendo o ranking
+
+
+# r = Ranking("koala")
+# print(r.insertion_sort_matriz([['Caio', '50'], ['Dani', '31'], ['Ewerton', '99'], ['Igor', '13'], ['Bruno', '49']]))
