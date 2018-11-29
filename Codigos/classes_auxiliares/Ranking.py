@@ -78,20 +78,9 @@ class Ranking:
 
         lista = self.__ler_ranking()  # Recebe uma matriz contendo as informações do ranking
         lista.append([apelido, str(pontuacao)])
-        print('addd:', lista)
         ordenado = self.__insertion_sort_matriz(lista)
-        print('ordenado:', ordenado)
         ordenado.pop()
         self.__gravar_ranking(ordenado)
-        # index_ranking = 0  # Váriavel de controle
-        # for i in lista:
-        #     if pontuacao > int(i[1]):  # Caso a pontuação seja maior que o valor da linha i da matriz na posição 1
-        #         lista.insert(index_ranking, [apelido, pontuacao])  # Insere dados do jogador como linha da matriz
-        #         if len(lista) > 10:  # Se o tamanho da matriz for maior que 10
-        #             lista.pop()  # Apaga a ultima linha
-        #         self.__gravar_ranking(lista)  # Chama o método __gravar_ranking() para salvar as alterações feitas
-        #
-        #     index_ranking += 1  # incrementa váriavel de controle
 
     def retorna_ranking(self):
         """Metodo que retorna uma string contendo os 10 primeiros colocados no Ranking do jogo"""
@@ -99,9 +88,5 @@ class Ranking:
         string = ""
         matriz_rank = self.__ler_ranking()  # Recebe uma matriz contendo as informações do ranking
         for i in range(len(matriz_rank)):
-            string += matriz_rank[i][0] + "\t" +str(matriz_rank[i][1]) + "\n"  # Adiciona dados da  da matriz em uma string
+            string += matriz_rank[i][0] + "\t" + str(matriz_rank[i][1]) + "\n"  # Adiciona dados da matriz em uma string
         return string.strip()  # retorna a string contendo o ranking
-
-
-# r = Ranking("koala")
-# print(r.insertion_sort_matriz([['Caio', '50'], ['Dani', '31'], ['Ewerton', '99'], ['Igor', '13'], ['Bruno', '49']]))
