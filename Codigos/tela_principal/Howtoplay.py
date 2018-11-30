@@ -1,7 +1,7 @@
 from tkinter import *
 
 class Howtoplay:
-    """Classe how-to-play, onde todos os how-to-plays estão."""
+    """Classe how-to-play, onde os helps da telaprincipal,blackjack e slotmachine estão."""
     def __init__(self,tela,jogo):
         self.tela=tela
         self.jogo=jogo
